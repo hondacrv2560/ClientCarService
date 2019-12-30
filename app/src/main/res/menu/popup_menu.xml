@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/addOrder"
+        android:icon="@drawable/ic_calendar_purple_24dp"
+        android:title="Записать клиента"
+        >@style/PopupMenu</item>
+    <item android:title="Записать клиента на "
+        android:id="@+id/addOrderTime">@style/PopupMenu</item>
+
+</menu>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/car_wash"
+        android:title="Записаться на мойку"/>
+    <item
+        android:id="@+id/tire_fitting"
+        android:title="Записаться на шиномонтаж"/>
+    <item
+        android:id="@+id/dry_cleaning"
+        android:title="Записаться на химчистку"/>
+    <item
+        android:id="@+id/polishing"
+        android:title="Записаться на полировку"/>
+    <item
+        android:id="@+id/deteyling"
+        android:title="Записаться на детейлинг"/>
+    <item
+        android:id="@+id/regular_customer"
+        android:title="Стать постоянным клиентом"/>
+    <!--       app:showAsAction="always"/>-->
+    <item android:id="@+id/action_today"
+        android:title="action_today"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+    <item
+        android:title="Calendar"
+        app:showAsAction="always"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_date_range_purple_24dp">
+        <menu>
+            <item
+                android:id="@+id/day_1"
+                android:title="oneDay"
+                android:icon="@drawable/ic_filter_1_blue_grey_600_24dp_lp"
+                app:showAsAction="always"/>
+            <item
+                android:id="@+id/days_3"
+                android:title="threeDay"
+                android:icon="@drawable/ic_filter_3_blue_grey_600_24dp_lp"
+                app:showAsAction="always"/>
+            <item
+                android:id="@+id/week"
+                android:title="sevenDay"
+                android:icon="@drawable/ic_filter_7_blue_grey_600_24dp_lp"
+                app:showAsAction="always"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/enter_register"
+        android:title="enter register"
+        android:icon="@drawable/ic_person_blue_grey_400_24dp"
+        app:showAsAction="always"
+        android:orderInCategory="2"/>
+</menu>
