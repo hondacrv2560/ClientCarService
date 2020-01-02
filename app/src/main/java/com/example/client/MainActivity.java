@@ -50,4 +50,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // вход зарегистрированного клиента
+    public void signIn(String e_mail, String pass){
+        firebaseAuth.signInWithEmailAndPassword(e_mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Ok", Toast.LENGTH_SHORT).show();
+                }else{
+                    String TAG="test";
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(MainActivity.this, "Bad", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
+
+    // регистрация нового клиента
+    public void registartion (String e_mail, String pass){
+        firebaseAuth.createUserWithEmailAndPassword(e_mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Reg ok", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "Reg Bad", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
+
 }
