@@ -33,7 +33,6 @@ public class RegularClientActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private DatabaseReference myDbReference;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
-//    FirebaseListAdapter firebaseListAdapter
 
     EditText nameSurnameNewClient;
     EditText numPhoneNewClient;
