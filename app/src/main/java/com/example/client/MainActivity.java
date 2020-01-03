@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
+import com.example.client.Classes.OneDayActivity;
 import com.example.client.Fragments.OneDay;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -149,13 +150,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_today:
 
 
-//            case R.id.day_1:
-//                fragmentManager=getSupportFragmentManager();
-//                OneDay oneDay = new OneDayActivity();
-//                transaction=fragmentManager.beginTransaction();
-//                transaction.replace(R.id.fr, oneDay);
-//                transaction.commit();
-//                break;
+            case R.id.day_1:
+                fragmentManager=getSupportFragmentManager();
+                OneDay oneDay = new OneDayActivity();
+                transaction=fragmentManager.beginTransaction();
+                transaction.replace(R.id.fr, oneDay);
+                transaction.commit();
+                break;
 //            case R.id.days_3:
 //                fragmentManager=getSupportFragmentManager();
 //                ThreeDays threeDays=new ThreeDays();
