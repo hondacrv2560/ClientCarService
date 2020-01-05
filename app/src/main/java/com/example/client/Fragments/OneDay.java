@@ -18,6 +18,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.client.Models.EventOrder;
 import com.example.client.Models.Order;
 import com.example.client.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +37,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference myDbReference;
+    private DatabaseReference myDbReferenceOrder;
+    private DatabaseReference myDbReferenceEventOrder;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
 
     @Nullable
@@ -149,11 +151,14 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                     case R.id.addOrder:
                         Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
                                 getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time));
-                        myDbReference = database.getReference("Orders");
+                        myDbReferenceOrder = database.getReference("Orders");
+                        EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+                        myDbReferenceEventOrder = database.getReference("Event");
                         //Uid заказа
-                        String key = myDbReference.push().getKey();
+                        String key = myDbReferenceOrder.push().getKey();
                         // добавление заказа
-                        myDbReference.child(Objects.requireNonNull(key)).setValue(order);
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                         Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                 }
                 return true;

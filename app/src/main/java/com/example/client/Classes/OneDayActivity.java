@@ -29,7 +29,7 @@ public class OneDayActivity extends OneDay implements Callback<List<Event>> {
         // downloaded using retrofit, visit http://square.github.io/retrofit
         if (!calledNetwork) {
             RestAdapter retrofit = new RestAdapter.Builder()
-                    .setEndpoint("https://api.myjson.com/bins")
+                    .setEndpoint("https://clientcarservice.firebaseio.com/")
                     .build();
             MyJsonService service = retrofit.create(MyJsonService.class);
             service.listEvents(this);

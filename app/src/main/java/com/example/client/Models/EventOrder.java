@@ -1,60 +1,60 @@
 package com.example.client.Models;
 
 public class EventOrder {
-    private String mName;
-    private int mDayOfMonth;
-    private String mStartTime;
-    private String mEndTime;
-    private String mColor;
+    private String name;
+    private int dayOfMonth;
+    private String startTime;
+    private String endTime;
+    private String color;
 
     public EventOrder() {
     }
 
-    public EventOrder(String mName, int mDayOfMonth, String mStartTime, String mEndTime, String mColor) {
-        this.mName = mName;
-        this.mDayOfMonth = mDayOfMonth;
-        this.mStartTime = mStartTime;
-        this.mEndTime = mEndTime;
-        this.mColor = mColor;
+    public EventOrder(String name, int dayOfMonth, String startTime, String endTime, String color) {
+        this.name = name;
+        this.dayOfMonth = dayOfMonth;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.color = color;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getmDayOfMonth() {
-        return mDayOfMonth;
+    public int getDayOfMonth() {
+        return dayOfMonth;
     }
 
-    public void setmDayOfMonth(int mDayOfMonth) {
-        this.mDayOfMonth = mDayOfMonth;
+    public void setDayOfMonth(int dayOfMonth) {
+        this.dayOfMonth = dayOfMonth;
     }
 
-    public String getmStartTime() {
-        return mStartTime;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setmStartTime(String mStartTime) {
-        this.mStartTime = mStartTime;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getmEndTime() {
-        return mEndTime;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setmEndTime(String mEndTime) {
-        this.mEndTime = mEndTime;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public String getmColor() {
-        return mColor;
+    public String getColor() {
+        return color;
     }
 
-    public void setmColor(String mColor) {
-        this.mColor = mColor;
+    public void setColor(String color) {
+        this.color = color;
     }
 }
