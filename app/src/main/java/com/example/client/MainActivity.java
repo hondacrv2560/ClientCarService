@@ -19,8 +19,10 @@ import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
+import com.example.client.Classes.ThreeDaysActivity;
 import com.example.client.Classes.ToDayActivity;
 import com.example.client.Fragments.OneDay;
+import com.example.client.Fragments.ThreeDays;
 import com.example.client.Fragments.ToDay;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -162,13 +164,13 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.fr, oneDay);
                 transaction.commit();
                 break;
-//            case R.id.days_3:
-//                fragmentManager=getSupportFragmentManager();
-//                ThreeDays threeDays=new ThreeDays();
-//                transaction=fragmentManager.beginTransaction();
-//                transaction.replace(R.id.fr,threeDays);
-//                transaction.commit();
-//                break;
+            case R.id.days_3:
+                fragmentManager=getSupportFragmentManager();
+                ThreeDays threeDays=new ThreeDaysActivity();
+                transaction=fragmentManager.beginTransaction();
+                transaction.replace(R.id.fr,threeDays);
+                transaction.commit();
+                break;
 //            case R.id.week:
 //                fragmentManager=getSupportFragmentManager();
 //                SevenDays sevenDays=new SevenDays();
