@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
+import com.example.client.Classes.ToDayActivity;
 import com.example.client.Fragments.OneDay;
+import com.example.client.Fragments.ToDay;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -148,8 +150,11 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.action_today:
-
-
+                fragmentManager = getSupportFragmentManager();
+                ToDay toDay = new ToDayActivity();
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fr,toDay);
+                transaction.commit();
             case R.id.day_1:
                 fragmentManager=getSupportFragmentManager();
                 OneDay oneDay = new OneDayActivity();
