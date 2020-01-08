@@ -44,7 +44,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View showOneDay = inflater.inflate(R.layout.one_day, container,false);
+        View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
         mWeekView.setNumberOfVisibleDays(1);
 
