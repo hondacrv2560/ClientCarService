@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
+import com.example.client.Classes.SevenDaysActivity;
 import com.example.client.Classes.ThreeDaysActivity;
 import com.example.client.Classes.ToDayActivity;
 import com.example.client.Fragments.OneDay;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog_regular_customer = builder_regular_customer.create();
                 dialog_regular_customer.show();
                 break;
+
             case R.id.enter_register:
                 builder_enter_register = new AlertDialog.Builder(MainActivity.this);
                 builder_enter_register.setTitle("Вход зарегистрированного клиента");
@@ -150,14 +152,15 @@ public class MainActivity extends AppCompatActivity {
                 });
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
-
                 break;
+
             case R.id.action_today:
                 fragmentManager = getSupportFragmentManager();
                 ToDay toDay = new ToDayActivity();
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,toDay);
                 transaction.commit();
+                break;
             case R.id.day_1:
                 fragmentManager=getSupportFragmentManager();
                 OneDay oneDay = new OneDayActivity();
@@ -172,13 +175,13 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.fr,threeDays);
                 transaction.commit();
                 break;
-//            case R.id.week:
-//                fragmentManager=getSupportFragmentManager();
-//                SevenDays sevenDays=new SevenDays();
-//                transaction=fragmentManager.beginTransaction();
-//                transaction.replace(R.id.fr,sevenDays);
-//                transaction.commit();
-//                break;
+            case R.id.week:
+                fragmentManager=getSupportFragmentManager();
+                SevenDays sevenDays=new SevenDaysActivity();
+                transaction=fragmentManager.beginTransaction();
+                transaction.replace(R.id.fr,sevenDays);
+                transaction.commit();
+                break;
 
             default:
                 return super.onOptionsItemSelected(item);
