@@ -22,6 +22,7 @@ import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.ThreeDaysActivity;
 import com.example.client.Classes.ToDayActivity;
 import com.example.client.Fragments.OneDay;
+import com.example.client.Fragments.SevenDays;
 import com.example.client.Fragments.ThreeDays;
 import com.example.client.Fragments.ToDay;
 import com.google.android.gms.tasks.OnCompleteListener;
