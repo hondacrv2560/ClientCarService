@@ -31,7 +31,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
-public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private WeekView mWeekView;
 
@@ -44,9 +44,9 @@ public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View showToDay = inflater.inflate(R.layout.activity_week_view, container,false);
-        mWeekView = showToDay.findViewById(R.id.weekView);
-        mWeekView.goToToday();
+        View showThreeDays = inflater.inflate(R.layout.activity_week_view, container,false);
+        mWeekView = showThreeDays.findViewById(R.id.weekView);
+        mWeekView.setNumberOfVisibleDays(3);
 
         // Lets change some dimensions to best fit the view.
         mWeekView.setColumnGap((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
@@ -72,7 +72,7 @@ public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickL
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
 
-        return showToDay;
+        return showThreeDays;
     }
 
     private void setupDateTimeInterpreter(final boolean shortDate) {
