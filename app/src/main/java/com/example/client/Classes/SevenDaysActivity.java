@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.client.Fragments.SevenDays;
-import com.example.client.Fragments.ThreeDays;
 import com.example.client.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,11 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class SevenDaysActivity extends  SevenDays {
     public int startTimeHour;

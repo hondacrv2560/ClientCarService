@@ -18,6 +18,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.alamkanak.weekview.WeekViewLoader;
 import com.example.client.Models.EventOrder;
 import com.example.client.Models.Order;
 import com.example.client.R;
@@ -27,7 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -46,6 +49,27 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
+//        mWeekView.setWeekViewLoader(new WeekViewLoader() {
+//            int i=1;
+//            @Override
+//            public double toWeekViewPeriodIndex(Calendar instance) {
+//                return instance.getTime().getDate()+instance.getTime().getDate();
+//            }
+//
+//            @Override
+//            public List<? extends WeekViewEvent> onLoad(int periodIndex) {
+//                if (i == 3) {
+//                    i = 1;
+//                    List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+//                    return events;
+//                }else {
+//                    i++;
+//                    // return blank list or empty list
+//                    List<WeekViewEvent> events=new ArrayList<WeekViewEvent>();
+//                    return events;
+//                }
+//            }
+//        });
         mWeekView.setNumberOfVisibleDays(1);
 
         // Lets change some dimensions to best fit the view.
