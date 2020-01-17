@@ -115,6 +115,7 @@ public class Order implements Serializable {
     public void setEndTimeYear(int endTimeYear) {
         this.endTimeYear = endTimeYear;
     }
+
     @Exclude
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
