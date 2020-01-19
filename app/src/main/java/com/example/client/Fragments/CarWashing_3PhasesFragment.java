@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Models.CarWashing_3Phases;
-import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -25,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class CarWashing_3PhasesFragment extends Fragment {
+public class CarWashing_3PhasesFragment extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter adapter;
@@ -36,20 +36,32 @@ public class CarWashing_3PhasesFragment extends Fragment {
     // поключение к child Orders
     DatabaseReference serviceRef = myDbReference.child("CarWashing_3Phases");
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View carWashing_3PhasesFragment = inflater.inflate(R.layout.car_washing_3phases_view, container, false);
-
-        recyclerView = carWashing_3PhasesFragment.findViewById(R.id.CarWashing_3Phases_list);
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.car_washing_3phases_view);
+        recyclerView = findViewById(R.id.CarWashing_3Phases_list);
+        linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
-
-        return carWashing_3PhasesFragment;
+        adapter.startListening();
     }
+
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//
+//        View carWashing_3PhasesFragment = inflater.inflate(R.layout.car_washing_3phases_view, container, false);
+//
+//        recyclerView = carWashing_3PhasesFragment.findViewById(R.id.CarWashing_3Phases_list);
+//        linearLayoutManager = new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        fetch();
+//
+//        return carWashing_3PhasesFragment;
+//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout root;
@@ -123,7 +135,7 @@ public class CarWashing_3PhasesFragment extends Fragment {
             @Override
             public CarWashing_3PhasesFragment.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.service_list, parent, false);
+                        .inflate(R.layout.car_washing_3phases_list, parent, false);
 
                 return new CarWashing_3PhasesFragment.ViewHolder(view);
             }
@@ -142,7 +154,7 @@ public class CarWashing_3PhasesFragment extends Fragment {
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CarWashing_3PhasesFragment.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -151,9 +163,10 @@ public class CarWashing_3PhasesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
 }
