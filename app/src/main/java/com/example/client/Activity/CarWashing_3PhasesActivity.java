@@ -34,17 +34,30 @@ public class CarWashing_3PhasesActivity extends AppCompatActivity {
     DatabaseReference myDbReference = database.getReference();
     // поключение к child Orders
     DatabaseReference serviceRef = myDbReference.child("CarWashing_3Phases");
+    TextView txtInfo;
+    TextView cat1;
+    TextView cat2;
+    TextView cat3;
+    TextView cat4;
+    TextView cat5;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_washing_3phases_view);
+        txtInfo=findViewById(R.id.txtInfo);
+        cat1=findViewById(R.id.cat1);
+        cat2=findViewById(R.id.cat2);
+        cat3=findViewById(R.id.cat3);
+        cat4=findViewById(R.id.cat4);
+        cat5=findViewById(R.id.cat5);
+
         recyclerView = findViewById(R.id.CarWashing_3Phases_list);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
-        adapter.startListening();
     }
 
 //    @Nullable
@@ -162,10 +175,10 @@ public class CarWashing_3PhasesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        adapter.startListening();
-//    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 }
