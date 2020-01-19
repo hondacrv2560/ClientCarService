@@ -150,4 +150,10 @@ public class CarWashing_3PhasesFragment extends Fragment {
         };
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 }
