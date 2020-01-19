@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +35,7 @@ public class CarWashing_3PhasesFragment extends Fragment {
 
         View carWashing_3PhasesFragment = inflater.inflate(R.layout.car_washing_3phases_view, container,false);
 
-        recyclerView = carWashing_3PhasesFragment.findViewById(R.id.service_list);
+        recyclerView = carWashing_3PhasesFragment.findViewById(R.id.CarWashing_3Phases_list);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -41,4 +43,4 @@ public class CarWashing_3PhasesFragment extends Fragment {
 
         return carWashing_3PhasesFragment;
     }
-}
+
