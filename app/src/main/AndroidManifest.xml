@@ -19,7 +19,7 @@
         <activity android:name=".Activity.RegularClientActivity">
 
         </activity>
-        <activity android:name=".Fragments.CarWashing_3PhasesFragment">
+        <activity android:name=".Activity.CarWashing_3PhasesActivity">
 
         </activity>
     </application>

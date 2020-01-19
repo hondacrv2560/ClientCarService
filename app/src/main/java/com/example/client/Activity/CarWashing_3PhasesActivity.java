@@ -1,4 +1,4 @@
-package com.example.client.Fragments;
+package com.example.client.Activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class CarWashing_3PhasesFragment extends AppCompatActivity {
+public class CarWashing_3PhasesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter adapter;
@@ -130,19 +129,19 @@ public class CarWashing_3PhasesFragment extends AppCompatActivity {
                         })
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<CarWashing_3Phases, CarWashing_3PhasesFragment.ViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<CarWashing_3Phases, CarWashing_3PhasesActivity.ViewHolder>(options) {
 
             @Override
-            public CarWashing_3PhasesFragment.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            public CarWashing_3PhasesActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.car_washing_3phases_list, parent, false);
 
-                return new CarWashing_3PhasesFragment.ViewHolder(view);
+                return new CarWashing_3PhasesActivity.ViewHolder(view);
             }
 
 
             @Override
-            protected void onBindViewHolder(CarWashing_3PhasesFragment.ViewHolder holder, final int position, CarWashing_3Phases carWashing3Phases) {
+            protected void onBindViewHolder(CarWashing_3PhasesActivity.ViewHolder holder, final int position, CarWashing_3Phases carWashing3Phases) {
                 holder.setTxtIdCw_3Phases(carWashing3Phases.getIdCw_3Phases());
                 holder.setTxtTitleCw_3Phases(carWashing3Phases.getTitleCw_3Phases());
                 holder.setTxtPriceCw_3Phases_sedan(carWashing3Phases.getPriceCw_3Phases_sedan());
@@ -154,7 +153,7 @@ public class CarWashing_3PhasesFragment extends AppCompatActivity {
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(CarWashing_3PhasesFragment.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CarWashing_3PhasesActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

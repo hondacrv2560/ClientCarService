@@ -17,8 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.client.Activity.RegularClientActivity;
-import com.example.client.MainActivity;
+import com.example.client.Activity.CarWashing_3PhasesActivity;
 import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -114,7 +113,7 @@ public class ServiceFragment extends Fragment {
                         int id=Integer.valueOf(position);
                         switch (id){
                             case 0:
-                                Intent carWashing_3PhasesFragment = new Intent(getContext(), CarWashing_3PhasesFragment.class);
+                                Intent carWashing_3PhasesFragment = new Intent(getContext(), CarWashing_3PhasesActivity.class);
                                 startActivity(carWashing_3PhasesFragment);
                         }
 
