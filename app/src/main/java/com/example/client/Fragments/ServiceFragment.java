@@ -50,7 +50,6 @@ public class ServiceFragment extends Fragment {
         fetch();
 
 //        Toast.makeText(getActivity(), "Fragment Sevice", Toast.LENGTH_SHORT).show();
-
         return serviceFragment;
     }
 
@@ -104,7 +103,7 @@ public class ServiceFragment extends Fragment {
             @Override
             protected void onBindViewHolder(ViewHolder holder, final int position, Service service) {
                 holder.setIdTitle(service.getIdService());
-//                holder.setTxtTitle(service.getTitle_service());
+                holder.setTxtTitle(service.getTitle_service());
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
