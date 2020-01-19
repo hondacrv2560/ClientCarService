@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,10 +14,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Models.CarWashing_3Phases;
+import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class CarWashing_3PhasesFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -89,5 +96,58 @@ public class CarWashing_3PhasesFragment extends Fragment {
         public void setTxtPriceCw_3Phases_BigSUV(String string){
             txtPriceCw_3Phases_BigSUV.setText(string);
         }
+    }
+
+    private void fetch() {
+        Query query = myDbReference.child("CarWashing_3Phases");
+
+        FirebaseRecyclerOptions<CarWashing_3Phases> options =
+                new FirebaseRecyclerOptions.Builder<CarWashing_3Phases>()
+                        .setQuery(query, new SnapshotParser<CarWashing_3Phases>() {
+                            @NonNull
+                            @Override
+                            public CarWashing_3Phases parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new CarWashing_3Phases(snapshot.child("idCw_3Phases").getValue().toString(),
+                                        snapshot.child("titleCw_3Phases").getValue().toString(),
+                                        snapshot.child("priceCw_3Phases_sedan").getValue().toString(),
+                                        snapshot.child("priceCw_3Phases_business").getValue().toString(),
+                                        snapshot.child("priceCw_3Phases_premium").getValue().toString(),
+                                        snapshot.child("priceCw_3Phases_SUV").getValue().toString(),
+                                        snapshot.child("priceCw_3Phases_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<CarWashing_3Phases, CarWashing_3PhasesFragment.ViewHolder>(options) {
+
+            @Override
+            public CarWashing_3PhasesFragment.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.service_list, parent, false);
+
+                return new CarWashing_3PhasesFragment.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(CarWashing_3PhasesFragment.ViewHolder holder, final int position, CarWashing_3Phases carWashing3Phases) {
+                holder.setTxtIdCw_3Phases(carWashing3Phases.getIdCw_3Phases());
+                holder.setTxtTitleCw_3Phases(carWashing3Phases.getTitleCw_3Phases());
+                holder.setTxtPriceCw_3Phases_sedan(carWashing3Phases.getPriceCw_3Phases_sedan());
+                holder.setTxtPriceCw_3Phases_business(carWashing3Phases.getPriceCw_3Phases_business());
+                holder.setTxtPriceCw_3Phases_premium(carWashing3Phases.getPriceCw_3Phases_premium());
+                holder.setTxtPriceCw_3Phases_SUV(carWashing3Phases.getPriceCw_3Phases_SUV());
+                holder.setTxtPriceCw_3Phases_BigSUV(carWashing3Phases.getPriceCw_3Phases_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
     }
 }
