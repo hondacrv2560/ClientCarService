@@ -19,6 +19,9 @@
         <activity android:name=".Activity.RegularClientActivity">
 
         </activity>
+        <activity android:name=".Fragments.CarWashing_3PhasesFragment">
+
+        </activity>
     </application>
 
 </manifest>
