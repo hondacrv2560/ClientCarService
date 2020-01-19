@@ -1,5 +1,6 @@
 package com.example.client.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Activity.RegularClientActivity;
+import com.example.client.MainActivity;
 import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,6 +34,8 @@ public class ServiceFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter adapter;
     public  TextView txtView;
+    FragmentManager fragmentManager;
+    FragmentTransaction transaction;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     // получение ссылки на БД
@@ -64,12 +71,9 @@ public class ServiceFragment extends Fragment {
             root = itemView.findViewById(R.id.list_root);
             idTitle=itemView.findViewById(R.id.id_title);
             txtTitle = itemView.findViewById(R.id.list_title);
-
         }
 
-        public void setTxtTitle(String string) {
-            txtTitle.setText(string);
-        }
+        public void setTxtTitle(String string){txtTitle.setText(string);}
         public void setIdTitle(String string){idTitle.setText(string);}
     }
 
@@ -99,7 +103,6 @@ public class ServiceFragment extends Fragment {
                 return new ViewHolder(view);
             }
 
-
             @Override
             protected void onBindViewHolder(ViewHolder holder, final int position, Service service) {
                 holder.setIdTitle(service.getIdService());
@@ -108,6 +111,15 @@ public class ServiceFragment extends Fragment {
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        int id=Integer.valueOf(position);
+                        switch (id){
+                            case 0:
+                                Intent carWashing_3PhasesFragment = new Intent(getContext(), CarWashing_3PhasesFragment.class);
+                                startActivity(carWashing_3PhasesFragment);
+                        }
+
+
+
                         Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
                     }
                 });
