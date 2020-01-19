@@ -1,0 +1,27 @@
+{
+  "01" : {
+    "idRepairWindshield" : 1,
+    "titleRepairWindshield" : "Засверливание трещины",
+    "priceRepairWindshield" : "от 100"
+  },
+  "02" : {
+    "idRepairWindshield" : 2,
+    "titleRepairWindshield" : "Ремонт скола",
+    "priceRepairWindshield" : "от 400"
+  },
+  "03" : {
+    "idRepairWindshield" : 3,
+    "titleRepairWindshield" : "Ремонт трещины (за 1 см)",
+    "priceRepairWindshield" : "от 20"
+  },
+  "04" : {
+    "idRepairWindshield" : 4,
+    "titleRepairWindshield" : "Замена лобового стекла",
+    "priceRepairWindshield" : "от 1000"
+  },
+  "05" : {
+    "idRepairWindshield" : 5,
+    "titleRepairWindshield" : "Полировка лобового/заднего стекла",
+    "priceRepairWindshield" : "от 2000"
+  }
+}
