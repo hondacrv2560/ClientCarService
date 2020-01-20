@@ -3,8 +3,11 @@ package com.example.client;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +17,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
@@ -23,26 +29,79 @@ import com.example.client.Classes.SevenDaysActivity;
 import com.example.client.Classes.ThreeDaysActivity;
 import com.example.client.Classes.ToDayActivity;
 import com.example.client.Fragments.OneDay;
+import com.example.client.Fragments.ServiceFragment;
 import com.example.client.Fragments.SevenDays;
 import com.example.client.Fragments.ThreeDays;
 import com.example.client.Fragments.ToDay;
+import com.example.client.Models.Service;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     //создание подключения к БД
     private FirebaseAuth firebaseAuth;
     //создание подключения к авторизапции
     private FirebaseAuth.AuthStateListener authStateListener;
+    public List<DataSnapshot> list;
+
+    private Fragment serviceFragment = null;
+    FragmentManager fragmentManager;
+    FragmentTransaction transaction;
+    AlertDialog.Builder builder_regular_customer;
+    AlertDialog.Builder builder_enter_register;
+    LayoutInflater inflater_regular_customer;
+    LayoutInflater inflater_enter_register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //проверка на авторизацию, если клиент в приложении авторизирован
         firebaseAuth = firebaseAuth.getInstance();
+        // подключение к БД
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        // получение ссылки на БД
+        DatabaseReference myDbReference = database.getReference();
+        // поключение к child Orders
+        DatabaseReference orderRef = myDbReference.child("Orders");
+
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list = new ArrayList<DataSnapshot>();
+                dataSnapshot.getChildren();
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    list.add(snapshot);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        orderRef.addListenerForSingleValueEvent(listener);
+
+
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -65,8 +124,13 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
             Toast.makeText(MainActivity.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
         }
-    }
 
+        fragmentManager = getSupportFragmentManager();
+        serviceFragment = new ServiceFragment();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fr,serviceFragment);
+        transaction.commit();
+    }
 
     // вход зарегистрированного клиента
     public void signIn(String e_mail, String pass){
@@ -107,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        FragmentManager fragmentManager;
-        FragmentTransaction transaction;
-        AlertDialog.Builder builder_regular_customer;
-        AlertDialog.Builder builder_enter_register;
-        LayoutInflater inflater_regular_customer;
-        LayoutInflater inflater_enter_register;
+//        FragmentManager fragmentManager;
+//        FragmentTransaction transaction;
+//        AlertDialog.Builder builder_regular_customer;
+//        AlertDialog.Builder builder_enter_register;
+//        LayoutInflater inflater_regular_customer;
+//        LayoutInflater inflater_enter_register;
         int id=item.getItemId();
         switch (id){
             //регистрация нового клиента

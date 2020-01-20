@@ -1,0 +1,83 @@
+{
+  "0" : {
+    "idPolishing" : 0,
+    "titlePolishing" : "Класс автомобиля",
+    "pricePolishing_sedan" : "седан",
+    "pricePolishing_business" : "бизнесс",
+    "pricePolishing_premium" : "премиум",
+    "pricePolishing_SUV" : "паркетник",
+    "pricePolishing_BigSUV" : "внедорожник"
+  },
+  "01" : {
+    "idPolishing" : 1,
+    "titlePolishing" : "Корректирующая полировка",
+    "pricePolishing_sedan" : "3000",
+    "pricePolishing_business" : "3500",
+    "pricePolishing_premium" : "4000",
+    "pricePolishing_SUV" : "3500",
+    "pricePolishing_BigSUV" : "4000"
+  },
+  "02" : {
+    "idPolishing" : 2,
+    "titlePolishing" : "Восстановительная полировка",
+    "pricePolishing_sedan" : "7000",
+    "pricePolishing_business" : "7500",
+    "pricePolishing_premium" : "9000",
+    "pricePolishing_SUV" : "7900",
+    "pricePolishing_BigSUV" : "9000"
+  },
+  "03" : {
+    "idPolishing" : 3,
+    "titlePolishing" : "*Восстановление стекол фар + оклейка",
+    "pricePolishing_sedan" : "3000",
+    "pricePolishing_business" : "3000",
+    "pricePolishing_premium" : "3000",
+    "pricePolishing_SUV" : "3000",
+    "pricePolishing_BigSUV" : "3000"
+  },
+  "04" : {
+    "idPolishing" : 4,
+    "titlePolishing" : "*Полировка лобового/заднего стекла",
+    "pricePolishing_sedan" : "2000",
+    "pricePolishing_business" : "2000",
+    "pricePolishing_premium" : "2000",
+    "pricePolishing_SUV" : "2000",
+    "pricePolishing_BigSUV" : "2000."
+  },
+  "05" : {
+    "idPolishing" : 5,
+    "titlePolishing" : "*Полировка хрома",
+    "pricePolishing_sedan" : "500",
+    "pricePolishing_business" : "500",
+    "pricePolishing_premium" : "500",
+    "pricePolishing_SUV" : "500",
+    "pricePolishing_BigSUV" : "500"
+},
+  "06" : {
+    "idPolishing" : 6,
+    "titlePolishing" : "*Полировка 1-го места",
+    "pricePolishing_sedan" : "300",
+    "pricePolishing_business" : "300",
+    "pricePolishing_premium" : "300",
+    "pricePolishing_SUV" : "300",
+    "pricePolishing_BigSUV" : "300"
+  },
+  "07" : {
+    "idPolishing" : 7,
+    "titlePolishing" : "*Полировка элемента",
+    "pricePolishing_sedan" : "500",
+    "pricePolishing_business" : "500",
+    "pricePolishing_premium" : "500",
+    "pricePolishing_SUV" : "500",
+    "pricePolishing_BigSUV" : "500"
+  },
+  "08" : {
+    "idPolishing" : 8,
+    "titlePolishing" : "*Полировка декора салона (за 1 элемент)",
+    "pricePolishing_sedan" : "500",
+    "pricePolishing_business" : "500",
+    "pricePolishing_premium" : "500",
+    "pricePolishing_SUV" : "500",
+    "pricePolishing_BigSUV" : "500"
+  }
+}
