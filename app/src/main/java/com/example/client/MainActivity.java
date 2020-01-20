@@ -3,6 +3,7 @@ package com.example.client;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     public List<DataSnapshot> list;
 
+    private Fragment serviceFragment = null;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
     AlertDialog.Builder builder_regular_customer;
@@ -124,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fragmentManager = getSupportFragmentManager();
-        ServiceFragment serviceFragment = new ServiceFragment();
+        serviceFragment = new ServiceFragment();
         transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.fr,serviceFragment);
+        transaction.replace(R.id.fr,serviceFragment);
         transaction.commit();
     }
 
