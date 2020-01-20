@@ -22,6 +22,9 @@
         <activity android:name=".Activity.CarWashing_3PhasesActivity">
 
         </activity>
+        <activity android:name=".Activity.RepairWindshieldActivity">
+
+        </activity>
     </application>
 
 </manifest>
