@@ -1,6 +1,8 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -36,5 +38,33 @@ public class RepairWindshieldActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout root;
+        public TextView txtIdRepairWindshield;
+        public TextView txtTitleRepairWindshield;
+        public TextView txtPriceRepairWindshield;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            root = itemView.findViewById(R.id.list_root);
+            txtIdRepairWindshield = itemView.findViewById(R.id.id_title);
+            txtTitleRepairWindshield = itemView.findViewById(R.id.list_title);
+            txtPriceRepairWindshield = itemView.findViewById(R.id.priceRepairWindShield);
+        }
+
+        public void setTxtIdRepairWindshield(String string) {
+            txtIdRepairWindshield.setText(string);
+        }
+
+        public void setTxtTitleRepairWindshield(String string) {
+            txtTitleRepairWindshield.setText(string);
+        }
+
+        public void setTxtPriceRepairWindshield(String string) {
+            txtPriceRepairWindshield.setText(string);
+        }
     }
 }
