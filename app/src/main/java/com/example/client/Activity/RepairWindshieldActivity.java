@@ -122,4 +122,10 @@ public class RepairWindshieldActivity extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 }
