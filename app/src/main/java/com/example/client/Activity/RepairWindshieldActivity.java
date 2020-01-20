@@ -99,7 +99,7 @@ public class RepairWindshieldActivity extends AppCompatActivity {
             @Override
             public RepairWindshieldActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.car_washing_3phases_list, parent, false);
+                        .inflate(R.layout.repair_windshield_list, parent, false);
 
                 return new RepairWindshieldActivity.ViewHolder(view);
             }

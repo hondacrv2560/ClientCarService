@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Activity.CarWashing_3PhasesActivity;
+import com.example.client.Activity.RepairWindshieldActivity;
 import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -115,6 +116,16 @@ public class ServiceFragment extends Fragment {
                             case 0:
                                 Intent carWashing_3PhasesFragment = new Intent(getContext(), CarWashing_3PhasesActivity.class);
                                 startActivity(carWashing_3PhasesFragment);
+                                break;
+
+                            case 1:
+
+                                break;
+
+                            case 2:
+                                Intent repairWindshield = new Intent(getContext(), RepairWindshieldActivity.class);
+                                startActivity(repairWindshield);
+                                break;
                         }
 
 
