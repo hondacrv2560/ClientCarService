@@ -1,19 +1,28 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Models.Polishing;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class PolishingActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -24,7 +33,7 @@ public class PolishingActivity extends AppCompatActivity {
     // получение ссылки на БД
     DatabaseReference myDbReference = database.getReference();
     // поключение к child Polishing
-    DatabaseReference serviceRef = myDbReference.child("Polishing");
+    DatabaseReference polishingRef = myDbReference.child("Polishing");
     TextView txtInfo;
     TextView txtInfo1;
 
@@ -35,7 +44,7 @@ public class PolishingActivity extends AppCompatActivity {
         txtInfo = findViewById(R.id.txtInfo);
         txtInfo1 = findViewById(R.id.txtInfo1);
 
-        recyclerView = findViewById(R.id.RepairWindshield_list);
+        recyclerView = findViewById(R.id.Polishing_list);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -87,5 +96,65 @@ public class PolishingActivity extends AppCompatActivity {
         public void setTxtPricePolishing_BigSUV(String string){
             txtPricePolishing_BigSUV.setText(string);
         }
+    }
+
+    private void fetch() {
+        Query query = polishingRef;
+
+        FirebaseRecyclerOptions<Polishing> options =
+                new FirebaseRecyclerOptions.Builder<Polishing>()
+                        .setQuery(query, new SnapshotParser<Polishing>() {
+                            @NonNull
+                            @Override
+                            public Polishing parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new Polishing(snapshot.child("idPolishing").getValue().toString(),
+                                        snapshot.child("titlePolishing").getValue().toString(),
+                                        snapshot.child("pricePolishing_sedan").getValue().toString(),
+                                        snapshot.child("pricePolishing_business").getValue().toString(),
+                                        snapshot.child("pricePolishing_premium").getValue().toString(),
+                                        snapshot.child("pricePolishing_SUV").getValue().toString(),
+                                        snapshot.child("pricePolishing_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<Polishing, PolishingActivity.ViewHolder>(options) {
+
+            @Override
+            public PolishingActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.polishing_list, parent, false);
+
+                return new PolishingActivity.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(PolishingActivity.ViewHolder holder, final int position, Polishing polishing) {
+                holder.setTxtIdPolishing(polishing.getIdPolishing());
+                holder.setTxtTitlePolishing(polishing.getTitlePolishing());
+                holder.setTxtPolishing_sedan(polishing.getPricePolishing_sedan());
+                holder.setTxtPricePolishing_business(polishing.getPricePolishing_business());
+                holder.setTxtPricePolishing_premium(polishing.getPricePolishing_premium());
+                holder.setTxtPricePolishing_SUV(polishing.getPricePolishing_SUV());
+                holder.setTxtPricePolishing_BigSUV(polishing.getPricePolishing_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(PolishingActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

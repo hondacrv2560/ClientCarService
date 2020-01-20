@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Activity.CarWashing_3PhasesActivity;
+import com.example.client.Activity.PolishingActivity;
 import com.example.client.Activity.RepairWindshieldActivity;
 import com.example.client.Models.Service;
 import com.example.client.R;
@@ -125,6 +126,10 @@ public class ServiceFragment extends Fragment {
                             case 2:
                                 Intent repairWindshield = new Intent(getContext(), RepairWindshieldActivity.class);
                                 startActivity(repairWindshield);
+                                break;
+                            case 3:
+                                Intent polishing = new Intent(getContext(), PolishingActivity.class);
+                                startActivity(polishing);
                                 break;
                         }
 

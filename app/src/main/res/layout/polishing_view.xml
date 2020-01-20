@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cтоимость услуги указана с условием От"
+        android:text="Cтоимость услуги указана с условием От "
         android:id="@+id/txtInfo1"/>
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +41,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/RepairWindshield_list"
+        android:id="@+id/Polishing_list"
         android:scrollbars="horizontal"/>
 </LinearLayout>
