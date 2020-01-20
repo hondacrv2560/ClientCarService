@@ -41,7 +41,7 @@ public class ServiceFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     // получение ссылки на БД
     DatabaseReference myDbReference = database.getReference();
-    // поключение к child Orders
+    // поключение к child Service
     DatabaseReference serviceRef = myDbReference.child("Service");
     @Nullable
     @Override
@@ -79,7 +79,7 @@ public class ServiceFragment extends Fragment {
     }
 
     private void fetch() {
-        Query query = myDbReference.child("Service");
+        Query query = serviceRef;
 
         FirebaseRecyclerOptions<Service> options =
                 new FirebaseRecyclerOptions.Builder<Service>()
