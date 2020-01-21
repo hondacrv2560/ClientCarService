@@ -1,0 +1,137 @@
+{
+  "0" : {
+    "idToning" : 0,
+    "titleToning" : "Класс автомобиля",
+    "priceToning_sedan" : "седан",
+    "priceToning_business" : "бизнесс",
+    "priceToning_premium" : "премиум",
+    "priceToning_SUV" : "паркетник",
+    "priceToning_BigSUV" : "внедорожник"
+  },
+  "01" : {
+    "idToning" : 1,
+    "titleToning" : "Металлизированная пленка",
+    "priceToning_sedan" : "3500",
+    "priceToning_business" : "3900",
+    "priceToning_premium" : "5000",
+    "priceToning_SUV" : "3900",
+    "priceToning_BigSUV" : "4500"
+  },
+  "02" : {
+    "idToning" : 2,
+    "titleToning" : "Лобовое стекло(металл. пленка)",
+    "priceToning_sedan" : "2300",
+    "priceToning_business" : "2500",
+    "priceToning_premium" : "3000",
+    "priceToning_SUV" : "2500",
+    "priceToning_BigSUV" : "2800"
+  },
+  "03" : {
+    "idToning" : 3,
+    "titleToning" : "Атермальная пленка(3М Crystal Line)",
+    "priceToning_sedan" : "8000",
+    "priceToning_business" : "9500",
+    "priceToning_premium" : "11000",
+    "priceToning_SUV" : "9500",
+    "priceToning_BigSUV" : "10500"
+  },
+  "04" : {
+    "idToning" : 4,
+    "titleToning" : "Лобовое стекло(3М Crystal Line)",
+    "priceToning_sedan" : "5000",
+    "priceToning_business" : "5400",
+    "priceToning_premium" : "5500",
+    "priceToning_SUV" : "5400",
+    "priceToning_BigSUV" : "5500."
+  },
+  "05" : {
+    "idToning" : 5,
+    "titleToning" : "Евро тонировка(металл. пленка)",
+    "priceToning_sedan" : "2500",
+    "priceToning_business" : "2900",
+    "priceToning_premium" : "4000",
+    "priceToning_SUV" : "5400",
+    "priceToning_BigSUV" : "5500"
+},
+  "06" : {
+    "idToning" : 6,
+    "titleToning" : "Евро тонировка(3М Crystal Line)",
+    "priceToning_sedan" : "7500",
+    "priceToning_business" : "8000",
+    "priceToning_premium" : "9500",
+    "priceToning_SUV" : "8000",
+    "priceToning_BigSUV" : "9000"
+  },
+  "07" : {
+    "idToning" : 7,
+    "titleToning" : "Боковое стекло(металл. пленка)",
+    "priceToning_sedan" : "600",
+    "priceToning_business" : "650",
+    "priceToning_premium" : "750",
+    "priceToning_SUV" : "650",
+    "priceToning_BigSUV" : "700"
+  },
+  "08" : {
+    "idToning" : 8,
+    "titleToning" : "Боковое стекло(3М Crystal Line)",
+    "priceToning_sedan" : "1500",
+    "priceToning_business" : "1800",
+    "priceToning_premium" : "2200",
+    "priceToning_SUV" : "1800",
+    "priceToning_BigSUV" : "2000"
+  },
+  "09" : {
+    "idToning" : 9,
+    "titleToning" : "Заднее стекло(металл. пленка)",
+    "priceToning_sedan" : "1700",
+    "priceToning_business" : "1800",
+    "priceToning_premium" : "2000",
+    "priceToning_SUV" : "1800",
+    "priceToning_BigSUV" : "1900"
+  },
+  "10" : {
+    "idToning" : 10,
+    "titleToning" : "Заднее стекло(3М Crystal Line)",
+    "priceToning_sedan" : "3500",
+    "priceToning_business" : "3800",
+    "priceToning_premium" : "4500",
+    "priceToning_SUV" : "3800",
+    "priceToning_BigSUV" : "4000"
+  },
+  "11" : {
+    "idToning" : 11,
+    "titleToning" : "Растонировка полная",
+    "priceToning_sedan" : "1200",
+    "priceToning_business" : "1300",
+    "priceToning_premium" : "1500",
+    "priceToning_SUV" : "1300",
+    "priceToning_BigSUV" : "1400"
+  },
+  "12" : {
+    "idToning" : 12,
+    "titleToning" : "Растонировка бокового стекла",
+    "priceToning_sedan" : "250",
+    "priceToning_business" : "300",
+    "priceToning_premium" : "400",
+    "priceToning_SUV" : "300",
+    "priceToning_BigSUV" : "250"
+  },
+  "12" : {
+    "idToning" : 12,
+    "titleToning" : "Растонировка лобового стекла",
+    "priceToning_sedan" : "700",
+    "priceToning_business" : "800",
+    "priceToning_premium" : "1000",
+    "priceToning_SUV" : "800",
+    "priceToning_BigSUV" : "900"
+  },
+  "13" : {
+    "idToning" : 13,
+    "titleToning" : "Растонировка заднего стекла",
+    "priceToning_sedan" : "700",
+    "priceToning_business" : "800",
+    "priceToning_premium" : "1000",
+    "priceToning_SUV" : "800",
+    "priceToning_BigSUV" : "900"
+  }
+}
