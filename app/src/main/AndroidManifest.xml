@@ -28,6 +28,9 @@
         <activity android:name=".Activity.PolishingActivity">
 
         </activity>
+        <activity android:name=".Activity.ToningActivity">
+
+        </activity>
     </application>
 
 </manifest>

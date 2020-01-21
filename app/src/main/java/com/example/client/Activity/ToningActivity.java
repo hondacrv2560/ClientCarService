@@ -1,19 +1,29 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Models.CarWashing_3Phases;
+import com.example.client.Models.Toning;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class ToningActivity extends AppCompatActivity {
 
@@ -96,5 +106,65 @@ public class ToningActivity extends AppCompatActivity {
         public void setTxtPriceToning_BigSUV(String string){
             txtPriceToning_BigSUV.setText(string);
         }
+    }
+
+    private void fetch() {
+        Query query = toningRef;
+
+        FirebaseRecyclerOptions<Toning> options =
+                new FirebaseRecyclerOptions.Builder<Toning>()
+                        .setQuery(query, new SnapshotParser<Toning>() {
+                            @NonNull
+                            @Override
+                            public Toning parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new Toning(snapshot.child("idToning").getValue().toString(),
+                                        snapshot.child("titleToning").getValue().toString(),
+                                        snapshot.child("priceToning_sedan").getValue().toString(),
+                                        snapshot.child("priceToning_business").getValue().toString(),
+                                        snapshot.child("priceToning_premium").getValue().toString(),
+                                        snapshot.child("priceToning_SUV").getValue().toString(),
+                                        snapshot.child("priceToning_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<Toning, ToningActivity.ViewHolder>(options) {
+
+            @Override
+            public ToningActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.toning_list, parent, false);
+
+                return new ToningActivity.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(ToningActivity.ViewHolder holder, final int position, Toning toning) {
+                holder.setTxtIdToning(toning.getIdToning());
+                holder.setTxtTitleToning(toning.getTitleToning());
+                holder.setTxtPriceToning_sedan(toning.getPriceToning_sedan());
+                holder.setTxtPriceToning_business(toning.getPriceToning_business());
+                holder.setTxtPriceToning_premium(toning.getPriceToning_premium());
+                holder.setTxtPriceToning_SUV(toning.getPriceToning_SUV());
+                holder.setTxtPriceToning_BigSUV(toning.getPriceToning_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ToningActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

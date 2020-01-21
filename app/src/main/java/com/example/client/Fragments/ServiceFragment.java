@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.client.Activity.CarWashing_3PhasesActivity;
 import com.example.client.Activity.PolishingActivity;
 import com.example.client.Activity.RepairWindshieldActivity;
+import com.example.client.Activity.ToningActivity;
 import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -130,6 +131,10 @@ public class ServiceFragment extends Fragment {
                             case 3:
                                 Intent polishing = new Intent(getContext(), PolishingActivity.class);
                                 startActivity(polishing);
+                                break;
+                            case 9:
+                                Intent toning = new Intent(getContext(), ToningActivity.class);
+                                startActivity(toning);
                                 break;
                         }
 
