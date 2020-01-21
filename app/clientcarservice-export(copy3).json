@@ -1,0 +1,101 @@
+{
+  "0" : {
+    "idNanoCeramics" : 0,
+    "titleNanoCeramics" : "Класс автомобиля",
+    "priceNanoCeramics_sedan" : "Кат 1",
+    "priceNanoCeramics_business" : "Кат 2",
+    "priceNanoCeramics_premium" : "Кат 3",
+    "priceNanoCeramics_SUV" : "Кат 4",
+    "priceNanoCeramics_BigSUV" : "Кат 5"
+  },
+  "01" : {
+    "idNanoCeramics" : 1,
+    "titleNanoCeramics" : "Подготовка",
+    "priceNanoCeramics_sedan" : "3000",
+    "priceNanoCeramics_business" : "3500",
+    "priceNanoCeramics_premium" : "4000",
+    "priceNanoCeramics_SUV" : "3500",
+    "priceNanoCeramics_BigSUV" : "4000"
+  },
+  "02" : {
+    "idNanoCeramics" : 2,
+    "titleNanoCeramics" : "Жидкое стекло",
+    "priceNanoCeramics_sedan" : "3000",
+    "priceNanoCeramics_business" : "3200",
+    "priceNanoCeramics_premium" : "4000",
+    "priceNanoCeramics_SUV" : "3500",
+    "priceNanoCeramics_BigSUV" : "4000"
+  },
+  "03" : {
+    "idNanoCeramics" : 3,
+    "titleNanoCeramics" : "Nanolex Si3D Business",
+    "priceNanoCeramics_sedan" : "6900",
+    "priceNanoCeramics_business" : "7900",
+    "priceNanoCeramics_premium" : "9900",
+    "priceNanoCeramics_SUV" : "8900",
+    "priceNanoCeramics_BigSUV" : "9900"
+  },
+  "04" : {
+    "idNanoCeramics" : 4,
+    "titleNanoCeramics" : "Nanolex Si3D Premium",
+    "priceNanoCeramics_sedan" : "10500",
+    "priceNanoCeramics_business" : "11900",
+    "priceNanoCeramics_premium" : "14900",
+    "priceNanoCeramics_SUV" : "13500",
+    "priceNanoCeramics_BigSUV" : "14900."
+  },
+  "05" : {
+    "idNanoCeramics" : 5,
+    "titleNanoCeramics" : "Покрытие стекол",
+    "priceNanoCeramics_sedan" : "1000",
+    "priceNanoCeramics_business" : "1100",
+    "priceNanoCeramics_premium" : "1400",
+    "priceNanoCeramics_SUV" : "1200",
+    "priceNanoCeramics_BigSUV" : "1400"
+},
+  "06" : {
+    "idNanoCeramics" : 6,
+    "titleNanoCeramics" : "Защита дисков",
+    "priceNanoCeramics_sedan" : "1500",
+    "priceNanoCeramics_business" : "1700",
+    "priceNanoCeramics_premium" : "2000",
+    "priceNanoCeramics_SUV" : "1800",
+    "priceNanoCeramics_BigSUV" : "2000"
+  },
+  "07" : {
+    "idNanoCeramics" : 7,
+    "titleNanoCeramics" : "Защита кожаного салона (сидения и карты)",
+    "priceNanoCeramics_sedan" : "2600",
+    "priceNanoCeramics_business" : "2800",
+    "priceNanoCeramics_premium" : "3000",
+    "priceNanoCeramics_SUV" : "2800",
+    "priceNanoCeramics_BigSUV" : "3000"
+  },
+  "08" : {
+    "idNanoCeramics" : 8,
+    "titleNanoCeramics" : "Защита тканевого салона (сидения и карты)",
+    "priceNanoCeramics_sedan" : "2000",
+    "priceNanoCeramics_business" : "2300",
+    "priceNanoCeramics_premium" : "2500",
+    "priceNanoCeramics_SUV" : "2300",
+    "priceNanoCeramics_BigSUV" : "2500"
+  },
+  "09" : {
+    "idNanoCeramics" : 9,
+    "titleNanoCeramics" : "Защита пола",
+    "priceNanoCeramics_sedan" : "1200",
+    "priceNanoCeramics_business" : "1400",
+    "priceNanoCeramics_premium" : "1700",
+    "priceNanoCeramics_SUV" : "1400",
+    "priceNanoCeramics_BigSUV" : "1700"
+  },
+  "10" : {
+    "idNanoCeramics" : 10,
+    "titleNanoCeramics" : "Защита ковриков",
+    "priceNanoCeramics_sedan" : "600",
+    "priceNanoCeramics_business" : "650",
+    "priceNanoCeramics_premium" : "700",
+    "priceNanoCeramics_SUV" : "650",
+    "priceNanoCeramics_BigSUV" : "700"
+  }
+}

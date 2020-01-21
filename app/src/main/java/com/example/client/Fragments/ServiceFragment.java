@@ -128,18 +128,37 @@ public class ServiceFragment extends Fragment {
                                 Intent repairWindshield = new Intent(getContext(), RepairWindshieldActivity.class);
                                 startActivity(repairWindshield);
                                 break;
+
                             case 3:
                                 Intent polishing = new Intent(getContext(), PolishingActivity.class);
                                 startActivity(polishing);
                                 break;
+
+                            case 4:
+
+                                break;
+
+                            case 5:
+
+                                break;
+
+                            case 6:
+
+                                break;
+
+                            case 7:
+
+                                break;
+
+                            case 8:
+
+                                break;
+
                             case 9:
                                 Intent toning = new Intent(getContext(), ToningActivity.class);
                                 startActivity(toning);
                                 break;
                         }
-
-
-
                         Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_SHORT).show();
                     }
                 });
