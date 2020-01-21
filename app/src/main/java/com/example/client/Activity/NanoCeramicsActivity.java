@@ -1,6 +1,8 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -48,5 +50,52 @@ public class NanoCeramicsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout root;
+        public TextView txtIdNanoCeramics;
+        public TextView txtTitleNanoCeramics;
+        public TextView txtPriceNanoCeramics_sedan;
+        public TextView txtPriceNanoCeramics_business;
+        public TextView txtPriceNanoCeramics_premium;
+        public TextView txtPriceNanoCeramics_SUV;
+        public TextView txtPriceNanoCeramics_BigSUV;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            root = itemView.findViewById(R.id.list_root);
+            txtIdNanoCeramics = itemView.findViewById(R.id.id_title);
+            txtTitleNanoCeramics = itemView.findViewById(R.id.list_title);
+            txtPriceNanoCeramics_sedan = itemView.findViewById(R.id.priceNanoCeramics_sedan);
+            txtPriceNanoCeramics_business = itemView.findViewById(R.id.priceNanoCeramics_business);
+            txtPriceNanoCeramics_premium = itemView.findViewById(R.id.priceNanoCeramics_premium);
+            txtPriceNanoCeramics_SUV = itemView.findViewById(R.id.priceNanoCeramics_SUV);
+            txtPriceNanoCeramics_BigSUV = itemView.findViewById(R.id.priceNanoCeramics_BigSUV);
+
+        }
+
+        public void setTxtIdNanoCeramics(String string) {
+            txtIdNanoCeramics.setText(string);
+        }
+        public void setTxtTitleNanoCeramics(String string) {
+            txtTitleNanoCeramics.setText(string);
+        }
+        public void setTxtPriceNanoCeramics_sedan(String string){
+            txtPriceNanoCeramics_sedan.setText(string);
+        }
+        public void setTxtPriceNanoCeramics_business(String string) {
+            txtPriceNanoCeramics_business.setText(string);
+        }
+        public void setTxtPriceNanoCeramics_premium(String string){
+            txtPriceNanoCeramics_premium.setText(string);
+        }
+        public void setTxtPriceNanoCeramics_SUV(String string) {
+            txtPriceNanoCeramics_SUV.setText(string);
+        }
+        public void setTxtPriceNanoCeramics_BigSUV(String string){
+            txtPriceNanoCeramics_BigSUV.setText(string);
+        }
     }
 }
