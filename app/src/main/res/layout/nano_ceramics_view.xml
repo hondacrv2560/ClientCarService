@@ -11,11 +11,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cтоимость услуги указана с условием От "
-        android:id="@+id/txtInfo1"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Кат 1: седан"
         android:id="@+id/cat1"/>
     <TextView

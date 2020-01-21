@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Activity.CarWashing_3PhasesActivity;
+import com.example.client.Activity.NanoCeramicsActivity;
 import com.example.client.Activity.PolishingActivity;
 import com.example.client.Activity.RepairWindshieldActivity;
 import com.example.client.Activity.ToningActivity;
@@ -135,7 +136,8 @@ public class ServiceFragment extends Fragment {
                                 break;
 
                             case 4:
-
+                                Intent nanoCeramics = new Intent(getContext(), NanoCeramicsActivity.class);
+                                startActivity(nanoCeramics);
                                 break;
 
                             case 5:
