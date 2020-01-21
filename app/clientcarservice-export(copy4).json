@@ -1,0 +1,101 @@
+{
+  "0": {
+    "idProtectiveFilm": 0,
+    "titleProtectiveFilm": "Класс автомобиля",
+    "priceProtectiveFilm_sedan": "Кат 1",
+    "priceProtectiveFilm_business": "Кат 2",
+    "priceProtectiveFilm_premium": "Кат 3",
+    "priceProtectiveFilm_SUV": "Кат 4",
+    "priceProtectiveFilm_BigSUV": "Кат 5"
+  },
+  "01": {
+    "idProtectiveFilm": 1,
+    "titleProtectiveFilm": "Стандарт (пленка Suntek)",
+    "priceProtectiveFilm_sedan": "8000",
+    "priceProtectiveFilm_business": "8500",
+    "priceProtectiveFilm_premium": "10000",
+    "priceProtectiveFilm_SUV": "9000",
+    "priceProtectiveFilm_BigSUV": "9500"
+  },
+  "02": {
+    "idProtectiveFilm": 2,
+    "titleProtectiveFilm": "Стандарт (пленка XPel Ultimate)",
+    "priceProtectiveFilm_sedan": "9000",
+    "priceProtectiveFilm_business": "9500",
+    "priceProtectiveFilm_premium": "11000",
+    "priceProtectiveFilm_SUV": "10000",
+    "priceProtectiveFilm_BigSUV": "10500"
+  },
+  "03": {
+    "idProtectiveFilm": 3,
+    "titleProtectiveFilm": "Стандарт ++ (пленка Suntek)",
+    "priceProtectiveFilm_sedan": "16000",
+    "priceProtectiveFilm_business": "17000",
+    "priceProtectiveFilm_premium": "19000",
+    "priceProtectiveFilm_SUV": "17500",
+    "priceProtectiveFilm_BigSUV": "18000"
+  },
+  "04": {
+    "idProtectiveFilm": 4,
+    "titleProtectiveFilm": "Стандарт ++ (пленка XPel Ultimate)",
+    "priceProtectiveFilm_sedan": "18000",
+    "priceProtectiveFilm_business": "19000",
+    "priceProtectiveFilm_premium": "21000",
+    "priceProtectiveFilm_SUV": "19500",
+    "priceProtectiveFilm_BigSUV": "20000."
+  },
+  "05": {
+    "idProtectiveFilm": 5,
+    "titleProtectiveFilm": "Передний бампер",
+    "priceProtectiveFilm_sedan": "4000",
+    "priceProtectiveFilm_business": "4500",
+    "priceProtectiveFilm_premium": "5000",
+    "priceProtectiveFilm_SUV": "4500",
+    "priceProtectiveFilm_BigSUV": "5000"
+  },
+  "06": {
+    "idProtectiveFilm": 6,
+    "titleProtectiveFilm": "Фары",
+    "priceProtectiveFilm_sedan": "1000",
+    "priceProtectiveFilm_business": "1200",
+    "priceProtectiveFilm_premium": "1300",
+    "priceProtectiveFilm_SUV": "1200",
+    "priceProtectiveFilm_BigSUV": "1300"
+  },
+  "07": {
+    "idProtectiveFilm": 7,
+    "titleProtectiveFilm": "Капот целиком",
+    "priceProtectiveFilm_sedan": "7000",
+    "priceProtectiveFilm_business": "7500",
+    "priceProtectiveFilm_premium": "8000",
+    "priceProtectiveFilm_SUV": "7500",
+    "priceProtectiveFilm_BigSUV": "8000"
+  },
+  "08": {
+    "idProtectiveFilm": 8,
+    "titleProtectiveFilm": "Зоны под ручками дверей",
+    "priceProtectiveFilm_sedan": "400",
+    "priceProtectiveFilm_business": "400",
+    "priceProtectiveFilm_premium": "400",
+    "priceProtectiveFilm_SUV": "400",
+    "priceProtectiveFilm_BigSUV": "400"
+  },
+  "09": {
+    "idProtectiveFilm": 9,
+    "titleProtectiveFilm": "Полка заднего бампера",
+    "priceProtectiveFilm_sedan": "800",
+    "priceProtectiveFilm_business": "850",
+    "priceProtectiveFilm_premium": "900",
+    "priceProtectiveFilm_SUV": "850",
+    "priceProtectiveFilm_BigSUV": "900"
+  },
+  "10": {
+    "idProtectiveFilm": 10,
+    "titleProtectiveFilm": "Оклейка автомобиля целиком",
+    "priceProtectiveFilm_sedan": "50000",
+    "priceProtectiveFilm_business": "55000",
+    "priceProtectiveFilm_premium": "65000",
+    "priceProtectiveFilm_SUV": "60000",
+    "priceProtectiveFilm_BigSUV": "65000"
+  }
+}
