@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.client.Activity.CarWashing_3PhasesActivity;
 import com.example.client.Activity.NanoCeramicsActivity;
 import com.example.client.Activity.PolishingActivity;
+import com.example.client.Activity.ProtectiveFilmActivity;
 import com.example.client.Activity.RepairWindshieldActivity;
 import com.example.client.Activity.ToningActivity;
+import com.example.client.Models.ProtectiveFilm;
 import com.example.client.Models.Service;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -141,7 +143,8 @@ public class ServiceFragment extends Fragment {
                                 break;
 
                             case 5:
-
+                                Intent protectiveFilm = new Intent(getContext(), ProtectiveFilmActivity.class);
+                                startActivity(protectiveFilm);
                                 break;
 
                             case 6:
