@@ -112,6 +112,64 @@ public class SalonProtectionActivity extends AppCompatActivity {
         }
     }
 
-       
+    private void fetch() {
+        Query query = salonProtectionRef;
+
+        FirebaseRecyclerOptions<SalonProtection> options =
+                new FirebaseRecyclerOptions.Builder<SalonProtection>()
+                        .setQuery(query, new SnapshotParser<SalonProtection>() {
+                            @NonNull
+                            @Override
+                            public SalonProtection parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new SalonProtection(snapshot.child("idSalonProtection").getValue().toString(),
+                                        snapshot.child("titleSalonProtection").getValue().toString(),
+                                        snapshot.child("priceSalonProtection_sedan").getValue().toString(),
+                                        snapshot.child("priceSalonProtection_business").getValue().toString(),
+                                        snapshot.child("priceSalonProtection_premium").getValue().toString(),
+                                        snapshot.child("priceSalonProtection_SUV").getValue().toString(),
+                                        snapshot.child("priceSalonProtection_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<SalonProtection, SalonProtectionActivity.ViewHolder>(options) {
+
+            @Override
+            public SalonProtectionActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.salon_protection_list, parent, false);
+
+                return new SalonProtectionActivity.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(SalonProtectionActivity.ViewHolder holder, final int position, SalonProtection salonProtection) {
+                holder.setTxtIdSalonProtection(salonProtection.getIdSalonProtection());
+                holder.setTxtTitleSalonProtection(salonProtection.getTitleSalonProtection());
+                holder.setTxtPriceSalonProtection_sedan(salonProtection.getPriceSalonProtection_sedan());
+                holder.setTxtPriceSalonProtection_business(salonProtection.getPriceSalonProtection_business());
+                holder.setTxtPriceSalonProtection_premium(salonProtection.getPriceSalonProtection_premium());
+                holder.setTxtPriceSalonProtection_SUV(salonProtection.getPriceSalonProtection_SUV());
+                holder.setTxtPriceSalonProtection_BigSUV(salonProtection.getPriceSalonProtection_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(SalonProtectionActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 
 }
