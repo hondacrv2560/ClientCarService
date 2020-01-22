@@ -1,0 +1,48 @@
+{
+  "0": {
+    "idSalonProtection": 0,
+    "titleSalonProtection": "Класс автомобиля",
+    "priceSalonProtection_sedan": "Кат 1",
+    "priceSalonProtection_business": "Кат 2",
+    "priceSalonProtection_premium": "Кат 3",
+    "priceSalonProtection_SUV": "Кат 4",
+    "priceSalonProtection_BigSUV": "Кат 5"
+  },
+  "01": {
+    "idSalonProtection": 1,
+    "titleSalonProtection": "Защита кожаного салона (сидения и карты)",
+    "priceSalonProtection_sedan": "2600",
+    "priceSalonProtection_business": "2800",
+    "priceSalonProtection_premium": "3000",
+    "priceSalonProtection_SUV": "2800",
+    "priceSalonProtection_BigSUV": "3000"
+  },
+  "02": {
+    "idSalonProtection": 2,
+    "titleSalonProtection": "Защита тканевого салона (сидения и карты)",
+    "priceSalonProtection_sedan": "2000",
+    "priceSalonProtection_business": "2300",
+    "priceSalonProtection_premium": "2500",
+    "priceSalonProtection_SUV": "2300",
+    "priceSalonProtection_BigSUV": "2500"
+  },
+  "03": {
+    "idSalonProtection": 3,
+    "titleSalonProtection": "Защита пола",
+    "priceSalonProtection_sedan": "1200",
+    "priceSalonProtection_business": "1400",
+    "priceSalonProtection_premium": "1700",
+    "priceSalonProtection_SUV": "1400",
+    "priceSalonProtection_BigSUV": "1700"
+  },
+  "04": {
+    "idSalonProtection": 4,
+    "titleSalonProtection": "Защита ковриков",
+    "priceSalonProtection_sedan": "600",
+    "priceSalonProtection_business": "650",
+    "priceSalonProtection_premium": "700",
+    "priceSalonProtection_SUV": "650",
+    "priceSalonProtection_BigSUV": "700"
+  }
+}
+
