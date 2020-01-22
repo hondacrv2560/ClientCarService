@@ -1,0 +1,94 @@
+{
+  "0": {
+    "idChemicalCleaningSalon": 0,
+    "titleChemicalCleaningSalon": "Класс автомобиля",
+    "priceChemicalCleaningSalon_sedan": "Кат 1",
+    "priceChemicalCleaningSalon_business": "Кат 2",
+    "priceChemicalCleaningSalon_premium": "Кат 3",
+    "priceChemicalCleaningSalon_SUV": "Кат 4",
+    "priceChemicalCleaningSalon_BigSUV": "Кат 5"
+  },
+  "01": {
+    "idChemicalCleaningSalon": 1,
+    "titleChemicalCleaningSalon": "Полная химчистка салона + озонирование",
+    "priceChemicalCleaningSalon_sedan": "4000",
+    "priceChemicalCleaningSalon_business": "4300",
+    "priceChemicalCleaningSalon_premium": "5000",
+    "priceChemicalCleaningSalon_SUV": "4500",
+    "priceChemicalCleaningSalon_BigSUV": "5000"
+  },
+  "02": {
+    "idChemicalCleaningSalon": 2,
+    "titleChemicalCleaningSalon": "Переднее сиденье",
+    "priceChemicalCleaningSalon_sedan": "350",
+    "priceChemicalCleaningSalon_business": "360",
+    "priceChemicalCleaningSalon_premium": "440",
+    "priceChemicalCleaningSalon_SUV": "370",
+    "priceChemicalCleaningSalon_BigSUV": "400"
+  },
+  "03": {
+    "idChemicalCleaningSalon": 3,
+    "titleChemicalCleaningSalon": "Заднее сиденье",
+    "priceChemicalCleaningSalon_sedan": "500",
+    "priceChemicalCleaningSalon_business": "520",
+    "priceChemicalCleaningSalon_premium": "600",
+    "priceChemicalCleaningSalon_SUV": "550",
+    "priceChemicalCleaningSalon_BigSUV": "600"
+  },
+  "04": {
+    "idChemicalCleaningSalon": 4,
+    "titleChemicalCleaningSalon": "Дверная карта",
+    "priceChemicalCleaningSalon_sedan": "200",
+    "priceChemicalCleaningSalon_business": "210",
+    "priceChemicalCleaningSalon_premium": "250",
+    "priceChemicalCleaningSalon_SUV": "230",
+    "priceChemicalCleaningSalon_BigSUV": "250."
+  },
+  "05": {
+    "idChemicalCleaningSalon": 5,
+    "titleChemicalCleaningSalon": "Приборная панель",
+    "priceChemicalCleaningSalon_sedan": "400",
+    "priceChemicalCleaningSalon_business": "420",
+    "priceChemicalCleaningSalon_premium": "450",
+    "priceChemicalCleaningSalon_SUV": "420",
+    "priceChemicalCleaningSalon_BigSUV": "450"
+  },
+  "06": {
+    "idChemicalCleaningSalon": 6,
+    "titleChemicalCleaningSalon": "Багажный отсек",
+    "priceChemicalCleaningSalon_sedan": "500",
+    "priceChemicalCleaningSalon_business": "520",
+    "priceChemicalCleaningSalon_premium": "600",
+    "priceChemicalCleaningSalon_SUV": "530",
+    "priceChemicalCleaningSalon_BigSUV": "600"
+  },
+  "07": {
+    "idChemicalCleaningSalon": 7,
+    "titleChemicalCleaningSalon": "Пол/потолок",
+    "priceChemicalCleaningSalon_sedan": "1000",
+    "priceChemicalCleaningSalon_business": "1100",
+    "priceChemicalCleaningSalon_premium": "1200",
+    "priceChemicalCleaningSalon_SUV": "1100",
+    "priceChemicalCleaningSalon_BigSUV": "1300"
+  },
+  "08": {
+    "idChemicalCleaningSalon": 8,
+    "titleChemicalCleaningSalon": "Озонирование салона",
+    "priceChemicalCleaningSalon_sedan": "500",
+    "priceChemicalCleaningSalon_business": "500",
+    "priceChemicalCleaningSalon_premium": "500",
+    "priceChemicalCleaningSalon_SUV": "500",
+    "priceChemicalCleaningSalon_BigSUV": "500"
+  },
+  "09": {
+    "idChemicalCleaningSalon": 9,
+    "titleChemicalCleaningSalon": "*Разборка/сборка салона",
+    "priceChemicalCleaningSalon_sedan": "500",
+    "priceChemicalCleaningSalon_business": "500",
+    "priceChemicalCleaningSalon_premium": "500",
+    "priceChemicalCleaningSalon_SUV": "500",
+    "priceChemicalCleaningSalon_BigSUV": "500"
+  },
+
+}
+
