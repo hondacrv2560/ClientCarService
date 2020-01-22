@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Activity.CarWashing_3PhasesActivity;
+import com.example.client.Activity.ChemicalCleaningSalonActivivy;
 import com.example.client.Activity.NanoCeramicsActivity;
 import com.example.client.Activity.PolishingActivity;
 import com.example.client.Activity.ProtectiveFilmActivity;
@@ -148,7 +149,8 @@ public class ServiceFragment extends Fragment {
                                 break;
 
                             case 6:
-
+                                Intent chemicalCleaningSalon = new Intent(getContext(), ChemicalCleaningSalonActivivy.class);
+                                startActivity(chemicalCleaningSalon);
                                 break;
 
                             case 7:

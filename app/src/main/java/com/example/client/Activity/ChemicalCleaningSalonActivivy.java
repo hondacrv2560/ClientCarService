@@ -1,19 +1,29 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Models.CarWashing_3Phases;
+import com.example.client.Models.ChemicalCleaningSalon;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class ChemicalCleaningSalonActivivy extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -95,5 +105,65 @@ public class ChemicalCleaningSalonActivivy extends AppCompatActivity {
         public void setTxtPriceChemicalCleaningSalon_BigSUV(String string){
             txtPriceChemicalCleaningSalon_BigSUV.setText(string);
         }
+    }
+
+    private void fetch() {
+        Query query = chemicalCleaningSalonRef;
+
+        FirebaseRecyclerOptions<ChemicalCleaningSalon> options =
+                new FirebaseRecyclerOptions.Builder<ChemicalCleaningSalon>()
+                        .setQuery(query, new SnapshotParser<ChemicalCleaningSalon>() {
+                            @NonNull
+                            @Override
+                            public ChemicalCleaningSalon parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new ChemicalCleaningSalon(snapshot.child("idChemicalCleaningSalon").getValue().toString(),
+                                        snapshot.child("titleChemicalCleaningSalon").getValue().toString(),
+                                        snapshot.child("priceChemicalCleaningSalon_sedan").getValue().toString(),
+                                        snapshot.child("priceChemicalCleaningSalon_business").getValue().toString(),
+                                        snapshot.child("priceChemicalCleaningSalon_premium").getValue().toString(),
+                                        snapshot.child("priceChemicalCleaningSalon_SUV").getValue().toString(),
+                                        snapshot.child("priceChemicalCleaningSalon_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<ChemicalCleaningSalon, ChemicalCleaningSalonActivivy.ViewHolder>(options) {
+
+            @Override
+            public ChemicalCleaningSalonActivivy.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chemical_cleaning_salon_list, parent, false);
+
+                return new ChemicalCleaningSalonActivivy.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(ChemicalCleaningSalonActivivy.ViewHolder holder, final int position, ChemicalCleaningSalon chemicalCleaningSalon) {
+                holder.setTxtIdChemicalCleaningSalon(chemicalCleaningSalon.getIdChemicalCleaningSalon());
+                holder.setTxtTitleChemicalCleaningSalon(chemicalCleaningSalon.getTitleChemicalCleaningSalon());
+                holder.setTxtPriceChemicalCleaningSalon_sedan(chemicalCleaningSalon.getPriceChemicalCleaningSalon_sedan());
+                holder.setTxtPriceChemicalCleaningSalon_business(chemicalCleaningSalon.getPriceChemicalCleaningSalon_business());
+                holder.setTxtPriceChemicalCleaningSalon_premium(chemicalCleaningSalon.getPriceChemicalCleaningSalon_premium());
+                holder.setTxtPriceChemicalCleaningSalon_SUV(chemicalCleaningSalon.getPriceChemicalCleaningSalon_SUV());
+                holder.setTxtPriceChemicalCleaningSalon_BigSUV(chemicalCleaningSalon.getPriceChemicalCleaningSalon_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ChemicalCleaningSalonActivivy.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

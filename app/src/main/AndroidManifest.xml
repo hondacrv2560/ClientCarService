@@ -37,6 +37,9 @@
         <activity android:name=".Activity.ProtectiveFilmActivity">
 
         </activity>
+        <activity android:name=".Activity.ChemicalCleaningSalonActivivy">
+
+        </activity>
 
     </application>
 
