@@ -23,6 +23,7 @@ import com.example.client.Activity.NanoCeramicsActivity;
 import com.example.client.Activity.PolishingActivity;
 import com.example.client.Activity.ProtectiveFilmActivity;
 import com.example.client.Activity.RepairWindshieldActivity;
+import com.example.client.Activity.SalonProtectionActivity;
 import com.example.client.Activity.ToningActivity;
 import com.example.client.Models.ProtectiveFilm;
 import com.example.client.Models.Service;
@@ -154,7 +155,8 @@ public class ServiceFragment extends Fragment {
                                 break;
 
                             case 7:
-
+                                Intent salonProtection = new Intent(getContext(), SalonProtectionActivity.class);
+                                startActivity(salonProtection);
                                 break;
 
                             case 8:

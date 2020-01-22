@@ -40,6 +40,9 @@
         <activity android:name=".Activity.ChemicalCleaningSalonActivivy">
 
         </activity>
+        <activity android:name=".Activity.SalonProtectionActivity">
+
+        </activity>
 
     </application>
 

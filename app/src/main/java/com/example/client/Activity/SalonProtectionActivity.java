@@ -44,7 +44,7 @@ public class SalonProtectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.salon_protection_list);
+        setContentView(R.layout.salon_protection_view);
         txtInfo=findViewById(R.id.txtInfo);
         cat1=findViewById(R.id.cat1);
         cat2=findViewById(R.id.cat2);
