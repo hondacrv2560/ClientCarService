@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/txt1"
-        android:text="Наши услуги: "/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Наши услуги"
+        android:id="@+id/txtInfo"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/serviceList"/>
+        android:id="@+id/ServiceList"
+        android:scrollbars="horizontal"/>
 </LinearLayout>

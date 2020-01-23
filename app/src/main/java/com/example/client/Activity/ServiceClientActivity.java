@@ -1,19 +1,30 @@
 package com.example.client.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.client.Models.CarWashing_3Phases;
+import com.example.client.Models.ServiceClient;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class ServiceClientActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -33,9 +44,9 @@ public class ServiceClientActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.service_view);
-        txtView=findViewById(R.id.txt1);
+        txtView=findViewById(R.id.txtInfo);
 
-        recyclerView = findViewById(R.id.serviceList);
+        recyclerView = findViewById(R.id.ServiceList);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -56,11 +67,111 @@ public class ServiceClientActivity extends AppCompatActivity {
 
         }
 
-        public void setTxtIdCw_3Phases(String string) {
+        public void setTxtId(String string) {
             txtIdService.setText(string);
         }
-        public void setTxtTitleCw_3Phases(String string) {
+        public void setTxtTitle(String string) {
             txtTitlService.setText(string);
         }
+    }
+
+    private void fetch() {
+        Query query = serviceRef;
+
+        FirebaseRecyclerOptions<ServiceClient> options =
+                new FirebaseRecyclerOptions.Builder<ServiceClient>()
+                        .setQuery(query, new SnapshotParser<ServiceClient>() {
+                            @NonNull
+                            @Override
+                            public ServiceClient parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new ServiceClient(snapshot.child("idService").getValue().toString(),
+                                        snapshot.child("titleService").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<ServiceClient, ServiceClientActivity.ViewHolder>(options) {
+
+            @Override
+            public ServiceClientActivity.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.service_list, parent, false);
+
+                return new ServiceClientActivity.ViewHolder(view);
+            }
+
+
+            @Override
+            protected void onBindViewHolder(ServiceClientActivity.ViewHolder holder, final int position, ServiceClient serviceClient) {
+                holder.setTxtId(serviceClient.getIdService());
+                holder.setTxtTitle(serviceClient.getTitle_service());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int id=Integer.valueOf(position);
+                        switch (id){
+                            case 0:
+                                Intent carWashing_3PhasesFragment = new Intent(ServiceClientActivity.this, CarWashing_3PhasesActivity.class);
+                                startActivity(carWashing_3PhasesFragment);
+                                break;
+
+                            case 1:
+
+                                break;
+
+                            case 2:
+                                Intent repairWindshield = new Intent(ServiceClientActivity.this, RepairWindshieldActivity.class);
+                                startActivity(repairWindshield);
+                                break;
+
+                            case 3:
+                                Intent polishing = new Intent(ServiceClientActivity.this, PolishingActivity.class);
+                                startActivity(polishing);
+                                break;
+
+                            case 4:
+                                Intent nanoCeramics = new Intent(ServiceClientActivity.this, NanoCeramicsActivity.class);
+                                startActivity(nanoCeramics);
+                                break;
+
+                            case 5:
+                                Intent protectiveFilm = new Intent(ServiceClientActivity.this, ProtectiveFilmActivity.class);
+                                startActivity(protectiveFilm);
+                                break;
+
+                            case 6:
+                                Intent chemicalCleaningSalon = new Intent(ServiceClientActivity.this, ChemicalCleaningSalonActivivy.class);
+                                startActivity(chemicalCleaningSalon);
+                                break;
+
+                            case 7:
+                                Intent salonProtection = new Intent(ServiceClientActivity.this, SalonProtectionActivity.class);
+                                startActivity(salonProtection);
+                                break;
+
+                            case 8:
+
+                                break;
+
+                            case 9:
+                                Intent toning = new Intent(ServiceClientActivity.this, ToningActivity.class);
+                                startActivity(toning);
+                                break;
+                        }
+                        Toast.makeText(ServiceClientActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

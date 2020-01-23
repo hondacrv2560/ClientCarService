@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
+import com.example.client.Activity.ServiceClientActivity;
 import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.SevenDaysActivity;
 import com.example.client.Classes.ThreeDaysActivity;
@@ -125,11 +126,13 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
         }
 
-        fragmentManager = getSupportFragmentManager();
-        serviceFragment = new ServiceFragment();
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fr,serviceFragment);
-        transaction.commit();
+//        fragmentManager = getSupportFragmentManager();
+//        serviceFragment = new ServiceFragment();
+//        transaction = fragmentManager.beginTransaction();
+//        transaction.replace(R.id.fr,serviceFragment);
+//        transaction.commit();
+        Intent test = new Intent(MainActivity.this, ServiceClientActivity.class);
+        startActivity(test);
     }
 
     // вход зарегистрированного клиента

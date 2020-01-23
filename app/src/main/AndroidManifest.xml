@@ -43,6 +43,9 @@
         <activity android:name=".Activity.SalonProtectionActivity">
 
         </activity>
+        <activity android:name=".Activity.ServiceClientActivity">
+
+        </activity>
 
     </application>
 
