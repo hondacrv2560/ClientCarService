@@ -1,6 +1,8 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -38,5 +40,27 @@ public class ServiceClientActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         fetch();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout root;
+        public TextView txtIdService;
+        public TextView txtTitlService;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            root = itemView.findViewById(R.id.list_root);
+            txtIdService = itemView.findViewById(R.id.id_title);
+            txtTitlService = itemView.findViewById(R.id.list_title);
+
+        }
+
+        public void setTxtIdCw_3Phases(String string) {
+            txtIdService.setText(string);
+        }
+        public void setTxtTitleCw_3Phases(String string) {
+            txtTitlService.setText(string);
+        }
     }
 }
