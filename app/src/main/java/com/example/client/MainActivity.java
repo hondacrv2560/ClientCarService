@@ -118,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
 //        transaction = fragmentManager.beginTransaction();
 //        transaction.replace(R.id.fr,serviceFragment);
 //        transaction.commit();
+        fragmentManager = getSupportFragmentManager();
+        ToDay toDay = new ToDayActivity();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fr,toDay);
+        transaction.commit();
 
     }
 //
@@ -213,14 +218,14 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
                 break;
-
-            case R.id.action_today:
-                fragmentManager = getSupportFragmentManager();
-                ToDay toDay = new ToDayActivity();
-                transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fr,toDay);
-                transaction.commit();
-                break;
+//
+//            case R.id.action_today:
+//                fragmentManager = getSupportFragmentManager();
+//                ToDay toDay = new ToDayActivity();
+//                transaction = fragmentManager.beginTransaction();
+//                transaction.replace(R.id.fr,toDay);
+//                transaction.commit();
+//                break;
             case R.id.day_1:
                 fragmentManager=getSupportFragmentManager();
                 OneDay oneDay = new OneDayActivity();

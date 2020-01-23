@@ -20,10 +20,10 @@
         android:id="@+id/regular_customer"
         android:title="Стать постоянным клиентом"/>
     <!--       app:showAsAction="always"/>-->
-    <item android:id="@+id/action_today"
-        android:title="action_today"
-        android:orderInCategory="100"
-        app:showAsAction="always"/>
+<!--    <item android:id="@+id/action_today"-->
+<!--        android:title="action_today"-->
+<!--        android:orderInCategory="100"-->
+<!--        app:showAsAction="always"/>-->
     <item
         android:title="Calendar"
         app:showAsAction="always"
