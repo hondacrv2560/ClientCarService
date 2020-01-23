@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
 //        transaction = fragmentManager.beginTransaction();
 //        transaction.replace(R.id.fr,serviceFragment);
 //        transaction.commit();
-        Intent test = new Intent(MainActivity.this, ServiceClientActivity.class);
-        startActivity(test);
+        Intent serviceClientActivivty = new Intent(MainActivity.this, ServiceClientActivity.class);
+        startActivity(serviceClientActivivty);
     }
 
     // вход зарегистрированного клиента
