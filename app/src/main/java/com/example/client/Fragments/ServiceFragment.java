@@ -48,14 +48,14 @@ public class ServiceFragment extends Fragment {
     // получение ссылки на БД
     DatabaseReference myDbReference = database.getReference();
     // поключение к child Service
-    DatabaseReference serviceRef = myDbReference.child("Service");
+    DatabaseReference serviceRef = myDbReference.child("ServiceClient");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View serviceFragment = inflater.inflate(R.layout.service_view, container,false);
 
-        recyclerView = serviceFragment.findViewById(R.id.service_list);
+        recyclerView = serviceFragment.findViewById(R.id.serviceList);
         txtView = serviceFragment.findViewById(R.id.txt1);
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
