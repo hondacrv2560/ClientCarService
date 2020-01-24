@@ -50,27 +50,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
 
-//        mWeekView.setWeekViewLoader(new WeekViewLoader() {
-//            int i=1;
-//            @Override
-//            public double toWeekViewPeriodIndex(Calendar instance) {
-//                return instance.getTime().getDate()+instance.getTime().getDate();
-//            }
-//
-//            @Override
-//            public List<? extends WeekViewEvent> onLoad(int periodIndex) {
-//                if (i == 3) {
-//                    i = 1;
-//                    List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-//                    return events;
-//                }else {
-//                    i++;
-//                    // return blank list or empty list
-//                    List<WeekViewEvent> events=new ArrayList<WeekViewEvent>();
-//                    return events;
-//                }
-//            }
-//        });
         mWeekView.setNumberOfVisibleDays(1);
 
         // Lets change some dimensions to best fit the view.
