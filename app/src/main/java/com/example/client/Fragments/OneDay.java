@@ -49,6 +49,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
+
 //        mWeekView.setWeekViewLoader(new WeekViewLoader() {
 //            int i=1;
 //            @Override

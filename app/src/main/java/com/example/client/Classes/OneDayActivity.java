@@ -126,28 +126,38 @@ public class OneDayActivity extends OneDay {
 //                    snapshots.get(i).child("endTimeYear").getValue(Integer.class));
 
             Calendar startTime = Calendar.getInstance();
-            startTime.set(Calendar.DAY_OF_MONTH, snapshots.get(i).child("startDayOfMonth").getValue(Integer.class));
-            startTime.set(Calendar.HOUR_OF_DAY, snapshots.get(i).child("startTimeHour").getValue(Integer.class));
-            startTime.set(Calendar.MINUTE, snapshots.get(i).child("startTimeMinute").getValue(Integer.class));
-            startTime.set(Calendar.MONTH, snapshots.get(i).child("startTimeMonth").getValue(Integer.class)-1);
-            startTime.set(Calendar.YEAR, snapshots.get(i).child("startTimeYear").getValue(Integer.class));
+            startTime.set(Calendar.DAY_OF_MONTH, Integer.parseInt(snapshots.get(i).child("startDayOfMonth").getValue().toString()));
+            startTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(snapshots.get(i).child("startTimeHour").getValue().toString()));
+            startTime.set(Calendar.MINUTE, Integer.parseInt(snapshots.get(i).child("startTimeMinute").getValue().toString()));
+            startTime.set(Calendar.MONTH, Integer.parseInt(snapshots.get(i).child("startTimeMonth").getValue().toString())-1);
+            startTime.set(Calendar.YEAR, Integer.parseInt(snapshots.get(i).child("startTimeYear").getValue().toString()));
             Calendar endTime = (Calendar) startTime.clone();
-            endTime.set(Calendar.DAY_OF_MONTH, snapshots.get(i).child("endDayOfMonth").getValue(Integer.class));
-            endTime.set(Calendar.HOUR_OF_DAY, snapshots.get(i).child("endTimeHour").getValue(Integer.class));
+            endTime.set(Calendar.DAY_OF_MONTH, Integer.parseInt(snapshots.get(i).child("endDayOfMonth").getValue().toString()));
+            endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(snapshots.get(i).child("endTimeHour").getValue().toString()));
             WeekViewEvent event = new WeekViewEvent(snapshots.get(i).getKey().hashCode(), getEventTitle(startTime), startTime, endTime);
             event.setColor(getResources().getColor(R.color.event_color_03));
+
 
             result.add(event);
         }
  return result;
     }
 
-
+    List<WeekViewEvent> events;
         @Override
         public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 
+
+            if (events!=null) {
+                if (events.size() > 0) {
+                    events.clear();
+                }
+            }
+            events =  mapDatatoCalendar(((MainActivity) getActivity()).list);
+
+            return events;
             // Populate the week view with some events.
-            List<WeekViewEvent> events = mapDatatoCalendar(((MainActivity) getActivity()).list);
+
 
 
 //        Calendar startTime = Calendar.getInstance();
@@ -294,6 +304,6 @@ public class OneDayActivity extends OneDay {
 //        event.setColor(getResources().getColor(R.color.event_color_01));
 //        events.add(event);
 
-            return events;
+//            return events;
         }
 }
