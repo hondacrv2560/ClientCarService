@@ -30,5 +30,9 @@
             android:paddingRight="10dp"
             android:hint="TEST"
             android:layout_gravity="center_vertical|center_horizontal"/>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgService"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
