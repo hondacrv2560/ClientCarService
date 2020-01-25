@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
 //        transaction.replace(R.id.fr,serviceFragment);
 //        transaction.commit();
         fragmentManager = getSupportFragmentManager();
-        ToDay toDay = new ToDayActivity();
+        OneDay oneDay = new OneDayActivity();
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fr,toDay);
+        transaction.replace(R.id.fr,oneDay);
         transaction.commit();
 
     }
