@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 public class ServiceClientActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -60,6 +62,7 @@ public class ServiceClientActivity extends AppCompatActivity {
         public LinearLayout root;
         public TextView txtIdService;
         public TextView txtTitlService;
+        public ImageView imgPath;
 
 
         public ViewHolder(View itemView) {
@@ -67,7 +70,7 @@ public class ServiceClientActivity extends AppCompatActivity {
             root = itemView.findViewById(R.id.list_root);
             txtIdService = itemView.findViewById(R.id.id_title);
             txtTitlService = itemView.findViewById(R.id.list_title);
-
+            imgPath = itemView.findViewById(R.id.photoService);
         }
 
         public void setTxtId(String string) {
@@ -76,6 +79,7 @@ public class ServiceClientActivity extends AppCompatActivity {
         public void setTxtTitle(String string) {
             txtTitlService.setText(string);
         }
+        public void setImgService(String string) {Picasso.get().load(string).into(imgPath);}
     }
 
     private void fetch() {
@@ -88,7 +92,8 @@ public class ServiceClientActivity extends AppCompatActivity {
                             @Override
                             public ServiceClient parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new ServiceClient(snapshot.child("idService").getValue().toString(),
-                                        snapshot.child("titleService").getValue().toString());
+                                        snapshot.child("titleService").getValue().toString(),
+                                        snapshot.child("imagePath").getValue().toString());
                             }
                         })
                         .build();
@@ -106,8 +111,11 @@ public class ServiceClientActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(ServiceClientActivity.ViewHolder holder, final int position, ServiceClient serviceClient) {
+
                 holder.setTxtId(serviceClient.getIdService());
                 holder.setTxtTitle(serviceClient.getTitle_service());
+                holder.setImgService(serviceClient.getImagePath());
+
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
