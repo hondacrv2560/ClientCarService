@@ -1,5 +1,6 @@
 package com.example.client.Classes;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -33,8 +34,8 @@ public class SevenDaysActivity extends  SevenDays {
             endTime.set(Calendar.DAY_OF_MONTH, Integer.parseInt(snapshots.get(i).child("endDayOfMonth").getValue().toString()));
             endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(snapshots.get(i).child("endTimeHour").getValue().toString()));
             WeekViewEvent event = new WeekViewEvent(snapshots.get(i).getKey().hashCode(), getEventTitle(startTime), startTime, endTime);
-            event.setColor(getResources().getColor(R.color.event_color_03));
-
+//            event.setColor(getResources().getColor(R.color.event_color_03));
+            event.setColor(Color.parseColor(snapshots.get(i).child("color").getValue().toString()));
 
             result.add(event);
         }

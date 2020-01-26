@@ -1,5 +1,7 @@
 package com.example.client.Classes;
 
+import android.graphics.Color;
+
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.client.Fragments.OneDay;
 import com.example.client.MainActivity;
@@ -26,8 +28,8 @@ public class OneDayActivity extends OneDay {
             endTime.set(Calendar.DAY_OF_MONTH, Integer.parseInt(snapshots.get(i).child("endDayOfMonth").getValue().toString()));
             endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(snapshots.get(i).child("endTimeHour").getValue().toString()));
             WeekViewEvent event = new WeekViewEvent(snapshots.get(i).getKey().hashCode(), getEventTitle(startTime), startTime, endTime);
-            event.setColor(getResources().getColor(R.color.event_color_03));
-
+//            event.setColor(getResources().getColor(R.color.event_color_03));
+            event.setColor(Color.parseColor(snapshots.get(i).child("color").getValue().toString()));
 
             result.add(event);
         }
