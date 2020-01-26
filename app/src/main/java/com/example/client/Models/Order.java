@@ -19,10 +19,12 @@ public class Order implements Serializable {
     public int endDayOfMonth;
     public int endTimeMonth;
     public int endTimeYear;
+    private String color;
 
     public Order(){}
 
-    public Order(String userId, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear, int endTimeHour, int endTimeMinute, int endDayOfMonth, int endTimeMonth, int endTimeYear) {
+    public Order(String userId, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear, int endTimeHour, int endTimeMinute, int endDayOfMonth, int endTimeMonth, int endTimeYear,
+                 String color) {
         UserId = userId;
         this.startTimeHour = startTimeHour;
         this.startTimeMinute = startTimeMinute;
@@ -34,6 +36,7 @@ public class Order implements Serializable {
         this.endDayOfMonth = endDayOfMonth;
         this.endTimeMonth = endTimeMonth;
         this.endTimeYear = endTimeYear;
+        this.color = color;
     }
 
     public int getStartTimeHour() {
@@ -114,6 +117,14 @@ public class Order implements Serializable {
 
     public void setEndTimeYear(int endTimeYear) {
         this.endTimeYear = endTimeYear;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @Exclude
