@@ -150,7 +150,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                 switch (item.getItemId()){
                     case R.id.addOrder:
                         Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time));
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#59DBE0");
                         myDbReferenceOrder = database.getReference("Orders");
                         EventOrder eventOrder = new EventOrder(user.getUid(), 8, "10:00", "12:00", "#59DBE0");
                         myDbReferenceEventOrder = database.getReference("Event");

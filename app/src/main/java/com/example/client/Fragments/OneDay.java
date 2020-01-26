@@ -154,7 +154,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 switch (item.getItemId()){
                     case R.id.addOrder:
                         Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time));
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#59DBE0");
                         myDbReferenceOrder = database.getReference("Orders");
                         EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
                         myDbReferenceEventOrder = database.getReference("Event");
