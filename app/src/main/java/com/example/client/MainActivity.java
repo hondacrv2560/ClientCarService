@@ -113,6 +113,19 @@ public String str;
         if(user != null){
             Toast.makeText(MainActivity.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
         }
+
+        // блокировка текущего потока UI, для корректной загрузки фрагмента с полученными данными из БД
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                fragmentManager = getSupportFragmentManager();
+                OneDay oneDay = new OneDayActivity();
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fr,oneDay);
+                transaction.commit();
+            }
+        },500);
     }
 
     //передает строку из выбранного пункта меню в фрагмент
