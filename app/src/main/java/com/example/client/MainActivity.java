@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog.Builder builder_enter_register;
     LayoutInflater inflater_regular_customer;
     LayoutInflater inflater_enter_register;
-
+public String str;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,26 +113,12 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
             Toast.makeText(MainActivity.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
         }
-
-//        fragmentManager = getSupportFragmentManager();
-//        serviceFragment = new ServiceFragment();
-//        transaction = fragmentManager.beginTransaction();
-//        transaction.replace(R.id.fr,serviceFragment);
-//        transaction.commit();
-        fragmentManager = getSupportFragmentManager();
-        OneDay oneDay = new OneDayActivity();
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fr,oneDay);
-        transaction.commit();
-
     }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        Intent serviceClientActivivty = new Intent(MainActivity.this, ServiceClientActivity.class);
-//        startActivity(serviceClientActivivty);
-//    }
+
+    //передает строку из выбранного пункта меню в фрагмент
+public String getMyData() {
+    return str;
+}
 
     // вход зарегистрированного клиента
     public void signIn(String e_mail, String pass){
@@ -172,12 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        FragmentManager fragmentManager;
-//        FragmentTransaction transaction;
-//        AlertDialog.Builder builder_regular_customer;
-//        AlertDialog.Builder builder_enter_register;
-//        LayoutInflater inflater_regular_customer;
-//        LayoutInflater inflater_enter_register;
         int id=item.getItemId();
         switch (id){
             //регистрация нового клиента
@@ -218,14 +199,37 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
                 break;
-//
-//            case R.id.action_today:
-//                fragmentManager = getSupportFragmentManager();
-//                ToDay toDay = new ToDayActivity();
-//                transaction = fragmentManager.beginTransaction();
-//                transaction.replace(R.id.fr,toDay);
-//                transaction.commit();
-//                break;
+
+            case R.id.CarWashing_3Phases:
+                str = "CarWashing_3Phases";
+                break;
+            case R.id.CarWashing:
+                str = "CarWashing";
+                break;
+            case R.id.ChemicalCleaningSalon:
+                str = "ChemicalCleaningSalon";
+                break;
+            case R.id.NanoCeramics:
+                str = "NanoCeramics";
+                break;
+            case R.id.Polishing:
+                str = "Polishing";
+                break;
+            case R.id.ProtectiveFilm:
+                str = "ProtectiveFilm";
+                break;
+            case R.id.RepairWindshield:
+                str = "RepairWindshield";
+                break;
+            case R.id.SalonProtection:
+                str = "SalonProtection";
+                break;
+            case R.id.Toning:
+                str = "Toning";
+                break;
+            case R.id.TireFitting:
+                str = "TireFitting";
+                break;
             case R.id.day_1:
                 fragmentManager=getSupportFragmentManager();
                 OneDay oneDay = new OneDayActivity();
