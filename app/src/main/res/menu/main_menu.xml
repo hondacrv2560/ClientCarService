@@ -2,23 +2,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/car_wash"
+    android:id="@+id/CarWashing_3Phases"
+    android:title="Записаться на 3-х фазную мойку"/>
+    <item
+        android:id="@+id/CarWashing"
         android:title="Записаться на мойку"/>
     <item
-        android:id="@+id/tire_fitting"
-        android:title="Записаться на шиномонтаж"/>
+        android:id="@+id/ChemicalCleaningSalon"
+        android:title="Записаться на химчистку слона"/>
     <item
-        android:id="@+id/dry_cleaning"
-        android:title="Записаться на химчистку"/>
+        android:id="@+id/NanoCeramics"
+        android:title="Записаться на нанесение Нанокерамики"/>
     <item
-        android:id="@+id/polishing"
+        android:id="@+id/Polishing"
         android:title="Записаться на полировку"/>
     <item
-        android:id="@+id/deteyling"
-        android:title="Записаться на детейлинг"/>
+        android:id="@+id/ProtectiveFilm"
+        android:title="Записаться на поклейку пленки"/>
+
+    <item
+        android:id="@+id/RepairWindshield"
+        android:title="Записаться на ремонт стекла"/>
+    <item
+        android:id="@+id/SalonProtection"
+        android:title="Записаться на защиту салона"/>
+    <item
+        android:id="@+id/Toning"
+        android:title="Записаться тонировку"/>
+    <item
+        android:id="@+id/TireFitting"
+        android:title="записаться на шиномонтаж"/>
     <item
         android:id="@+id/regular_customer"
         android:title="Стать постоянным клиентом"/>
+
     <!--       app:showAsAction="always"/>-->
 <!--    <item android:id="@+id/action_today"-->
 <!--        android:title="action_today"-->
