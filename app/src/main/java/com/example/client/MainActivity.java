@@ -194,7 +194,7 @@ public String getMyData() {
                 AlertDialog dialog_regular_customer = builder_regular_customer.create();
                 dialog_regular_customer.show();
                 break;
-
+                // вход зарегистрированного клиента
             case R.id.enter_register:
                 builder_enter_register = new AlertDialog.Builder(MainActivity.this);
                 builder_enter_register.setTitle("Вход зарегистрированного клиента");
@@ -212,35 +212,34 @@ public String getMyData() {
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
                 break;
-
-            case R.id.CarWashing_3Phases:
+            case R.id.carWashing_3Phases:
                 str = "CarWashing_3Phases";
                 break;
-            case R.id.CarWashing:
+            case R.id.carWashing:
                 str = "CarWashing";
                 break;
-            case R.id.ChemicalCleaningSalon:
+            case R.id.chemicalCleaningSalon:
                 str = "ChemicalCleaningSalon";
                 break;
-            case R.id.NanoCeramics:
+            case R.id.nanoCeramics:
                 str = "NanoCeramics";
                 break;
-            case R.id.Polishing:
+            case R.id.polishing:
                 str = "Polishing";
                 break;
-            case R.id.ProtectiveFilm:
+            case R.id.protectiveFilm:
                 str = "ProtectiveFilm";
                 break;
-            case R.id.RepairWindshield:
+            case R.id.repairWindshield:
                 str = "RepairWindshield";
                 break;
-            case R.id.SalonProtection:
+            case R.id.salonProtection:
                 str = "SalonProtection";
                 break;
-            case R.id.Toning:
+            case R.id.toning:
                 str = "Toning";
                 break;
-            case R.id.TireFitting:
+            case R.id.tireFitting:
                 str = "TireFitting";
                 break;
             case R.id.day_1:
@@ -264,9 +263,6 @@ public String getMyData() {
                 transaction.replace(R.id.fr,sevenDays);
                 transaction.commit();
                 break;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }
