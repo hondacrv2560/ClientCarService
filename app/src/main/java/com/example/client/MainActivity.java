@@ -72,7 +72,7 @@ public String str;
         DatabaseReference orderRef = myDbReference.child("Orders");
 
 
-        ValueEventListener listener = new ValueEventListener() {
+        orderRef.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list = new ArrayList<DataSnapshot>();
@@ -87,8 +87,8 @@ public String str;
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        };
-        orderRef.addListenerForSingleValueEvent(listener);
+        });
+//        orderRef.addListenerForSingleValueEvent(listener);
 
 
 
