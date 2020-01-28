@@ -120,9 +120,9 @@ public String str;
             @Override
             public void run() {
                 fragmentManager = getSupportFragmentManager();
-                OneDay oneDay = new OneDayActivity();
+                ToDay toDay = new ToDayActivity();
                 transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fr,oneDay);
+                transaction.replace(R.id.fr,toDay);
                 transaction.commit();
             }
         },500);
