@@ -149,9 +149,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onEmptyViewClicked(final Calendar time) {
-
+    public void popUpMenu (final Calendar time){
         Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
         Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
         PopupMenu popupMenu = new PopupMenu(getContext(), mWeekView);
@@ -164,7 +162,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 switch (item.getItemId()){
                     case R.id.carWashing_3Phases:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                            getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#59DBE0");
+                                getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#59DBE0");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -296,7 +294,11 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 return true;
             }
         });
+    }
 
+    @Override
+    public void onEmptyViewClicked(final Calendar time) {
+        popUpMenu(time);
     }
 
     @Override
