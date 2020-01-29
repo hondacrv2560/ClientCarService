@@ -46,7 +46,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     private DatabaseReference myDbReferenceOrder;
     private DatabaseReference myDbReferenceEventOrder;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
-    private String myDataFromActivity;
     private Order order;
     private String key;
     @Nullable
@@ -80,7 +79,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
-
         return showOneDay;
     }
 
@@ -179,7 +177,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.carWashing:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff1100");
+                                getStartYear(time), getStartHour(time)+1, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#ff1100");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#ff1100");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -192,7 +190,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.chemicalCleaningSalon:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00ff11");
+                                getStartYear(time), getStartHour(time)+3, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#00ff11");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -205,7 +203,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.nanoCeramics:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#0040ff");
+                                getStartYear(time), getStartHour(time), getStartMinute(time), getStartDay(time)+2, getStartMonth(time), getStartYear(time), "#0040ff");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -218,7 +216,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.polishing:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff00fb");
+                                getStartYear(time), getStartHour(time), getStartMinute(time), getStartDay(time)+1, getStartMonth(time), getStartYear(time), "#ff00fb");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -231,7 +229,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.protectiveFilm:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#858385");
+                                getStartYear(time), getStartHour(time), getStartMinute(time), getStartDay(time)+1, getStartMonth(time), getStartYear(time), "#858385");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -244,7 +242,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.repairWindshield:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00fffb");
+                                getStartYear(time), getStartHour(time)+3, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#00fffb");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -257,7 +255,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.salonProtection:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ffa200");
+                                getStartYear(time), getStartHour(time)+6, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#ffa200");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -270,7 +268,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.toning:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#d000ff");
+                                getStartYear(time), getStartHour(time), getStartMinute(time), getStartDay(time)+1, getStartMonth(time), getStartYear(time), "#d000ff");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -283,7 +281,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         break;
                     case R.id.tireFitting:
                         order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#0a0a0a");
+                                getStartYear(time), getStartHour(time)+1, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#0a0a0a");
                         myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
