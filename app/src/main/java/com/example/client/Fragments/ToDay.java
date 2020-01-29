@@ -31,7 +31,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
-public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeListener {
 
     private WeekView mWeekView;
 
@@ -53,20 +53,20 @@ public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickL
         mWeekView.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
         mWeekView.setEventTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics()));
 
-        // Show a toast message about the touched event.
-        mWeekView.setOnEventClickListener(this);
-
-        // The week view has infinite scrolling horizontally. We have to provide the events of a
-        // month every time the month changes on the week view.
+//        // Show a toast message about the touched event.
+//        mWeekView.setOnEventClickListener(this);
+//
+//        // The week view has infinite scrolling horizontally. We have to provide the events of a
+//        // month every time the month changes on the week view.
         mWeekView.setMonthChangeListener(this);
-
-        // Set long press listener for events.
-        mWeekView.setEventLongPressListener(this);
-
-        // Set long press listener for empty view
-        mWeekView.setEmptyViewLongPressListener(this);
-
-        mWeekView.setEmptyViewClickListener(this);
+//
+//        // Set long press listener for events.
+//        mWeekView.setEventLongPressListener(this);
+//
+//        // Set long press listener for empty view
+//        mWeekView.setEmptyViewLongPressListener(this);
+//
+//        mWeekView.setEmptyViewClickListener(this);
 
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
@@ -101,76 +101,76 @@ public abstract class ToDay extends Fragment implements WeekView.EmptyViewClickL
     protected String getEventTitle(Calendar time) {
         return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
     }
+//
+//    protected String getTimeOrder(Calendar time) {
+//        return String.format("%02d:%02d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE));
+//    }
+//
+//    protected String getDateOrder(Calendar time){
+//        return String.format("%1$te %1$tB %1$tY",time);
+//    }
+//
+//    protected int getStartHour(Calendar time){
+//        return time.get(Calendar.HOUR_OF_DAY);
+//    }
+//    protected int getStartMinute(Calendar time){
+//        return time.get(Calendar.MINUTE);
+//    }
+//    protected int getStartDay(Calendar time){
+//        return time.get(Calendar.DAY_OF_MONTH);
+//    }
+//    protected int getStartMonth(Calendar time){
+//        return time.get(Calendar.MONTH)+1;
+//    }
+//    protected int getStartYear(Calendar time){
+//        return time.get(Calendar.YEAR);
+//    }
 
-    protected String getTimeOrder(Calendar time) {
-        return String.format("%02d:%02d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE));
-    }
-
-    protected String getDateOrder(Calendar time){
-        return String.format("%1$te %1$tB %1$tY",time);
-    }
-
-    protected int getStartHour(Calendar time){
-        return time.get(Calendar.HOUR_OF_DAY);
-    }
-    protected int getStartMinute(Calendar time){
-        return time.get(Calendar.MINUTE);
-    }
-    protected int getStartDay(Calendar time){
-        return time.get(Calendar.DAY_OF_MONTH);
-    }
-    protected int getStartMonth(Calendar time){
-        return time.get(Calendar.MONTH)+1;
-    }
-    protected int getStartYear(Calendar time){
-        return time.get(Calendar.YEAR);
-    }
-
-    @Override
-    public void onEventClick(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(getActivity(), "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-        Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onEmptyViewClicked(final Calendar time) {
-        Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
-        PopupMenu popupMenu = new PopupMenu(getActivity(), mWeekView);
-        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-        popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
-                switch (item.getItemId()){
-                    case R.id.addOrder:
-                        Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#59DBE0");
-                        myDbReferenceOrder = database.getReference("Orders");
-                        EventOrder eventOrder = new EventOrder(user.getUid(), 8, "10:00", "12:00", "#59DBE0");
-                        myDbReferenceEventOrder = database.getReference("Event");
-                        //Uid заказа
-                        String key = myDbReferenceOrder.push().getKey();
-                        // добавление заказа
-                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                        myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public void onEmptyViewLongPress(Calendar time) {
-        Toast.makeText(getActivity(), "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
-
-    }
+//    @Override
+//    public void onEventClick(WeekViewEvent event, RectF eventRect) {
+//        Toast.makeText(getActivity(), "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
+//        Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onEmptyViewClicked(final Calendar time) {
+//        Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
+//        PopupMenu popupMenu = new PopupMenu(getActivity(), mWeekView);
+//        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+//        popupMenu.show();
+//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
+//                switch (item.getItemId()){
+//                    case R.id.addOrder:
+//                        Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+//                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#59DBE0");
+//                        myDbReferenceOrder = database.getReference("Orders");
+//                        EventOrder eventOrder = new EventOrder(user.getUid(), 8, "10:00", "12:00", "#59DBE0");
+//                        myDbReferenceEventOrder = database.getReference("Event");
+//                        //Uid заказа
+//                        String key = myDbReferenceOrder.push().getKey();
+//                        // добавление заказа
+//                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                        myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+//                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+//                }
+//                return true;
+//            }
+//        });
+//    }
+//
+//    @Override
+//    public void onEmptyViewLongPress(Calendar time) {
+//        Toast.makeText(getActivity(), "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
+//
+//    }
 
     public WeekView getWeekView() {
         return mWeekView;
