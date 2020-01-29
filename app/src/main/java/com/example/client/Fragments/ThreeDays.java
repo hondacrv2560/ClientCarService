@@ -148,7 +148,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
                 switch (item.getItemId()){
-                    case R.id.addOrder:
+                    case R.id.carWashing:
                         Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
                                 getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time),"#59DBE0");
                         myDbReferenceOrder = database.getReference("Orders");

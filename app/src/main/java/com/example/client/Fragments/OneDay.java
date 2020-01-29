@@ -3,6 +3,7 @@ package com.example.client.Fragments;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewLoader;
+import com.example.client.Classes.OneDayActivity;
 import com.example.client.MainActivity;
 import com.example.client.Models.EventOrder;
 import com.example.client.Models.Order;
@@ -45,6 +47,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     private DatabaseReference myDbReferenceEventOrder;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
     private String myDataFromActivity;
+    private Order order;
+    private String key;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,9 +80,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
-        MainActivity activity = (MainActivity) getActivity();
-        myDataFromActivity = activity.getMyData();
-        Toast.makeText(getActivity(), myDataFromActivity, Toast.LENGTH_SHORT).show();
+
         return showOneDay;
     }
 
@@ -121,7 +123,13 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         return time.get(Calendar.HOUR_OF_DAY);
     }
     protected int getStartMinute(Calendar time){
-        return time.get(Calendar.MINUTE);
+        int minute =  time.get(Calendar.MINUTE);
+        if(minute > 0 && minute < 29) {
+            minute = 0;
+        } else {
+            minute = 30;
+        }
+        return minute;
     }
     protected int getStartDay(Calendar time){
         return time.get(Calendar.DAY_OF_MONTH);
@@ -145,9 +153,10 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     @Override
     public void onEmptyViewClicked(final Calendar time) {
+
         Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
         Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
-        PopupMenu popupMenu = new PopupMenu(getActivity(), mWeekView);
+        PopupMenu popupMenu = new PopupMenu(getContext(), mWeekView);
         popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
         popupMenu.show();
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -155,132 +164,141 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
             public boolean onMenuItemClick(MenuItem item) {
                 Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
                 switch (item.getItemId()){
-                    case R.id.addOrder:
-                        if(myDataFromActivity.equals("CarWashing_3Phases")) {
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#59DBE0");
-                            myDbReferenceOrder = database.getReference("Orders");
+                    case R.id.carWashing_3Phases:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                            getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#59DBE0");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if(myDataFromActivity.equals("CarWashing")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff1100");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.carWashing:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff1100");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#ff1100");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if (myDataFromActivity.equals("ChemicalCleaningSalon")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00ff11");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.chemicalCleaningSalon:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00ff11");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if (myDataFromActivity.equals("NanoCeramics")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#0040ff");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.nanoCeramics:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#0040ff");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if(myDataFromActivity.equals("Polishing")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff00fb");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.polishing:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ff00fb");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if(myDataFromActivity.equals("ProtectiveFilm")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#858385");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.protectiveFilm:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#858385");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if (myDataFromActivity.equals("RepairWindshield")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00fffb");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.repairWindshield:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#00fffb");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if (myDataFromActivity.equals("SalonProtection")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ffa200");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.salonProtection:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#ffa200");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if(myDataFromActivity.equals("Toning")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#d000ff");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.toning:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#d000ff");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        } else if(myDataFromActivity.equals("TireFitting")){
-                            Order order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                    getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#0a0a0a");
-                            myDbReferenceOrder = database.getReference("Orders");
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.tireFitting:
+                        order = new Order(user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
+                                getStartYear(time), getStartHour(time)+2, getStartMinute(time), getStartDay(time), getStartMonth(time), getStartYear(time), "#0a0a0a");
+                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#00ff11");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                            //Uid заказа
-                            String key = myDbReferenceOrder.push().getKey();
-                            // добавление заказа
-                            myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                        //Uid заказа
+                        key = myDbReferenceOrder.push().getKey();
+                        // добавление заказа
+                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                            Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
         });
+
     }
 
     @Override

@@ -212,36 +212,36 @@ public String getMyData() {
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
                 break;
-            case R.id.carWashing_3Phases:
-                str = "CarWashing_3Phases";
-                break;
-            case R.id.carWashing:
-                str = "CarWashing";
-                break;
-            case R.id.chemicalCleaningSalon:
-                str = "ChemicalCleaningSalon";
-                break;
-            case R.id.nanoCeramics:
-                str = "NanoCeramics";
-                break;
-            case R.id.polishing:
-                str = "Polishing";
-                break;
-            case R.id.protectiveFilm:
-                str = "ProtectiveFilm";
-                break;
-            case R.id.repairWindshield:
-                str = "RepairWindshield";
-                break;
-            case R.id.salonProtection:
-                str = "SalonProtection";
-                break;
-            case R.id.toning:
-                str = "Toning";
-                break;
-            case R.id.tireFitting:
-                str = "TireFitting";
-                break;
+//            case R.id.carWashing_3Phases:
+//                str = "CarWashing_3Phases";
+//                break;
+//            case R.id.carWashing:
+//                str = "CarWashing";
+//                break;
+//            case R.id.chemicalCleaningSalon:
+//                str = "ChemicalCleaningSalon";
+//                break;
+//            case R.id.nanoCeramics:
+//                str = "NanoCeramics";
+//                break;
+//            case R.id.polishing:
+//                str = "Polishing";
+//                break;
+//            case R.id.protectiveFilm:
+//                str = "ProtectiveFilm";
+//                break;
+//            case R.id.repairWindshield:
+//                str = "RepairWindshield";
+//                break;
+//            case R.id.salonProtection:
+//                str = "SalonProtection";
+//                break;
+//            case R.id.toning:
+//                str = "Toning";
+//                break;
+//            case R.id.tireFitting:
+//                str = "TireFitting";
+//                break;
             case R.id.day_1:
                 fragmentManager=getSupportFragmentManager();
                 OneDay oneDay = new OneDayActivity();
