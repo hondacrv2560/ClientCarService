@@ -62,11 +62,7 @@ public class ServiceClientActivity extends AppCompatActivity {
         public LinearLayout root;
         public TextView txtIdService;
         public TextView txtTitlService;
-<<<<<<< Updated upstream
         public ImageView imgPath;
-=======
-        public ImageView imgService;
->>>>>>> Stashed changes
 
 
         public ViewHolder(View itemView) {
@@ -74,13 +70,7 @@ public class ServiceClientActivity extends AppCompatActivity {
             root = itemView.findViewById(R.id.list_root);
             txtIdService = itemView.findViewById(R.id.id_title);
             txtTitlService = itemView.findViewById(R.id.list_title);
-<<<<<<< Updated upstream
             imgPath = itemView.findViewById(R.id.photoService);
-=======
-            imgService = itemView.findViewById(R.id.photoService);
-
-
->>>>>>> Stashed changes
         }
 
         public void setTxtId(String string) {
@@ -89,11 +79,7 @@ public class ServiceClientActivity extends AppCompatActivity {
         public void setTxtTitle(String string) {
             txtTitlService.setText(string);
         }
-<<<<<<< Updated upstream
         public void setImgService(String string) {Picasso.get().load(string).into(imgPath);}
-=======
-        public void setImgService(int redId) {imgService.setImageResource(redId);}
->>>>>>> Stashed changes
     }
 
     private void fetch() {
@@ -128,12 +114,8 @@ public class ServiceClientActivity extends AppCompatActivity {
 
                 holder.setTxtId(serviceClient.getIdService());
                 holder.setTxtTitle(serviceClient.getTitle_service());
-<<<<<<< Updated upstream
                 holder.setImgService(serviceClient.getImagePath());
 
-=======
-                holder.setImgService(serviceClient.getImgId());
->>>>>>> Stashed changes
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override

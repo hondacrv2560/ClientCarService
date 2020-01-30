@@ -3,8 +3,8 @@ package com.example.client.Models;
 public class ServiceClient {
     public String idService;
     public String title_service;
-<<<<<<< Updated upstream
     public String imagePath;
+
     public ServiceClient() {
     }
 
@@ -12,17 +12,6 @@ public class ServiceClient {
         this.idService = idService;
         this.title_service = title_service;
         this.imagePath = imagePath;
-=======
-    int imgId;
-
-    public ServiceClient() {
-    }
-
-    public ServiceClient(String idService, String title_service, int imgId) {
-        this.idService = idService;
-        this.title_service = title_service;
-        this.imgId = imgId;
->>>>>>> Stashed changes
     }
 
     public String getIdService() {
@@ -41,20 +30,11 @@ public class ServiceClient {
         this.title_service = title_service;
     }
 
-<<<<<<< Updated upstream
     public String getImagePath() {
         return imagePath;
     }
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-=======
-    public int getImgId() {
-        return imgId;
-    }
-
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
->>>>>>> Stashed changes
     }
 }

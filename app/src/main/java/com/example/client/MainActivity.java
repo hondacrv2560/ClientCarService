@@ -114,7 +114,6 @@ public String str;
             Toast.makeText(MainActivity.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
         }
 
-<<<<<<< Updated upstream
         // блокировка текущего потока UI, для корректной загрузки фрагмента с полученными данными из БД
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -127,19 +126,6 @@ public String str;
                 transaction.commit();
             }
         },500);
-=======
-//        fragmentManager = getSupportFragmentManager();
-//        serviceFragment = new ServiceFragment();
-//        transaction = fragmentManager.beginTransaction();
-//        transaction.replace(R.id.fr,serviceFragment);
-//        transaction.commit();
-        fragmentManager = getSupportFragmentManager();
-        OneDay oneDay = new OneDayActivity();
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fr,oneDay);
-        transaction.commit();
-
->>>>>>> Stashed changes
     }
 
     //передает строку из выбранного пункта меню в фрагмент
