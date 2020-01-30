@@ -29,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ import java.util.Objects;
 public abstract class OneDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private WeekView mWeekView;
+    SpeedDialView speedDialView;
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -53,6 +56,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
+        speedDialView = showOneDay.findViewById(R.id.speedDial);
 
         mWeekView.setNumberOfVisibleDays(1);
 
@@ -79,6 +83,9 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
+        speedDialView.addActionItem(
+                new SpeedDialActionItem.Builder(R.id.fab_no_label, R.drawable.ic_link_white_24dp)
+                        .create());
         return showOneDay;
     }
 

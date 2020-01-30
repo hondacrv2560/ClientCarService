@@ -21,5 +21,11 @@
         app:dayBackgroundColor="#05000000"
         app:todayBackgroundColor="#66B2B2B4"
         app:headerColumnBackground="#ffffffff"/>
+    <com.leinardi.android.speeddial.SpeedDialView
+        android:id="@+id/speedDial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:sdMainFabClosedSrc="@drawable/ic_add_white_24dp" />
 
 </RelativeLayout>
