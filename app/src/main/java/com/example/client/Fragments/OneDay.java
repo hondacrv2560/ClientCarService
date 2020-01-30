@@ -82,6 +82,9 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         return showOneDay;
     }
 
+    public void onClickOneDay(Calendar time){
+
+    }
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
             @Override
@@ -100,7 +103,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
             @Override
             public String interpretTime(int hour) {
-                return hour > 11 ? (hour - 12) + " PM" : (hour == 0 ? "12 AM" : hour + " AM");
+                return String.format("%02d:00", hour);
             }
         });
     }
@@ -296,8 +299,10 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         });
     }
 
+
     @Override
     public void onEmptyViewClicked(final Calendar time) {
+
         popUpMenu(time);
     }
 
