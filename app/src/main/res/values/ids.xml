@@ -4,11 +4,14 @@
   under the License is distributed on an "AS IS" BASIS,~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.~ See the License for the specific language
    governing permissions and~ limitations under the License. -->
     <resources>
-    <item type="id" name="fab_no_label"/>
-    <item type="id" name="fab_custom_color"/>
-    <item type="id" name="fab_long_label"/>
-    <item type="id" name="fab_custom_theme"/>
-    <item type="id" name="fab_add_action"/>
-    <item type="id" name="fab_replace_action"/>
-    <item type="id" name="fab_remove_action"/>
+    <item type="id" name="carWashing_3Phases"/>
+    <item type="id" name="carWashing"/>
+    <item type="id" name="chemicalCleaningSalon"/>
+    <item type="id" name="nanoCeramics"/>
+    <item type="id" name="polishing"/>
+    <item type="id" name="protectiveFilm"/>
+    <item type="id" name="repairWindshield"/>
+    <item type="id" name="salonProtection"/>
+    <item type="id" name="toning"/>
+    <item type="id" name="tireFitting"/>
 </resources>

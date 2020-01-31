@@ -40,7 +40,7 @@ public class ServiceClientActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     // получение ссылки на БД
     DatabaseReference myDbReference = database.getReference();
-    // поключение к child Service
+    // поключение к child ServiceClient
     DatabaseReference serviceRef = myDbReference.child("ServiceClient");
 
     public TextView txtView;

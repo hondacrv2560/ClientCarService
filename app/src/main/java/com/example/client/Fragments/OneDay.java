@@ -19,10 +19,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
-import com.alamkanak.weekview.WeekViewLoader;
-import com.example.client.Classes.OneDayActivity;
-import com.example.client.MainActivity;
-import com.example.client.Models.EventOrder;
+
 import com.example.client.Models.Order;
 import com.example.client.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,9 +30,9 @@ import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.List;
+
 import java.util.Locale;
 import java.util.Objects;
 
@@ -83,15 +80,80 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
-        speedDialView.addActionItem(
-                new SpeedDialActionItem.Builder(R.id.fab_no_label, R.drawable.ic_link_white_24dp)
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.ic_link_white_24dp)
+                        .setLabel(R.string.CarWashing_3Phases)
                         .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.CarWashing)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.chemicalCleaningSalon, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.ChemicalCleaningSalon)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.nanoCeramics, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.NanoCeramics)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.polishing, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.Polishing)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.protectiveFilm, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.ProtectiveFilm)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.repairWindshield, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.RepairWindshield)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.salonProtection, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.SalonProtection)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.toning, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.Toning)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.tireFitting, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.TireFitting)
+                .create());
+
+        speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
+            @Override
+            public boolean onActionSelected(SpeedDialActionItem actionItem) {
+                switch (actionItem.getId()) {
+                    case R.id.carWashing_3Phases:
+                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.carWashing:
+
+                        break;
+                    case R.id.chemicalCleaningSalon:
+
+                        break;
+                    case R.id.nanoCeramics:
+
+                        break;
+                    case R.id.polishing:
+
+                        break;
+                    case R.id.protectiveFilm:
+
+                        break;
+                    case R.id.repairWindshield:
+
+                        break;
+                    case R.id.salonProtection:
+
+                        break;
+                    case R.id.toning:
+
+                        break;
+                    case R.id.tireFitting:
+
+                        break;
+
+                }
+
+                return false;
+            }
+        });
         return showOneDay;
     }
 
-    public void onClickOneDay(Calendar time){
-
-    }
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
             @Override
@@ -158,6 +220,9 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
     }
+
+
+
 
     public void popUpMenu (final Calendar time){
         Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
