@@ -12,4 +12,5 @@
     <string name="Toning">Записаться тонировку</string>
     <string name="TireFitting">записаться на шиномонтаж</string>
     <string name="date">Дата:</string>
+    <string name="addOrder">Запись клиента:</string>
 </resources>
