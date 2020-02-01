@@ -62,8 +62,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
     private Order order;
     private String key;
-    TextView txtdateStartOrder;
-    TextView txtTimeStrartOrder;
+    TextView txtdateOrder;
+    TextView txtTimeOrder;
     int startOrderDay;
     int startOrderMonth;
     int startOrderYear;
@@ -145,8 +145,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         LayoutInflater layoutInflater = getLayoutInflater();
                         final View view = inflater.inflate(R.layout.add_order, null, false);
                         alertDialogBuilder.setView(view);
-                        txtdateStartOrder = view.findViewById(R.id.dateStartOrder);;
-                        txtTimeStrartOrder = view.findViewById(R.id.timeStartOrder);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);;
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
                         EditText txtAddComent;
                         alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
@@ -175,14 +175,14 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
 //                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
 
-                        txtdateStartOrder.setOnClickListener(new View.OnClickListener() {
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 datePicker();
                             }
                         });
 
-                        txtTimeStrartOrder.setOnClickListener(new View.OnClickListener() {
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 timePicker();
@@ -240,7 +240,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        txtTimeStrartOrder.setText(hourOfDay + ":" + minute);
+
+                        txtTimeOrder.setText(String.format ("%02d:%02d", hourOfDay, minute));
                         String hour = hourOfDay + ":" + minute;
                         Toast.makeText(getActivity(), hour, Toast.LENGTH_SHORT).show();
                     }
@@ -250,6 +251,11 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     // создание DatePickerDialog
     public void datePicker (){
+        Calendar calendar = Calendar.getInstance();
+        startOrderDay = calendar.get (Calendar.DAY_OF_MONTH);
+        startOrderMonth= calendar.get (Calendar.MONTH);
+        startOrderYear = calendar.get (Calendar.YEAR);
+
         DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), AlertDialog.THEME_TRADITIONAL){
             @Override
             public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
@@ -261,9 +267,9 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String date=startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
+                String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
                 Toast.makeText(getContext(), date, Toast.LENGTH_SHORT).show();
-                txtdateStartOrder.setText(date);
+                txtdateOrder.setText(String.format("%02d-%02d-%d", startOrderDay, startOrderMonth, startOrderYear));
             }
         });
         datePickerDialog.show();
