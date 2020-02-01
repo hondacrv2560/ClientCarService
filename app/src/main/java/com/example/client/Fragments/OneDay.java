@@ -227,7 +227,47 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         return showOneDay;
     }
 
-    
+    // Создание и отображение Диалогового окна TimePickerDialog
+
+    public void timePicker (){
+
+        Calendar calendar = Calendar.getInstance();
+        startOrderHour = calendar.get(Calendar.HOUR_OF_DAY);
+        startOrderMinute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        txtTimeStrartOrder.setText(hourOfDay + ":" + minute);
+                        String hour = hourOfDay + ":" + minute;
+                        Toast.makeText(getActivity(), hour, Toast.LENGTH_SHORT).show();
+                    }
+                }, startOrderHour, startOrderMinute, true);
+        timePickerDialog.show();
+    }
+
+    // создание DatePickerDialog
+    public void datePicker (){
+        DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), AlertDialog.THEME_TRADITIONAL){
+            @Override
+            public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                OneDay.this.startOrderYear=year;
+                OneDay.this.startOrderMonth= ++month;
+                OneDay.this.startOrderDay=dayOfMonth;
+            }
+        };
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String date=startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
+                Toast.makeText(getContext(), date, Toast.LENGTH_SHORT).show();
+                txtdateStartOrder.setText(date);
+            }
+        });
+        datePickerDialog.show();
+    }
 
 
 
