@@ -3,39 +3,32 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/addOrder">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/date"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="dateStartOrder"
         android:textSize="20dp"
         android:textStyle="italic"
         android:fontFamily="sans-serif-condensed-medium"
-        android:id="@+id/dateStartOrder"/>
+        android:id="@+id/dateOrder"
+        android:hint="нажмите для выбора даты"
+        android:drawableLeft="@drawable/ic_calendar_purple_24dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="dateEndOrder"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:id="@+id/dateEndOrder"/>
+        android:text="Время:"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="timeStartOrder"
         android:textSize="20dp"
         android:textStyle="italic"
         android:fontFamily="sans-serif-condensed-medium"
-        android:id="@+id/timeStartOrder"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="endStartOrder"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:id="@+id/endStartOrder"/>
+        android:id="@+id/timeOrder"
+        android:drawableLeft="@drawable/ic_access_time_purple_24dp"
+        android:hint="нажмите для выбора времени"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
