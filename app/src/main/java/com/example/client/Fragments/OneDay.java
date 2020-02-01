@@ -1,5 +1,11 @@
 package com.example.client.Fragments;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -8,7 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +30,8 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 
+import com.example.client.Activity.RegularClientActivity;
+import com.example.client.Classes.OneDayActivity;
 import com.example.client.Models.Order;
 import com.example.client.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +52,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     private WeekView mWeekView;
     SpeedDialView speedDialView;
+    private AlertDialog alertDialogOneDay;
+    private AlertDialog.Builder alertDialogBuilder;
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,6 +62,13 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
     private Order order;
     private String key;
+    TextView txtdateStartOrder;
+    TextView txtTimeStrartOrder;
+    int startOrderDay;
+    int startOrderMonth;
+    int startOrderYear;
+    int startOrderHour =-1;
+    int startOrderMinute=-1;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,6 +101,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
+        // создание плавающей книпки для записи клиентов
         speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.ic_link_white_24dp)
                         .setLabel(R.string.CarWashing_3Phases)
                         .create());
@@ -111,12 +133,63 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 .setLabel(R.string.TireFitting)
                 .create());
 
+        // создание обработчиков клика по выбранному пункту плавающей копки
         speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
             @Override
             public boolean onActionSelected(SpeedDialActionItem actionItem) {
                 switch (actionItem.getId()) {
                     case R.id.carWashing_3Phases:
-                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle("added order");
+                        LayoutInflater layoutInflater = getLayoutInflater();
+                        final View view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateStartOrder = view.findViewById(R.id.dateStartOrder);;
+                        txtTimeStrartOrder = view.findViewById(R.id.timeStartOrder);
+                        EditText txtAddComent;
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0");
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogOneDay.dismiss();
+                            }
+                        });
+                        alertDialogOneDay = alertDialogBuilder.create();
+                        alertDialogOneDay.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateStartOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeStrartOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+
+
                         break;
                     case R.id.carWashing:
 
@@ -153,6 +226,10 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         });
         return showOneDay;
     }
+
+    
+
+
 
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
