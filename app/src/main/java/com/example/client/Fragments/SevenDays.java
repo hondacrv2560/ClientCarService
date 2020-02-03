@@ -1,5 +1,6 @@
 package com.example.client.Fragments;
 
+import android.app.AlertDialog;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -7,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +28,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,12 +39,27 @@ import java.util.Objects;
 public abstract class SevenDays extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private WeekView mWeekView;
+    SpeedDialView speedDialView;
+    private AlertDialog alertDialogSevenDays;
+    private AlertDialog.Builder alertDialogBuilder;
 
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myDbReferenceOrder;
     private DatabaseReference myDbReferenceEventOrder;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+    private Order order;
+    private String key;
+    TextView txtdateOrder;
+    TextView txtTimeOrder;
+    EditText addComment;
+    int startOrderDay;
+    int startOrderMonth;
+    int startOrderYear;
+    int startOrderHour =-1;
+    int startOrderMinute=-1;
+    private LayoutInflater layoutInflater;
+    private View view;
 
     @Nullable
     @Override
@@ -71,6 +91,38 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
+
+        // создание плавающей книпки для записи клиентов
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.ic_link_white_24dp)
+                .setLabel(R.string.CarWashing_3Phases)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.CarWashing)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.chemicalCleaningSalon, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.ChemicalCleaningSalon)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.nanoCeramics, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.NanoCeramics)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.polishing, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.Polishing)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.protectiveFilm, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.ProtectiveFilm)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.repairWindshield, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.RepairWindshield)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.salonProtection, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.SalonProtection)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.toning, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.Toning)
+                .create());
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.tireFitting, R.drawable.ic_list_white_24dp)
+                .setLabel(R.string.TireFitting)
+                .create());
 
         return showSevenDays;
     }
