@@ -781,32 +781,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
     @Override
     public void onEmptyViewClicked(final Calendar time) {
-        Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
-        PopupMenu popupMenu = new PopupMenu(getActivity(), mWeekView);
-        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-        popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
-                switch (item.getItemId()){
-                    case R.id.carWashing:
-                        Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time),"#59DBE0");
-                        myDbReferenceOrder = database.getReference("Orders");
-                        EventOrder eventOrder = new EventOrder(user.getUid(), 8, "10:00", "12:00", "#59DBE0");
-                        myDbReferenceEventOrder = database.getReference("Event");
-                        //Uid заказа
-                        String key = myDbReferenceOrder.push().getKey();
-                        // добавление заказа
-                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                        myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
+        
     }
 
     @Override
