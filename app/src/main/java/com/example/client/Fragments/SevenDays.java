@@ -1,6 +1,7 @@
 package com.example.client.Fragments;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -123,6 +124,546 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.tireFitting, R.drawable.ic_list_white_24dp)
                 .setLabel(R.string.TireFitting)
                 .create());
+
+        // создание обработчиков клика по выбранному пункту плавающей копки
+        speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
+            @Override
+            public boolean onActionSelected(SpeedDialActionItem actionItem) {
+                switch (actionItem.getId()) {
+                    case R.id.carWashing_3Phases:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);;
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.carWashing:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#ff1100", 2, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.repairWindshield:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#00fffb", 3, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.polishing:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#ff00fb", 4, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.nanoCeramics:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#0040ff", 5, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.protectiveFilm:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#858385", 6, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.chemicalCleaningSalon:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#00ff11", 7, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.salonProtection:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#ffa200", 8, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.tireFitting:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#0a0a0a", 9, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+
+                    case R.id.toning:
+                        alertDialogBuilder = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder.setView(R.layout.add_order);
+                        alertDialogBuilder.setTitle(R.string.addOrder);
+                        layoutInflater = getLayoutInflater();
+                        view = inflater.inflate(R.layout.add_order, null, false);
+                        alertDialogBuilder.setView(view);
+                        txtdateOrder = view.findViewById(R.id.dateOrder);
+                        txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        addComment = view.findViewById(R.id.addComment);
+
+                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                        startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#d000ff", 10, addComment.getText().toString());
+                                myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                //Uid заказа
+                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialogSevenDays.dismiss();
+                            }
+                        });
+                        alertDialogSevenDays = alertDialogBuilder.create();
+                        alertDialogSevenDays.show();
+
+//                        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+
+                        txtdateOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                datePicker();
+                            }
+                        });
+
+                        txtTimeOrder.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                timePicker();
+                            }
+                        });
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         return showSevenDays;
     }
