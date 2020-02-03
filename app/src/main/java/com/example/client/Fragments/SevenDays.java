@@ -1,6 +1,7 @@
 package com.example.client.Fragments;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.RectF;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -692,7 +694,31 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         timePickerDialog.show();
     }
 
-    
+    // создание DatePickerDialog
+    public void datePicker (){
+        Calendar calendar = Calendar.getInstance();
+        startOrderDay = calendar.get (Calendar.DAY_OF_MONTH);
+        startOrderMonth= calendar.get (Calendar.MONTH)+1;
+        startOrderYear = calendar.get (Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), AlertDialog.THEME_TRADITIONAL){
+            @Override
+            public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                SevenDays.this.startOrderYear=year;
+                SevenDays.this.startOrderMonth= ++month;
+                SevenDays.this.startOrderDay=dayOfMonth;
+            }
+        };
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
+                Toast.makeText(getContext(), date, Toast.LENGTH_SHORT).show();
+                txtdateOrder.setText(String.format("%02d-%02d-%d", startOrderDay, startOrderMonth, startOrderYear));
+            }
+        });
+        datePickerDialog.show();
+    }
 
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
@@ -757,32 +783,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
 
     @Override
     public void onEmptyViewClicked(final Calendar time) {
-        Toast.makeText(getActivity(), "Empty view click pressed: " + getTimeOrder(time), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "TEST", Toast.LENGTH_SHORT).show();
-        PopupMenu popupMenu = new PopupMenu(getActivity(), mWeekView);
-        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-        popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(getActivity(), ""+item.getTitle(), Toast.LENGTH_SHORT).show();
-                switch (item.getItemId()){
-                    case R.id.carWashing:
-                        Order order = new Order (user.getUid(), getStartHour(time), getStartMinute(time), getStartDay(time), getStartMonth(time),
-                                getStartYear(time), getStartMinute(time), getStartHour(time), getStartMinute(time), getStartHour(time), getStartMinute(time), "#59DBE0");
-                        myDbReferenceOrder = database.getReference("Orders");
-                        EventOrder eventOrder = new EventOrder(user.getUid(), 8, "10:00", "12:00", "#59DBE0");
-                        myDbReferenceEventOrder = database.getReference("Event");
-                        //Uid заказа
-                        String key = myDbReferenceOrder.push().getKey();
-                        // добавление заказа
-                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                        myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
+
     }
 
     @Override
