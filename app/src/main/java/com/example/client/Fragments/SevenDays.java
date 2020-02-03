@@ -1,6 +1,7 @@
 package com.example.client.Fragments;
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -667,6 +669,30 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
 
         return showSevenDays;
     }
+
+    // Создание и отображение Диалогового окна TimePickerDialog
+
+    public void timePicker (){
+
+        Calendar calendar = Calendar.getInstance();
+        startOrderHour = calendar.get(Calendar.HOUR_OF_DAY);
+        startOrderMinute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        txtTimeOrder.setText(String.format ("%02d:%02d", hourOfDay, minute));
+                        String hour = hourOfDay + ":" + minute;
+                        Toast.makeText(getActivity(), hour, Toast.LENGTH_SHORT).show();
+                    }
+                }, startOrderHour, startOrderMinute, true);
+        timePickerDialog.show();
+    }
+
+    
 
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
