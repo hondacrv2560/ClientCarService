@@ -71,6 +71,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View showThreeDays = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showThreeDays.findViewById(R.id.weekView);
+        speedDialView = showThreeDays.findViewById(R.id.speedDial);
         mWeekView.setNumberOfVisibleDays(3);
 
         // Lets change some dimensions to best fit the view.
