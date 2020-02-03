@@ -781,7 +781,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
     @Override
     public void onEmptyViewClicked(final Calendar time) {
-        
+
     }
 
     @Override
