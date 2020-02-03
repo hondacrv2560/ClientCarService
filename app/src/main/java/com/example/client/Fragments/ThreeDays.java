@@ -1,6 +1,7 @@
 package com.example.client.Fragments;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.RectF;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -710,6 +712,33 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                 return hour > 11 ? (hour - 12) + " PM" : (hour == 0 ? "12 AM" : hour + " AM");
             }
         });
+    }
+
+
+    // создание DatePickerDialog
+    public void datePicker (){
+        Calendar calendar = Calendar.getInstance();
+        startOrderDay = calendar.get (Calendar.DAY_OF_MONTH);
+        startOrderMonth= calendar.get (Calendar.MONTH)+1;
+        startOrderYear = calendar.get (Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), AlertDialog.THEME_TRADITIONAL){
+            @Override
+            public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                ThreeDays.this.startOrderYear=year;
+                ThreeDays.this.startOrderMonth= ++month;
+                ThreeDays.this.startOrderDay=dayOfMonth;
+            }
+        };
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
+                Toast.makeText(getContext(), date, Toast.LENGTH_SHORT).show();
+                txtdateOrder.setText(String.format("%02d-%02d-%d", startOrderDay, startOrderMonth, startOrderYear));
+            }
+        });
+        datePickerDialog.show();
     }
 
     protected String getEventTitle(Calendar time) {
