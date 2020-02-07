@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -43,5 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng carWash = new LatLng(50.4959303, 30.4391345);
         mMap.addMarker(new MarkerOptions().position(carWash).title("Marker in Аква Детейлинг"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(carWash));
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(carWash).zoom(17).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 }
