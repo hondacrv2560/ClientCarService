@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.client.Activity.RegularClientActivity;
-import com.example.client.Activity.ServiceClientActivity;
 import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.SevenDaysActivity;
 import com.example.client.Classes.ThreeDaysActivity;
@@ -212,6 +211,9 @@ public String getMyData() {
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
                 break;
+            case R.id.mapView:
+                Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(showMap);
 //            case R.id.carWashing_3Phases:
 //                str = "CarWashing_3Phases";
 //                break;
