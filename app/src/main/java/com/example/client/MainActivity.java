@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.client.Activity.ActivityContacts;
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.SevenDaysActivity;
@@ -214,6 +215,10 @@ public String getMyData() {
             case R.id.mapView:
                 Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(showMap);
+                break;
+            case R.id.contacts:
+                Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
+                startActivity(showContact);
 //            case R.id.carWashing_3Phases:
 //                str = "CarWashing_3Phases";
 //                break;
