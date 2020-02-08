@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.client.R;
@@ -22,6 +23,10 @@ public class ActivityContacts extends AppCompatActivity {
         TextView kyivstar = findViewById(R.id.kyivstar);
         TextView vodafone = findViewById(R.id.vodafone);
         TextView intertelecom = findViewById(R.id.intertelecom);
+
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
