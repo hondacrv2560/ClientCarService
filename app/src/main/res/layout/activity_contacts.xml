@@ -17,7 +17,7 @@
         android:id="@+id/vodafone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="phone"
+        android:text="+380507488080"
         android:onClick="o"/>
     <TextView
         android:paddingTop="10dp"
@@ -25,21 +25,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="phone" />
+        android:text="+380684085938" />
     <TextView
         android:paddingTop="10dp"
         android:id="@+id/lifecel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="phone" />
+        android:text="+380635873635" />
     <TextView
         android:paddingTop="10dp"
         android:id="@+id/intertelecom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="phone" />
+        android:text="+380442234030" />
     <TextView
         android:paddingTop="20dp"
         android:layout_width="match_parent"
