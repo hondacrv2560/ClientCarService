@@ -28,11 +28,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class RegularClientActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private DatabaseReference myDbReference;
+    private String key;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     EditText nameSurnameNewClient;
     EditText numPhoneNewClient;
@@ -82,11 +85,9 @@ public class RegularClientActivity extends AppCompatActivity {
                         manufacturerCarNewClient.getText().toString(),
                         modelCarNewClient.getText().toString(),
                         setDataBirthday.getText().toString());
-                myDbReference.child(
-                        user.getUid()).
-                        child("Client").
-                        push().
-                        setValue(client);
+                myDbReference = database.getReference("Clients");
+                key = myDbReference.push().getKey();
+                myDbReference.child(Objects.requireNonNull(key)).setValue(client);
                 Intent intentRegularClient = new Intent(RegularClientActivity.this, MainActivity.class);
                 startActivity(intentRegularClient);
             }
