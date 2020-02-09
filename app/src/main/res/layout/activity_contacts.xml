@@ -8,8 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_home_black_24dp"
-        android:text="    г. Киев, ул. Сергея Данченко 28-г, паркинг № 1"
-        android:id="@+id/adress" />
+        android:text="г. Киев, ул. Сергея Данченко 28-г, паркинг № 1"
+        android:id="@+id/adress"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:paddingTop="10dp"
@@ -57,22 +58,25 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Понедельник"
-                android:id="@+id/monday"/>
+                android:id="@+id/monday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openMonday"/>
+                android:id="@+id/openMonday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeMonday"/>
+                android:id="@+id/closeMonday"
+                android:gravity="center_vertical"/>
         </TableRow>
 
         <TableRow
@@ -80,117 +84,135 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Вторник"
-                android:id="@+id/tuesday"/>
+                android:id="@+id/tuesday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openTuesday"/>
+                android:id="@+id/openTuesday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeTuesday"/>
+                android:id="@+id/closeTuesday"
+                android:gravity="center_vertical"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Среда"
-                android:id="@+id/wednesday"/>
+                android:id="@+id/wednesday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openWednesday"/>
+                android:id="@+id/openWednesday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeWednesday"/>
+                android:id="@+id/closeWednesday"
+                android:gravity="center_vertical"/>
         </TableRow>
         <TableRow>
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Четверг"
-            android:id="@+id/thursday"/>
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Четверг"
+                android:id="@+id/thursday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openThursday"/>
+                android:id="@+id/openThursday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeThursday"/>
+                android:id="@+id/closeThursday"
+                android:gravity="center_vertical"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Пятница"
-                android:id="@+id/friday"/>
+                android:id="@+id/friday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openFriday"/>
+                android:id="@+id/openFriday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeFriday"/>
+                android:id="@+id/closeFriday"
+                android:gravity="center_vertical"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Суббота"
-                android:id="@+id/saturday"/>
+                android:id="@+id/saturday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openSaturday"/>
+                android:id="@+id/openSaturday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeSaturday"/>
+                android:id="@+id/closeSaturday"
+                android:gravity="center_vertical"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Воскресенье"
-                android:id="@+id/sunday"/>
+                android:id="@+id/sunday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 8:00"
                 android:drawableLeft="@drawable/icons8_open_sign_24"
-                android:id="@+id/openSunday"/>
+                android:id="@+id/openSunday"
+                android:gravity="center_vertical"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text=" 21:00"
                 android:drawableLeft="@drawable/icons8_close_sign_24"
-                android:id="@+id/closeSunday"/>
+                android:id="@+id/closeSunday"
+                android:gravity="center_vertical"/>
         </TableRow>
     </TableLayout>
 
