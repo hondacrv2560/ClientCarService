@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:paddingTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_home_black_24dp"
+        android:text="г. Киев, ул. Сергея Данченко 28-г, паркинг № 1"
+        android:id="@+id/adress"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/vodafone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="phone" />
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/kyivstar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="phone" />
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/lifecel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="phone" />
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/intertelecom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="phone" />
+    <TextView
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="@integer/sd_open_animation_duration"
+        android:text="График работы" />
+
+    <TableLayout
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:stretchColumns="*">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Понедельник"
+                android:id="@+id/monday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openMonday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeMonday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Вторник"
+                android:id="@+id/tuesday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openTuesday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeTuesday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Среда"
+                android:id="@+id/wednesday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openWednesday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeWednesday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Четверг"
+                android:id="@+id/thursday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openThursday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeThursday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Пятница"
+                android:id="@+id/friday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openFriday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeFriday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Суббота"
+                android:id="@+id/saturday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openSaturday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeSaturday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Воскресенье"
+                android:id="@+id/sunday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 8:00"
+                android:drawableLeft="@drawable/icons8_open_sign_24"
+                android:id="@+id/openSunday"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=" 21:00"
+                android:drawableLeft="@drawable/icons8_close_sign_24"
+                android:id="@+id/closeSunday"
+                android:gravity="center_vertical"/>
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Аква Детейлинг в: "
+            android:id="@+id/socialNet"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/instagram"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/facebook"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/telegram"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/youtube"/>
+    </LinearLayout>
+</LinearLayout>

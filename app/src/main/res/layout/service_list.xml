@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="?attr/selectableItemBackground"
         android:paddingTop="16dp"
         android:paddingBottom="16dp">

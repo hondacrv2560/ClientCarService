@@ -35,6 +35,10 @@
     <item
         android:id="@+id/regular_customer"
         android:title="Стать постоянным клиентом"/>
+    <item android:id="@+id/mapView"
+        android:title="Посмотреть карту"/>
+    <item android:id="@+id/contacts"
+        android:title="Контакты"/>
 
     <!--       app:showAsAction="always"/>-->
 <!--    <item android:id="@+id/action_today"-->

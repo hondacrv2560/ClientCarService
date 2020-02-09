@@ -19,12 +19,14 @@ public class Order implements Serializable {
     public int endDayOfMonth;
     public int endTimeMonth;
     public int endTimeYear;
-    private String color;
+    public String color;
+    public int idService;
+    public String comment;
 
     public Order(){}
 
     public Order(String userId, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear, int endTimeHour, int endTimeMinute, int endDayOfMonth, int endTimeMonth, int endTimeYear,
-                 String color) {
+                 String color, int idService, String comment) {
         UserId = userId;
         this.startTimeHour = startTimeHour;
         this.startTimeMinute = startTimeMinute;
@@ -37,6 +39,8 @@ public class Order implements Serializable {
         this.endTimeMonth = endTimeMonth;
         this.endTimeYear = endTimeYear;
         this.color = color;
+        this.idService = idService;
+        this.comment = comment;
     }
 
     public int getStartTimeHour() {
@@ -127,13 +131,19 @@ public class Order implements Serializable {
         this.color = color;
     }
 
-    @Exclude
-    public Map<String, Object> toMap(){
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("startTimeHour", startTimeHour);
-
-        return result;
+    public int getIdService() {
+        return idService;
     }
 
+    public void setIdService(int idService) {
+        this.idService = idService;
+    }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

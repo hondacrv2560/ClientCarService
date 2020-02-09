@@ -4,6 +4,7 @@ public class ServiceClient {
     public String idService;
     public String title_service;
     public String imagePath;
+
     public ServiceClient() {
     }
 

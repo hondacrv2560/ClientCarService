@@ -11,4 +11,7 @@
     <string name="SalonProtection">Записаться на защиту салона</string>
     <string name="Toning">Записаться тонировку</string>
     <string name="TireFitting">записаться на шиномонтаж</string>
+    <string name="date">Дата:</string>
+    <string name="addOrder">Запись клиента:</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
