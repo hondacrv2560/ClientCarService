@@ -58,40 +58,19 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater inflater_regular_customer;
     LayoutInflater inflater_enter_register;
 public String str;
+    // подключение к БД
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    // получение ссылки на БД
+    DatabaseReference myDbReference = database.getReference();
+    // поключение к child Orders
+    DatabaseReference orderRef = myDbReference.child("Orders");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getDataFireBase();
 //проверка на авторизацию, если клиент в приложении авторизирован
         firebaseAuth = firebaseAuth.getInstance();
-        // подключение к БД
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        // получение ссылки на БД
-        DatabaseReference myDbReference = database.getReference();
-        // поключение к child Orders
-        DatabaseReference orderRef = myDbReference.child("Orders");
-
-
-        orderRef.addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list = new ArrayList<DataSnapshot>();
-                dataSnapshot.getChildren();
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    list.add(snapshot);
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-//        orderRef.addListenerForSingleValueEvent(listener);
-
-
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -129,9 +108,28 @@ public String str;
     }
 
     //передает строку из выбранного пункта меню в фрагмент
-public String getMyData() {
-    return str;
-}
+    public String getMyData() {
+        return str;
+    }
+
+    public void getDataFireBase() {
+        orderRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list = new ArrayList<DataSnapshot>();
+                dataSnapshot.getChildren();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    list.add(snapshot);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    //        orderRef.addListenerForSingleValueEvent(listener);
+    }
 
     // вход зарегистрированного клиента
     public void signIn(String e_mail, String pass){

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,7 +49,8 @@ public class ActivityContacts extends AppCompatActivity {
         vodafone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(vodafone.getText().toString()));
+                Toast.makeText(ActivityContacts.this, "test", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vodafone.getText().toString()));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -57,7 +59,7 @@ public class ActivityContacts extends AppCompatActivity {
         kyivstar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(kyivstar.getText().toString()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+kyivstar.getText().toString()));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -66,7 +68,7 @@ public class ActivityContacts extends AppCompatActivity {
         lifecel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(lifecel.getText().toString()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+lifecel.getText().toString()));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
@@ -75,7 +77,7 @@ public class ActivityContacts extends AppCompatActivity {
         intertelecom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(intertelecom.getText().toString()));
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+intertelecom.getText().toString()));
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
