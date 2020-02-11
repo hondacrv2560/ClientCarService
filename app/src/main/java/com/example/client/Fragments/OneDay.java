@@ -156,17 +156,60 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                        startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
-                                myDbReferenceOrder = database.getReference("Orders");
+
+                                try {
+                                    order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
+                                    myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                                //Uid заказа
-                                key = myDbReferenceOrder.push().getKey();
-                                // добавление заказа
-                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                    //Uid заказа
+                                    key = myDbReferenceOrder.push().getKey();
+                                    // добавление заказа
+                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
+                                    myDbReferenceOrder = database.getReference("Orders");
+//                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+//                            myDbReferenceEventOrder = database.getReference("Event");
+                                    //Uid заказа
+                                    key = myDbReferenceOrder.push().getKey();
+                                    // добавление заказа
+                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+//                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                }
+
+
+//                                if (user.getUid()) {
+//                                    order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+//                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
+//                                    myDbReferenceOrder = database.getReference("Orders");
+////                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+////                            myDbReferenceEventOrder = database.getReference("Event");
+//                                    //Uid заказа
+//                                    key = myDbReferenceOrder.push().getKey();
+//                                    // добавление заказа
+//                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+////                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+//                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+//                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#59DBE0", 1, addComment.getText().toString());
+//                                    myDbReferenceOrder = database.getReference("Orders");
+////                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+////                            myDbReferenceEventOrder = database.getReference("Event");
+//                                    //Uid заказа
+//                                    key = myDbReferenceOrder.push().getKey();
+//                                    // добавление заказа
+//                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+////                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+//                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+//                                }
                             }
                         });
                         alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
