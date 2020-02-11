@@ -13,7 +13,8 @@
         android:textStyle="bold"
         android:textSize="15dp"
         android:paddingBottom="7dp"
-        android:background="@color/serviceViewBg"/>
+        android:background="@color/serviceViewBg"
+        android:textColor="#707070"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

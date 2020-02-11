@@ -115,7 +115,7 @@ public class ServiceClientActivity extends AppCompatActivity {
                 holder.setTxtId(serviceClient.getIdService());
                 holder.setTxtTitle(serviceClient.getTitle_service());
                 holder.setImgService(serviceClient.getImagePath());
-                
+
 // скрвает TextView из RecylerView с помощью visibility.
                 holder.txtIdService.setVisibility(View.GONE);
 
