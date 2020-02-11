@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Client</string>
+    <string name="app_name">Аква Детейлинг</string>
     <string name="async_error">Could not download events from the internet</string>
     <string name="CarWashing">Записаться на мойку</string>
     <string name="ChemicalCleaningSalon">Записаться на химчистку слона</string>

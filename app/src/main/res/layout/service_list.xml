@@ -2,40 +2,41 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/serviceViewBg">
     <LinearLayout android:id="@+id/list_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:background="?attr/selectableItemBackground"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:background="@color/serviceViewBg">
         <TextView android:id="@+id/id_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="10sp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
+            android:layout_gravity="center"/>
         <TextView android:id="@+id/list_title"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:paddingRight="10dp"
             android:hint="TEST"
-            android:layout_gravity="center_vertical|center_horizontal"/>
+            android:layout_gravity="center"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
             android:id="@+id/photoService"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp"/>
+            android:layout_gravity="center"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+
+    <!--        android:background="?attr/selectableItemBackground"-->

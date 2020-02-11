@@ -4,15 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:layout_width="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Наши услуги"
-        android:id="@+id/txtInfo"/>
+        android:text="Аква Детейлинг оказывает следующие услуги:"
+        android:id="@+id/txtInfo"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:paddingBottom="7dp"
+        android:background="@color/serviceViewBg"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ServiceList"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        android:gravity="center_horizontal"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

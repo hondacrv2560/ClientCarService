@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="freeTime">#00FF0C</color>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#a1a1a0</color>
+    <color name="colorPrimaryDark">#a1a1a0</color>
     <color name="colorAccent">#D81B60</color>
     <color name="event_color_01">#59dbe0</color>
     <color name="event_color_02">#f57f68</color>
@@ -11,4 +11,5 @@
     <color name="toolbar">#efefef</color>
     <color name="toolbar_text">#8f000000</color>
     <color name="accent">#2789e4</color>
+    <color name="serviceViewBg">#D5D5D5</color>
 </resources>
