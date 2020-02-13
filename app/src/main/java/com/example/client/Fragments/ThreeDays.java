@@ -710,7 +710,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
             @Override
             public String interpretTime(int hour) {
-                return hour > 11 ? (hour - 12) + " PM" : (hour == 0 ? "12 AM" : hour + " AM");
+                return String.format("%02d:00", hour);
             }
         });
     }
