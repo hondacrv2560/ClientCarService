@@ -731,10 +731,11 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                 new TimePickerDialog.OnTimeSetListener() {
-
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+                        OneDay.this.startOrderHour=hourOfDay;
+                        OneDay.this.startOrderMinute=minute;
                         txtTimeOrder.setText(String.format ("%02d:%02d", hourOfDay, minute));
                         String hour = hourOfDay + ":" + minute;
                         Toast.makeText(getActivity(), hour, Toast.LENGTH_SHORT).show();
