@@ -7,11 +7,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/e_mail"
-        android:hint="email"/>
+        android:hint="введите e-mail"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/password"
-        android:hint="pass"/>
+        android:inputType="textPassword"
+        android:hint="введите пароль(мин. 6 символов)"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkViewPass"
+
+        android:checked="false"/>
 
 </LinearLayout>

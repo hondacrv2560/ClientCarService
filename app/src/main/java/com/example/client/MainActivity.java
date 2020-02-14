@@ -11,11 +11,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     //создание подключения к авторизапции
     private FirebaseAuth.AuthStateListener authStateListener;
     public List<DataSnapshot> list;
-
+   private EditText password;
     private Fragment serviceFragment = null;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
@@ -68,6 +71,7 @@ public String str;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        password = findViewById(R.id.password);
         getDataFireBase();
 //проверка на авторизацию, если клиент в приложении авторизирован
         firebaseAuth = firebaseAuth.getInstance();
@@ -105,11 +109,6 @@ public String str;
                 transaction.commit();
             }
         },500);
-    }
-
-    //передает строку из выбранного пункта меню в фрагмент
-    public String getMyData() {
-        return str;
     }
 
     public void getDataFireBase() {
