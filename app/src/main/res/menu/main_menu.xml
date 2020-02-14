@@ -49,7 +49,7 @@
         android:title="Calendar"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:icon="@drawable/ic_date_range_purple_24dp">
+        android:icon="@drawable/ic_date_range_white_24dp">
         <menu>
             <item
                 android:id="@+id/day_1"
@@ -71,7 +71,7 @@
     <item
         android:id="@+id/enter_register"
         android:title="enter register"
-        android:icon="@drawable/ic_person_blue_grey_400_24dp"
+        android:icon="@drawable/ic_person_white_24dp"
         app:showAsAction="always"
         android:orderInCategory="2"/>
 </menu>
