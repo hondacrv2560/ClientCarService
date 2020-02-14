@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/serviceViewBg">
     <com.leinardi.android.speeddial.SpeedDialView
         android:id="@+id/speedDial"
         android:layout_width="wrap_content"
@@ -16,16 +17,16 @@
         android:id="@+id/weekView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:eventTextColor="@android:color/white"
+        app:eventTextColor="#455A64"
         app:textSize="12sp"
         app:hourHeight="60dp"
         app:headerColumnPadding="8dp"
-        app:headerColumnTextColor="#8f000000"
+        app:headerColumnTextColor="@color/TextBody"
         app:headerRowPadding="12dp"
         app:columnGap="8dp"
         app:noOfVisibleDays="3"
-        app:headerRowBackgroundColor="#ffefefef"
-        app:dayBackgroundColor="#05000000"
-        app:todayBackgroundColor="#66B2B2B4"
-        app:headerColumnBackground="#ffffffff"/>
+        app:headerRowBackgroundColor="@color/serviceViewBg"
+        app:dayBackgroundColor="@color/serviceViewBg"
+        app:todayBackgroundColor="#B0BEC5"
+        app:headerColumnBackground="@color/serviceViewBg"/>
 </RelativeLayout>
