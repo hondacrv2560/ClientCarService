@@ -19,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.client.Activity.ActivityContacts;
@@ -173,10 +175,14 @@ public String str;
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
+
                 builder_regular_customer = new AlertDialog.Builder(MainActivity.this);
                 builder_regular_customer.setTitle("Регистрация нового клиента");
                 inflater_regular_customer = MainActivity.this.getLayoutInflater();
                 final View view_regular_customer = inflater_regular_customer.inflate(R.layout.activity_registartion,null,false);
+
+                final TextView password = view_regular_customer.findViewById(R.id.password);
+                final CheckBox showPass = view_regular_customer.findViewById(R.id.checkViewPass);
                 builder_regular_customer.setView(view_regular_customer);
                 builder_regular_customer.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -186,6 +192,18 @@ public String str;
                         registartion(eMail.getText().toString(), pass.getText().toString());
                         Intent intentRegularClient = new Intent(MainActivity.this, RegularClientActivity.class);
                         startActivity(intentRegularClient);
+                    }
+                });
+
+                showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (!isChecked){
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        }
+                        else {
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        }
                     }
                 });
                 AlertDialog dialog_regular_customer = builder_regular_customer.create();
