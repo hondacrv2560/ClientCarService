@@ -5,12 +5,12 @@
     android:background="@color/serviceViewBg">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/e_mail"
         android:hint="введите e-mail"/>
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/password"
         android:inputType="textPassword"

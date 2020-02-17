@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
@@ -183,6 +185,7 @@ public String str;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
+        String bgrnd = "#D5D5D5";
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
@@ -218,6 +221,8 @@ public String str;
                 });
                 AlertDialog dialog_regular_customer = builder_regular_customer.create();
                 dialog_regular_customer.show();
+                //setup color background
+                dialog_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
                 // вход зарегистрированного клиента
             case R.id.enter_register:
@@ -249,6 +254,8 @@ public String str;
                 });
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
+                //setup color background
+                dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
             case R.id.mapView:
                 Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
