@@ -45,8 +45,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //создание подключения к БД
@@ -54,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
     //создание подключения к авторизапции
     private FirebaseAuth.AuthStateListener authStateListener;
     public List<DataSnapshot> list;
-   private EditText password;
     private Fragment serviceFragment = null;
+    private TextView password;
+    private CheckBox showPass;
+    private String viewMonth;
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
     AlertDialog.Builder builder_regular_customer;
@@ -73,7 +78,6 @@ public String str;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        password = findViewById(R.id.password);
         getDataFireBase();
 //проверка на авторизацию, если клиент в приложении авторизирован
         firebaseAuth = firebaseAuth.getInstance();
@@ -111,6 +115,13 @@ public String str;
                 transaction.commit();
             }
         },500);
+
+        //отображение месяца в ActionBar
+        Calendar calendar=Calendar.getInstance();
+//        String month = new SimpleDateFormat("MMMM", new Locale("ru")).format(calendar.getTime());
+        String[] monthNames = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+        String month = monthNames[calendar.get(Calendar.MONTH)];
+        getSupportActionBar().setTitle(month);
     }
 
     public void getDataFireBase() {
@@ -180,9 +191,8 @@ public String str;
                 builder_regular_customer.setTitle("Регистрация нового клиента");
                 inflater_regular_customer = MainActivity.this.getLayoutInflater();
                 final View view_regular_customer = inflater_regular_customer.inflate(R.layout.activity_registartion,null,false);
-
-                final TextView password = view_regular_customer.findViewById(R.id.password);
-                final CheckBox showPass = view_regular_customer.findViewById(R.id.checkViewPass);
+                password = view_regular_customer.findViewById(R.id.password);
+                showPass = view_regular_customer.findViewById(R.id.checkViewPass);
                 builder_regular_customer.setView(view_regular_customer);
                 builder_regular_customer.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -215,6 +225,8 @@ public String str;
                 builder_enter_register.setTitle("Вход зарегистрированного клиента");
                 inflater_enter_register = MainActivity.this.getLayoutInflater();
                 final View view_enter_register = inflater_enter_register.inflate(R.layout.activity_enter_regular_client,null,false);
+                password = view_enter_register.findViewById(R.id.password);
+                showPass = view_enter_register.findViewById(R.id.checkViewPass);
                 builder_enter_register.setView(view_enter_register);
                 builder_enter_register.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -222,6 +234,17 @@ public String str;
                         EditText eMail = view_enter_register.findViewById(R.id.e_mail);
                         EditText pass = view_enter_register.findViewById(R.id.password);
                         signIn(eMail.getText().toString(), pass.getText().toString());
+                    }
+                });
+                showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (!isChecked){
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        }
+                        else {
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        }
                     }
                 });
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
