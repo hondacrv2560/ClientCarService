@@ -845,16 +845,16 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
             @Override
             public String interpretDate(Calendar date) {
-                SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("EEE", Locale.getDefault());
+                SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("E", Locale.forLanguageTag("ru"));
                 String weekday = weekdayNameFormat.format(date.getTime());
-                SimpleDateFormat format = new SimpleDateFormat(" d", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat(" d.MM", Locale.forLanguageTag("ru"));
 
                 // All android api level do not have a standard way of getting the first letter of
                 // the week day name. Hence we get the first char programmatically.
                 // Details: http://stackoverflow.com/questions/16959502/get-one-letter-abbreviation-of-week-day-of-a-date-in-java#answer-16959657
                 if (shortDate)
                     weekday = String.valueOf(weekday.charAt(0));
-                return weekday.toUpperCase() + ", " + format.format(date.getTime()).toUpperCase();
+                return weekday.toLowerCase() + "" + format.format(date.getTime()).toLowerCase();
             }
 
             @Override
