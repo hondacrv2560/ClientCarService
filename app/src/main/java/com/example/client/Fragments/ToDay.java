@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
@@ -37,6 +38,12 @@ public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeL
         mWeekView.setMonthChangeListener(this);
         setupDateTimeInterpreter(false);
 
+        Calendar calendar=Calendar.getInstance();
+//        String month = new SimpleDateFormat("MMMM", new Locale("ru")).format(calendar.getTime());
+        String[] monthNames = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+        String month = monthNames[calendar.get(Calendar.MONTH)];
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(month);
+
         return showToDay;
     }
 
@@ -44,9 +51,9 @@ public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeL
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
             @Override
             public String interpretDate(Calendar date) {
-                SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+                SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("E", Locale.forLanguageTag("ru"));
                 String weekday = weekdayNameFormat.format(date.getTime());
-                SimpleDateFormat format = new SimpleDateFormat(" d MMMM", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat(" d MMM", Locale.forLanguageTag("ru"));
 
                 // All android api level do not have a standard way of getting the first letter of
                 // the week day name. Hence we get the first char programmatically.

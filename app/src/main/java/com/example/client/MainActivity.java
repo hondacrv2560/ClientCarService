@@ -119,11 +119,11 @@ public String str;
         },500);
 
         //отображение месяца в ActionBar
-        Calendar calendar=Calendar.getInstance();
-//        String month = new SimpleDateFormat("MMMM", new Locale("ru")).format(calendar.getTime());
-        String[] monthNames = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
-        String month = monthNames[calendar.get(Calendar.MONTH)];
-        getSupportActionBar().setTitle(month);
+//        Calendar calendar=Calendar.getInstance();
+////        String month = new SimpleDateFormat("MMMM", new Locale("ru")).format(calendar.getTime());
+//        String[] monthNames = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+//        String month = monthNames[calendar.get(Calendar.MONTH)];
+//        getSupportActionBar().setTitle(month);
     }
 
     public void getDataFireBase() {
