@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Визиты в Аква Детейлинг:"
+        android:id="@+id/txtInfo"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:paddingBottom="7dp"
+        android:background="@color/serviceViewBg"
+        android:textColor="#707070"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/OrderViewClient"
+        android:scrollbars="horizontal"
+        android:gravity="center_horizontal"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fr"/>
+</LinearLayout>
