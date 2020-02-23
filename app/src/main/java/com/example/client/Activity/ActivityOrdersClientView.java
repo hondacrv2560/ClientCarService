@@ -18,7 +18,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ActivityOrdersClientView extends AppCompatActivity {
 
@@ -54,6 +53,27 @@ public class ActivityOrdersClientView extends AppCompatActivity {
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     OrderViewClient orderViewClient = snapshot.getValue(OrderViewClient.class);
+                    if (orderViewClient.idService==1){
+                        orderViewClient.titleService = "АВТОМОЙКА 3-Х ФАЗНАЯ";
+                    }else if(orderViewClient.idService==2) {
+                        orderViewClient.titleService = "АВТОМОЙКА СТАНДАРТ";
+                    }else if(orderViewClient.idService==3) {
+                        orderViewClient.titleService = "АВТОСТЕКЛА";
+                    }else if(orderViewClient.idService==4) {
+                        orderViewClient.titleService = "ПОЛИРОВКА";
+                    }else if(orderViewClient.idService==5) {
+                        orderViewClient.titleService = "НАНОКЕРАМИКА";
+                    }else if(orderViewClient.idService==6) {
+                        orderViewClient.titleService = "ЗАЩИТНАЯ ПЛЕНКА";
+                    }else if(orderViewClient.idService==7) {
+                        orderViewClient.titleService = "ХИМЧИСТКА САЛОНА";
+                    }else if(orderViewClient.idService==8) {
+                        orderViewClient.titleService = "ЗАЩИТА САЛОНА";
+                    }else if(orderViewClient.idService==9) {
+                        orderViewClient.titleService = "ШИНОМОНТАЖ";
+                    }else if(orderViewClient.idService==10) {
+                        orderViewClient.titleService = "ТОНИРОВКА";
+                    }
                     orderViewClientList.add(orderViewClient);
                 }
                 ordersClientViewAdapter.notifyDataSetChanged();
