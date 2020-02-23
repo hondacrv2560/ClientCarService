@@ -39,7 +39,8 @@
         android:title="Посмотреть карту"/>
     <item android:id="@+id/contacts"
         android:title="Контакты"/>
-
+    <item android:id="@+id/clientOrder"
+        android:title="История визитов в Аква Детейлинг"/>
     <!--       app:showAsAction="always"/>-->
 <!--    <item android:id="@+id/action_today"-->
 <!--        android:title="action_today"-->

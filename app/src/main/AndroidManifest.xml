@@ -44,6 +44,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".Activity.ActivityOrdersClient"/>
         <activity android:name=".Activity.RegularClientActivity" />
         <activity android:name=".Activity.ActivityContacts"/>
         <activity android:name=".Activity.CarWashing_3PhasesActivity" />
