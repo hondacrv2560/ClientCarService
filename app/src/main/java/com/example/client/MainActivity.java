@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.client.Activity.ActivityContacts;
-import com.example.client.Activity.ActivityOrdersClient;
+import com.example.client.Activity.ActivityOrdersClientView;
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.SevenDaysActivity;
@@ -259,7 +259,7 @@ public String str;
                 dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
             case R.id.clientOrder:
-                Intent showOrder = new Intent(MainActivity.this, ActivityOrdersClient.class);
+                Intent showOrder = new Intent(MainActivity.this, ActivityOrdersClientView.class);
                 startActivity(showOrder);
                 break;
             case R.id.mapView:
