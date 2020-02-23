@@ -3,7 +3,7 @@ package com.example.client.Models;
 public class OrderViewClient {
 //    public String UserId;
     public int idService;
-    public int titleService;
+    public String titleService;
     public int startTimeHour;
     public int startTimeMinute;
     public int startDayOfMonth;
@@ -13,7 +13,7 @@ public class OrderViewClient {
     public OrderViewClient() {
     }
 
-    public OrderViewClient(int idService, int titleService, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear) {
+    public OrderViewClient(int idService, String titleService, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear) {
         this.idService = idService;
         this.titleService = titleService;
         this.startTimeHour = startTimeHour;
@@ -31,11 +31,11 @@ public class OrderViewClient {
         this.idService = idService;
     }
 
-    public int getTitleService() {
+    public String getTitleService() {
         return titleService;
     }
 
-    public void setTitleService(int titleService) {
+    public void setTitleService(String titleService) {
         this.titleService = titleService;
     }
 

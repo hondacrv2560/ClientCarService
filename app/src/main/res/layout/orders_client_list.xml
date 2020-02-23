@@ -13,13 +13,6 @@
         android:background="@color/serviceViewBg"
         android:paddingTop="16dp"
         android:paddingBottom="16dp">
-        <TextView android:id="@+id/id_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="10sp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/id_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
