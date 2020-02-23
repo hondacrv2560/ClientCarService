@@ -2,8 +2,8 @@ package com.example.client.Models;
 
 public class OrderViewClient {
     public String idUser;
-    public String idService;
-    public String titleService;
+    public int idService;
+    public int titleService;
     public int hourService;
     public int minService;
     public int dayService;
@@ -13,7 +13,7 @@ public class OrderViewClient {
     public OrderViewClient() {
     }
 
-    public OrderViewClient(String idUser, String idService, String titleService, int hourService, int minService, int dayService, int monthService, int yearService) {
+    public OrderViewClient(String idUser, int idService, int titleService, int hourService, int minService, int dayService, int monthService, int yearService) {
         this.idUser = idUser;
         this.idService = idService;
         this.titleService = titleService;
@@ -32,19 +32,19 @@ public class OrderViewClient {
         this.idUser = idUser;
     }
 
-    public String getIdService() {
+    public int getIdService() {
         return idService;
     }
 
-    public void setIdService(String idService) {
+    public void setIdService(int idService) {
         this.idService = idService;
     }
 
-    public String getTitleService() {
+    public int getTitleService() {
         return titleService;
     }
 
-    public void setTitleService(String titleService) {
+    public void setTitleService(int titleService) {
         this.titleService = titleService;
     }
 
