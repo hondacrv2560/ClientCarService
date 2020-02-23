@@ -1,35 +1,26 @@
 package com.example.client.Models;
 
 public class OrderViewClient {
-    public String idUser;
+//    public String UserId;
     public int idService;
     public int titleService;
-    public int hourService;
-    public int minService;
-    public int dayService;
-    public int monthService;
-    public int yearService;
+    public int startTimeHour;
+    public int startTimeMinute;
+    public int startDayOfMonth;
+    public int startTimeMonth;
+    public int startTimeYear;
 
     public OrderViewClient() {
     }
 
-    public OrderViewClient(String idUser, int idService, int titleService, int hourService, int minService, int dayService, int monthService, int yearService) {
-        this.idUser = idUser;
+    public OrderViewClient(int idService, int titleService, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear) {
         this.idService = idService;
         this.titleService = titleService;
-        this.hourService = hourService;
-        this.minService = minService;
-        this.dayService = dayService;
-        this.monthService = monthService;
-        this.yearService = yearService;
-    }
-
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+        this.startTimeHour = startTimeHour;
+        this.startTimeMinute = startTimeMinute;
+        this.startDayOfMonth = startDayOfMonth;
+        this.startTimeMonth = startTimeMonth;
+        this.startTimeYear = startTimeYear;
     }
 
     public int getIdService() {
@@ -48,43 +39,43 @@ public class OrderViewClient {
         this.titleService = titleService;
     }
 
-    public int getHourService() {
-        return hourService;
+    public int getStartTimeHour() {
+        return startTimeHour;
     }
 
-    public void setHourService(int hourService) {
-        this.hourService = hourService;
+    public void setStartTimeHour(int startTimeHour) {
+        this.startTimeHour = startTimeHour;
     }
 
-    public int getMinService() {
-        return minService;
+    public int getStartTimeMinute() {
+        return startTimeMinute;
     }
 
-    public void setMinService(int minService) {
-        this.minService = minService;
+    public void setStartTimeMinute(int startTimeMinute) {
+        this.startTimeMinute = startTimeMinute;
     }
 
-    public int getDayService() {
-        return dayService;
+    public int getStartDayOfMonth() {
+        return startDayOfMonth;
     }
 
-    public void setDayService(int dayService) {
-        this.dayService = dayService;
+    public void setStartDayOfMonth(int startDayOfMonth) {
+        this.startDayOfMonth = startDayOfMonth;
     }
 
-    public int getMonthService() {
-        return monthService;
+    public int getStartTimeMonth() {
+        return startTimeMonth;
     }
 
-    public void setMonthService(int monthService) {
-        this.monthService = monthService;
+    public void setStartTimeMonth(int startTimeMonth) {
+        this.startTimeMonth = startTimeMonth;
     }
 
-    public int getYearService() {
-        return yearService;
+    public int getStartTimeYear() {
+        return startTimeYear;
     }
 
-    public void setYearService(int yearService) {
-        this.yearService = yearService;
+    public void setStartTimeYear(int startTimeYear) {
+        this.startTimeYear = startTimeYear;
     }
 }

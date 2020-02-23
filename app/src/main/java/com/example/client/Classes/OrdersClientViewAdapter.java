@@ -16,8 +16,13 @@ import java.util.List;
 
 public class OrdersClientViewAdapter extends RecyclerView.Adapter<OrdersClientViewAdapter.OrdersClientViewHolder> {
 
-    private Context context;
-    private List<OrderViewClient> orderViewClients;
+    public Context context;
+    public List<OrderViewClient> orderViewClients;
+
+    public OrdersClientViewAdapter(Context context, List<OrderViewClient> orderViewClients) {
+        this.context = context;
+        this.orderViewClients = orderViewClients;
+    }
 
     @NonNull
     @Override
@@ -31,14 +36,14 @@ public class OrdersClientViewAdapter extends RecyclerView.Adapter<OrdersClientVi
     public void onBindViewHolder(@NonNull OrdersClientViewAdapter.OrdersClientViewHolder holder, int position) {
 
         OrderViewClient orderViewClient = orderViewClients.get(position);
-        holder.id_user.setText((orderViewClient.idUser));
-        holder.id_service.setText((orderViewClient.idService));
-        holder.title_service.setText(orderViewClient.titleService);
-        holder.hourService.setText(orderViewClient.hourService);
-        holder.minuteService.setText(orderViewClient.minService);
-        holder.dayService.setText(orderViewClient.dayService);
-        holder.monthService.setText(orderViewClient.monthService);
-        holder.yearService.setText(orderViewClient.yearService);
+//        holder.id_user.setText((orderViewClient.UserId));
+        holder.id_service.setText((orderViewClient.idService)+"");
+        holder.title_service.setText((orderViewClient.titleService)+"");
+        holder.hourService.setText((orderViewClient.startTimeHour)+"");
+        holder.minuteService.setText((orderViewClient.startTimeMinute)+"");
+        holder.dayService.setText((orderViewClient.startDayOfMonth)+"");
+        holder.monthService.setText((orderViewClient.startTimeMonth)+"");
+        holder.yearService.setText((orderViewClient.startTimeYear)+"");
     }
 
     @Override
@@ -48,7 +53,7 @@ public class OrdersClientViewAdapter extends RecyclerView.Adapter<OrdersClientVi
 
     class OrdersClientViewHolder extends RecyclerView.ViewHolder{
 
-        TextView id_user;
+//        TextView id_user;
         TextView id_service;
         TextView title_service;
         TextView hourService;
@@ -58,6 +63,14 @@ public class OrdersClientViewAdapter extends RecyclerView.Adapter<OrdersClientVi
         TextView yearService;
         public OrdersClientViewHolder(@NonNull View itemView) {
             super(itemView);
+//            id_user = itemView.findViewById(R.id.id_user);
+            id_service = itemView.findViewById(R.id.id_service);
+            title_service = itemView.findViewById(R.id.title_service);
+            hourService = itemView.findViewById(R.id.hourService);
+            minuteService = itemView.findViewById(R.id.minuteService);
+            dayService = itemView.findViewById(R.id.dayService);
+            monthService = itemView.findViewById(R.id.monthService);
+            yearService = itemView.findViewById(R.id.yearService);
         }
     }
 }
