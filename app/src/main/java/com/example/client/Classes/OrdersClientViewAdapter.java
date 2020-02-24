@@ -38,11 +38,11 @@ public class OrdersClientViewAdapter extends RecyclerView.Adapter<OrdersClientVi
         OrderViewClient orderViewClient = orderViewClients.get(position);
 //        holder.id_user.setText((orderViewClient.UserId));
         holder.id_service.setText((orderViewClient.idService)+"");
-        holder.title_service.setText((orderViewClient.titleService)+"");
+        holder.title_service.setText((orderViewClient.titleService));
         holder.hourService.setText((orderViewClient.startTimeHour)+"");
         holder.minuteService.setText((orderViewClient.startTimeMinute)+"");
         holder.dayService.setText((orderViewClient.startDayOfMonth)+"");
-        holder.monthService.setText((orderViewClient.startTimeMonth)+"");
+        holder.monthService.setText((orderViewClient.month));
         holder.yearService.setText((orderViewClient.startTimeYear)+"");
     }
 

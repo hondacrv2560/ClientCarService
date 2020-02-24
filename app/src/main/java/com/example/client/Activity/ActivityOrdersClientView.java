@@ -74,6 +74,33 @@ public class ActivityOrdersClientView extends AppCompatActivity {
                     }else if(orderViewClient.idService==10) {
                         orderViewClient.titleService = "ТОНИРОВКА";
                     }
+                    
+                    if (orderViewClient.startTimeMonth==1){
+                        orderViewClient.month = "январь";
+                    }else if(orderViewClient.startTimeMonth==2) {
+                        orderViewClient.month = "февраль";
+                    }else if(orderViewClient.startTimeMonth==3) {
+                        orderViewClient.month = "март";
+                    }else if(orderViewClient.startTimeMonth==4) {
+                        orderViewClient.month = "апрель";
+                    }else if(orderViewClient.startTimeMonth==5) {
+                        orderViewClient.month = "май";
+                    }else if(orderViewClient.startTimeMonth==6) {
+                        orderViewClient.month = "июнь";
+                    }else if(orderViewClient.startTimeMonth==7) {
+                        orderViewClient.month = "июль";
+                    }else if(orderViewClient.startTimeMonth==8) {
+                        orderViewClient.month = "август";
+                    }else if(orderViewClient.startTimeMonth==9) {
+                        orderViewClient.month = "сентябрь";
+                    }else if(orderViewClient.startTimeMonth==10) {
+                        orderViewClient.month = "октябрь";
+                    }else if(orderViewClient.startTimeMonth==11) {
+                        orderViewClient.month = "ноябрь";
+                    }else if(orderViewClient.startTimeMonth==12) {
+                        orderViewClient.month = "декабрь";
+                    }
+
                     orderViewClientList.add(orderViewClient);
                 }
                 ordersClientViewAdapter.notifyDataSetChanged();

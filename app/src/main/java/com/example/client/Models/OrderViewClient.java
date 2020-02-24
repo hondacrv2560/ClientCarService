@@ -4,6 +4,7 @@ public class OrderViewClient {
 //    public String UserId;
     public int idService;
     public String titleService;
+    public String month;
     public int startTimeHour;
     public int startTimeMinute;
     public int startDayOfMonth;
@@ -13,7 +14,7 @@ public class OrderViewClient {
     public OrderViewClient() {
     }
 
-    public OrderViewClient(int idService, String titleService, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear) {
+    public OrderViewClient(int idService, String titleService, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear, String month) {
         this.idService = idService;
         this.titleService = titleService;
         this.startTimeHour = startTimeHour;
@@ -21,6 +22,7 @@ public class OrderViewClient {
         this.startDayOfMonth = startDayOfMonth;
         this.startTimeMonth = startTimeMonth;
         this.startTimeYear = startTimeYear;
+        this.month = month;
     }
 
     public int getIdService() {
@@ -37,6 +39,14 @@ public class OrderViewClient {
 
     public void setTitleService(String titleService) {
         this.titleService = titleService;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public int getStartTimeHour() {
