@@ -13,68 +13,122 @@
         android:background="@color/serviceViewBg"
         android:paddingTop="16dp"
         android:paddingBottom="16dp">
-        <TextView android:id="@+id/id_service"
+
+        <TableLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:stretchColumns="*">
+        <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="10sp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/title_service"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:paddingRight="10dp"
-            android:hint="TEST"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/hourService"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:hint="TEST"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/minuteService"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:hint="TEST"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/dayService"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:hint="TEST"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/monthService"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:hint="TEST"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/yearService"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:hint="TEST"
-            android:paddingRight="10dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="id"
+                android:id="@+id/service"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Услуга"
+                android:id="@+id/title"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="час."
+                android:id="@+id/hour"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="мин."
+                android:id="@+id/minute"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="день"
+                android:id="@+id/day"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="месяц"
+                android:id="@+id/month"
+                android:gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="год"
+                android:id="@+id/year"
+                android:gravity="center_horizontal"/>
+        </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView android:id="@+id/id_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/title_service"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/hourService"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/minuteService"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/dayService"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/monthService"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/yearService"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:hint="TEST"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
