@@ -1,6 +1,7 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.client.Classes.OrdersClientViewAdapter;
 import com.example.client.Models.OrderViewClient;
 import com.example.client.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +28,7 @@ public class ActivityOrdersClientView extends AppCompatActivity {
     private OrdersClientViewAdapter ordersClientViewAdapter;
     private ArrayList<OrderViewClient> orderViewClientList;
 
+    private FirebaseAuth firebaseAuth;
     DatabaseReference dbOrders;
 
     @Override
@@ -40,9 +44,15 @@ public class ActivityOrdersClientView extends AppCompatActivity {
         recyclerView.setAdapter(ordersClientViewAdapter);
         dbOrders = FirebaseDatabase.getInstance().getReference("Orders");
 
+        firebaseAuth = firebaseAuth.getInstance();
+        // gjkextv Uid user
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null){
+            Toast.makeText(ActivityOrdersClientView.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
+        }
         Query query = dbOrders
                 .orderByChild("UserId")
-                .equalTo("COgoqdE0WnPOl4vHqxDxkpm12Ai1");
+                .equalTo(user.getUid());
         query.addListenerForSingleValueEvent(valueEventListener);
     }
 
@@ -74,7 +84,7 @@ public class ActivityOrdersClientView extends AppCompatActivity {
                     }else if(orderViewClient.idService==10) {
                         orderViewClient.titleService = "ТОНИРОВКА";
                     }
-                    
+
                     if (orderViewClient.startTimeMonth==1){
                         orderViewClient.month = "январь";
                     }else if(orderViewClient.startTimeMonth==2) {
