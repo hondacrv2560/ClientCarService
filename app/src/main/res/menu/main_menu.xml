@@ -41,6 +41,8 @@
         android:title="Контакты"/>
     <item android:id="@+id/clientOrder"
         android:title="История визитов в Аква Детейлинг"/>
+    <item android:id="@+id/infoClient"
+        android:title="Информация о клиенте"/>
     <!--       app:showAsAction="always"/>-->
 <!--    <item android:id="@+id/action_today"-->
 <!--        android:title="action_today"-->
