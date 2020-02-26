@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/serviceViewBg">
+    <LinearLayout android:id="@+id/list_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:background="@color/serviceViewBg"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:stretchColumns="*">
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="id"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/userId"
+                    android:gravity="center_horizontal"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Фамилия и имя Клиента"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/nameSurname"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="телефон Клиента"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/phoneClient"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="г\н автомобиля"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/govNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="марка автомобиля"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/manufCar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="модель автомобиля"
+                    android:textColor="@android:color/black"
+                    android:textSize="8sp"
+                    android:gravity="center_vertical|center_horizontal"/>
+                <TextView android:id="@+id/modelCar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center_vertical|center_horizontal"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
