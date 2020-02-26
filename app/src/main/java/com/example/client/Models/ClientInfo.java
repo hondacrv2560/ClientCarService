@@ -20,14 +20,6 @@ public class ClientInfo {
         this.numPhoneNewClient = numPhoneNewClient;
     }
 
-    public String getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(String userId) {
-        UserId = userId;
-    }
-
     public String getGovNumberCarNewClient() {
         return govNumberCarNewClient;
     }
