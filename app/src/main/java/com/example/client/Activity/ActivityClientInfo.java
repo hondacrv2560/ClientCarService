@@ -1,10 +1,12 @@
 package com.example.client.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.util.ArrayList;
 
@@ -38,6 +45,7 @@ public class ActivityClientInfo extends AppCompatActivity {
     DatabaseReference dbInfoClient;
 
     Button addCar;
+    ImageView qrCode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class ActivityClientInfo extends AppCompatActivity {
         setContentView(R.layout.client_info_view);
 
         addCar = findViewById(R.id.addCar);
+        qrCode = findViewById(R.id.qrCodeView);
         recyclerView = findViewById(R.id.clientInfo);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,6 +80,17 @@ public class ActivityClientInfo extends AppCompatActivity {
                 startActivity(addCar);
             }
         });
+
+        String getUserId= user.getUid();
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(getUserId, BarcodeFormat.QR_CODE, 300,300);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            qrCode.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
