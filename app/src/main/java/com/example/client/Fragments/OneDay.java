@@ -106,13 +106,13 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
         // создание плавающей книпки для записи клиентов
-        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.ic_link_white_24dp)
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.car_wash_3)
                         .setLabel(R.string.CarWashing_3Phases)
                         .create());
-        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing, R.drawable.ic_list_white_24dp)
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing, R.drawable.car_wash_std)
                 .setLabel(R.string.CarWashing)
                 .create());
-        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.chemicalCleaningSalon, R.drawable.ic_list_white_24dp)
+        speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.chemicalCleaningSalon, R.drawable.chemical_cleaning_salon)
                 .setLabel(R.string.ChemicalCleaningSalon)
                 .create());
         speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.nanoCeramics, R.drawable.ic_list_white_24dp)
