@@ -46,41 +46,29 @@ public class ActivityContacts extends AppCompatActivity {
             }
         });
 
-        vodafone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ActivityContacts.this, "test", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vodafone.getText().toString()));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+        vodafone.setOnClickListener(v -> {
+            Toast.makeText(ActivityContacts.this, "test", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+vodafone.getText().toString()));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
         });
-        kyivstar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+kyivstar.getText().toString()));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+        kyivstar.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+kyivstar.getText().toString()));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
         });
-        lifecel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+lifecel.getText().toString()));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+        lifecel.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+lifecel.getText().toString()));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
         });
-        intertelecom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+intertelecom.getText().toString()));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+        intertelecom.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+intertelecom.getText().toString()));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
         });
     }

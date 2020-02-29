@@ -39,8 +39,6 @@
         android:title="Посмотреть карту"/>
     <item android:id="@+id/contacts"
         android:title="Контакты"/>
-    <item android:id="@+id/orderView"
-        android:title="История визитов"/>
 
     <!--       app:showAsAction="always"/>-->
 <!--    <item android:id="@+id/action_today"-->

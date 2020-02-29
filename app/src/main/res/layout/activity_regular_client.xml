@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:hint="enter_num_phone"
         android:id="@+id/num_phone_new_client"
+        android:inputType="phone"
         android:paddingBottom="20dp"/>
     <TextView
         android:layout_width="match_parent"
