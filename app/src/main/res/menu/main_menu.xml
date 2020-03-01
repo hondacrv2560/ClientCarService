@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--    <item-->
-<!--    android:id="@+id/carWashing_3Phases"-->
-<!--    android:title="@string/CarWashing_3Phases"/>-->
-<!--    <item-->
-<!--        android:id="@+id/carWashing"-->
-<!--        android:title="@string/CarWashing"/>-->
-<!--    <item-->
-<!--        android:id="@+id/chemicalCleaningSalon"-->
-<!--        android:title="@string/ChemicalCleaningSalon"/>-->
-<!--    <item-->
-<!--        android:id="@+id/nanoCeramics"-->
-<!--        android:title="@string/NanoCeramics"/>-->
-<!--    <item-->
-<!--        android:id="@+id/polishing"-->
-<!--        android:title="@string/Polishing"/>-->
-<!--    <item-->
-<!--        android:id="@+id/protectiveFilm"-->
-<!--        android:title="@string/ProtectiveFilm"/>-->
+    <!--    <item-->
+    <!--    android:id="@+id/carWashing_3Phases"-->
+    <!--    android:title="@string/CarWashing_3Phases"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/carWashing"-->
+    <!--        android:title="@string/CarWashing"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/chemicalCleaningSalon"-->
+    <!--        android:title="@string/ChemicalCleaningSalon"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/nanoCeramics"-->
+    <!--        android:title="@string/NanoCeramics"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/polishing"-->
+    <!--        android:title="@string/Polishing"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/protectiveFilm"-->
+    <!--        android:title="@string/ProtectiveFilm"/>-->
 
-<!--    <item-->
-<!--        android:id="@+id/repairWindshield"-->
-<!--        android:title="@string/RepairWindshield"/>-->
-<!--    <item-->
-<!--        android:id="@+id/salonProtection"-->
-<!--        android:title="@string/SalonProtection"/>-->
-<!--    <item-->
-<!--        android:id="@+id/toning"-->
-<!--        android:title="@string/Toning"/>-->
-<!--    <item-->
-<!--        android:id="@+id/tireFitting"-->
-<!--        android:title="@string/TireFitting"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/repairWindshield"-->
+    <!--        android:title="@string/RepairWindshield"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/salonProtection"-->
+    <!--        android:title="@string/SalonProtection"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/toning"-->
+    <!--        android:title="@string/Toning"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/tireFitting"-->
+    <!--        android:title="@string/TireFitting"/>-->
     <item
         android:id="@+id/regular_customer"
         android:title="Стать постоянным клиентом"/>
@@ -39,12 +39,15 @@
         android:title="Посмотреть карту"/>
     <item android:id="@+id/contacts"
         android:title="Контакты"/>
-
+    <item android:id="@+id/clientOrder"
+        android:title="История визитов в Аква Детейлинг"/>
+    <item android:id="@+id/infoClient"
+        android:title="Информация о клиенте"/>
     <!--       app:showAsAction="always"/>-->
-<!--    <item android:id="@+id/action_today"-->
-<!--        android:title="action_today"-->
-<!--        android:orderInCategory="100"-->
-<!--        app:showAsAction="always"/>-->
+    <!--    <item android:id="@+id/action_today"-->
+    <!--        android:title="action_today"-->
+    <!--        android:orderInCategory="100"-->
+    <!--        app:showAsAction="always"/>-->
     <item
         android:title="Calendar"
         app:showAsAction="always"
@@ -74,5 +77,4 @@
         android:icon="@drawable/ic_person_white_24dp"
         app:showAsAction="always"
         android:orderInCategory="2"/>
-
 </menu>

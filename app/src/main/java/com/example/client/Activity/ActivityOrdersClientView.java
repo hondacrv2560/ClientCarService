@@ -55,7 +55,6 @@ public class ActivityOrdersClientView extends AppCompatActivity {
                 .equalTo(user.getUid());
         query.addListenerForSingleValueEvent(valueEventListener);
     }
-
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,13 +109,11 @@ public class ActivityOrdersClientView extends AppCompatActivity {
                     }else if(orderViewClient.startTimeMonth==12) {
                         orderViewClient.month = "декабрь";
                     }
-
                     orderViewClientList.add(orderViewClient);
                 }
                 ordersClientViewAdapter.notifyDataSetChanged();
             }
         }
-
         @Override
         public void onCancelled(DatabaseError databaseError) {
 
