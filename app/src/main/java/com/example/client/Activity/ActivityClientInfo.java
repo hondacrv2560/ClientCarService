@@ -1,19 +1,27 @@
 package com.example.client.Activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.client.Classes.ClientInfoAdapter;
 import com.example.client.Fragments.QrReaderFragment;
 import com.example.client.Models.ClientInfo;
@@ -24,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.Result;
 
 import java.util.ArrayList;
 
@@ -41,11 +50,42 @@ public class ActivityClientInfo extends AppCompatActivity {
     Button btn_findQrCode;
     DatabaseReference dbInfoClient;
     Button addCar;
+    String qrCode;
+
+    private static String strQrReaderCode;
+    private CodeScanner codeScanner;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_info_view);
+        final Activity activity = this;
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+
+        CodeScannerView scannerView = findViewById(R.id.scanner_view);
+        codeScanner = new CodeScanner(this, scannerView);
+        codeScanner.setDecodeCallback(new DecodeCallback() {
+            @Override
+            public void onDecoded(@NonNull final Result result) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        qrCode = result.getText();
+                        find_Client_Qr_Code.setText(qrCode);
+                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        scannerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                codeScanner.startPreview();
+            }
+        });
+        qrCode = QrReaderFragment.getQrCode();
 
         find_Client_By_Name = findViewById(R.id.findClientByName);
         find_Client_Gov_Number = findViewById(R.id.findClientGovNumber);
@@ -62,6 +102,7 @@ public class ActivityClientInfo extends AppCompatActivity {
         recyclerView.setAdapter(clientInfoAdapter);
         dbInfoClient = FirebaseDatabase.getInstance().getReference("Clients");
 
+        find_Client_Qr_Code.setText(qrCode);
         btn_findNameSurname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,14 +123,15 @@ public class ActivityClientInfo extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(valueEventListener);
             }
         });
-        find_Client_Qr_Code.setOnClickListener(new View.OnClickListener() {
+
+        btn_findQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager=getSupportFragmentManager();
-                QrReaderFragment qrReaderFragment=new QrReaderFragment();
-                transaction=fragmentManager.beginTransaction();
-                transaction.replace(R.id.frClientInfoView,qrReaderFragment);
-                transaction.commit();
+                String qr = find_Client_Qr_Code.getText().toString();
+                Query query = dbInfoClient
+                        .orderByChild("UserId")
+                        .equalTo(qr);
+                query.addListenerForSingleValueEvent(valueEventListener);
             }
         });
 
