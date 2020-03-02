@@ -107,7 +107,7 @@ public class RegularClientActivity extends AppCompatActivity {
     }
 
     public void onClick(View arg0) {
-        DatePickerDialog datePickerDialog=new DatePickerDialog(RegularClientActivity.this, AlertDialog.THEME_TRADITIONAL,
+        DatePickerDialog datePickerDialog=new DatePickerDialog(RegularClientActivity.this,
                 null,year, month,day){
             @Override
             public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
