@@ -23,9 +23,9 @@ import com.google.zxing.Result;
 public class QrReaderFragment extends Fragment {
     private CodeScanner codeScanner;
     public String strQrReaderCode;
-    public final Activity activity = getActivity();
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final Activity activity = getActivity();
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 1);
         View v = inflater.inflate(R.layout.qr_reader, container,false);
         CodeScannerView scannerView = v.findViewById(R.id.scanner_view);

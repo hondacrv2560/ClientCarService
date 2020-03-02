@@ -118,7 +118,7 @@ public String str;
                 transaction.replace(R.id.fr,toDay);
                 transaction.commit();
             }
-        },5000);
+        },1000);
 
         //отображение месяца в ActionBar
 //        Calendar calendar=Calendar.getInstance();
