@@ -23,7 +23,6 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.client.Classes.ClientInfoAdapter;
-import com.example.client.Fragments.QrReaderFragment;
 import com.example.client.Models.ClientInfo;
 import com.example.client.R;
 import com.google.firebase.database.DataSnapshot;
