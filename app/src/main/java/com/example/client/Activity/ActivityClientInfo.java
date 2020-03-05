@@ -84,8 +84,6 @@ public class ActivityClientInfo extends AppCompatActivity {
                 codeScanner.startPreview();
             }
         });
-        qrCode = QrReaderFragment.getQrCode();
-
         find_Client_By_Name = findViewById(R.id.findClientByName);
         find_Client_Gov_Number = findViewById(R.id.findClientGovNumber);
         find_Client_Qr_Code = findViewById(R.id.findClientQrCode);
