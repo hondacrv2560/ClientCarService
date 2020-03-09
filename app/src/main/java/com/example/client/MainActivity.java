@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.client.Activity.ActivityClientInfo;
 import com.example.client.Activity.ActivityContacts;
+import com.example.client.Activity.ActivityFullOrder;
 import com.example.client.Activity.ActivityOrdersClientView;
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
@@ -38,6 +39,7 @@ import com.example.client.Fragments.OneDay;
 import com.example.client.Fragments.SevenDays;
 import com.example.client.Fragments.ThreeDays;
 import com.example.client.Fragments.ToDay;
+import com.example.client.Models.FullOrder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -274,6 +276,9 @@ public String str;
             case R.id.contacts:
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
+            case R.id.fullOrder:
+                Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrder.class);
+                startActivity(fullOrder);
 //            case R.id.carWashing_3Phases:
 //                str = "CarWashing_3Phases";
 //                break;

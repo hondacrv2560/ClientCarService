@@ -51,6 +51,8 @@
         android:title="Финансовые отчеты"/>
     <item android:id="@+id/staff"
         android:title="Персонал"/>
+    <item android:id="@+id/fullOrder"
+        android:title="Формирование наряда"/>
     <!--       app:showAsAction="always"/>-->
     <!--    <item android:id="@+id/action_today"-->
     <!--        android:title="action_today"-->
