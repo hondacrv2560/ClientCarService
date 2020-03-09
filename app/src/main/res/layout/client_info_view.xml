@@ -23,7 +23,7 @@
                 android:id="@+id/findNameSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/sharp_add_black_36"
+
                 android:text="Поиск"/>
         </TableRow>
         <TableRow>
@@ -36,7 +36,7 @@
                 android:id="@+id/findGovNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/sharp_add_black_36"
+
                 android:text="Поиск"/>
         </TableRow>
         <TableRow>
@@ -49,7 +49,7 @@
                 android:id="@+id/findQrCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/sharp_add_black_36"
+
                 android:text="Поиск"/>
         </TableRow>
     </TableLayout>
@@ -65,7 +65,7 @@
             android:id="@+id/addCar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/sharp_add_black_36"
+
             android:text="Добавить т\с"
             android:layout_gravity="center_horizontal"/>
 
