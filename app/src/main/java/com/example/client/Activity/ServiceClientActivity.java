@@ -92,7 +92,7 @@ public class ServiceClientActivity extends AppCompatActivity {
                             @Override
                             public ServiceClient parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new ServiceClient(snapshot.child("idService").getValue().toString(),
-                                        snapshot.child("titleService").getValue().toString(),
+                                        snapshot.child("title_service").getValue().toString(),
                                         snapshot.child("imagePath").getValue().toString());
                             }
                         })
