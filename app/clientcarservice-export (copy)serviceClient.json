@@ -1,0 +1,52 @@
+{
+  "01" : {
+    "idService": "1",
+    "title_service": "3-х фазная мойка",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/0TeGEqC-1170x779.jpg?alt=media&token=03f93f96-7b4e-47ed-be01-190a404ea495"
+  },
+  "02" : {
+    "idService": "2",
+    "title_service": "Мойка стандарт",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/imagesCarWash.jpg?alt=media&token=d334a3d0-0792-48db-8b32-7ce869631c4b"
+  },
+  "03" : {
+    "idService": "3",
+    "title_service": "Ремонт стекол",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/glass-repair-1170x779.jpg?alt=media&token=6905055e-3a9a-4ff4-8590-cbf56ff5dd8a"
+  },
+  "04" : {
+    "idService": "4",
+    "title_service": "Полировка",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/image_08.jpg?alt=media&token=18f19ca4-3225-4ec6-83b9-31b9c9e4b6d7"
+  },
+  "05" : {
+    "idService": "5",
+    "title_service": "Нанокерамика",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/4-3-1170x779.jpg?alt=media&token=36ecbda9-0184-4a22-84b4-9811001571e5"
+  },
+  "06" : {
+    "idService": "6",
+    "title_service": "Защитная пленка",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/unnamed-----kopiya-1170x779.jpg?alt=media&token=95c8156f-58ae-404b-82f3-9cd5d3efa0cf"
+  },
+  "07" : {
+    "idService": "7",
+    "title_service": "Химчистка салона",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/DSC_0114-1170x779.jpg?alt=media&token=efb2aa4c-758f-4453-acc9-aba869305a70"
+  },
+  "08" : {
+    "idService": "8",
+    "title_service": "Защита салона",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/17-1170x779.jpg?alt=media&token=eeaddcd7-5f95-48c4-a420-386866791f15"
+  },
+  "09" : {
+    "idService": "9",
+    "title_service": "Шиномонтаж",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/tire.jpg?alt=media&token=f3f57f85-6b68-4370-8175-4f0a1dd3f8cc"
+  },
+  "10" : {
+    "idService": "10",
+    "title_service": "Тонировка",
+    "imagePath": "https://firebasestorage.googleapis.com/v0/b/clientcarservice.appspot.com/o/done2-1170x752.jpg?alt=media&token=69749386-8e49-480c-97c5-dc424998e489"
+  }
+}
