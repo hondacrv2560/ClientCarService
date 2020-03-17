@@ -7,6 +7,10 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.client.Classes.FullOrderViewHolder;
 import com.example.client.Interface.IItemClickListener;
 import com.example.client.Models.FullOrder;
+import com.example.client.Models.FullOrders;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.internal.Util;
 
@@ -41,19 +47,42 @@ public class ActivityFullOrder extends AppCompatActivity {
     RecyclerView recyclerView;
     List<FullOrder> fullOrderList = new ArrayList<>();
     FirebaseRecyclerAdapter<FullOrder, FullOrderViewHolder> adapter;
-
+    CheckBox checkBox;
+    public Button buttonOrder;
+    public EditText idorder;
+    public EditText idclient;
+    List<FullOrders> ordersList = new ArrayList<>();
+    LayoutInflater layoutInflater;
+    FullOrders fullOrders;
+    private DatabaseReference myDbReferenceOrder;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private String key;
+    private String str = null;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
-
+        buttonOrder = findViewById(R.id.buttonOrders);
+        idclient = findViewById(R.id.id_Client);
+        idorder = findViewById(R.id.id_Order);
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        final View view = layoutInflater.inflate(R.layout.layout_full_order,null,false);
+//        checkBox=view.findViewById(R.id.checkboxOrders);
         retrieveData();
         setData();
+        buttonOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDbReferenceOrder = database.getReference("FullOrders");
+                key = myDbReferenceOrder.push().getKey();
+                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
+                ordersList.clear();
+            }
+        });
     }
 
     private void setData() {
@@ -127,12 +156,25 @@ public class ActivityFullOrder extends AppCompatActivity {
                             }
                         });
                         viewHolder.txt_child_text.setText(fullOrder.getText());
-                        viewHolder.txt_child_text.setOnClickListener(new View.OnClickListener() {
+
+//                        str = viewHolder.txt_child_text.getText().toString();
+                            viewHolder.txt_child_text.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+//                                checkBox.setChecked(true);
                                 Toast.makeText(ActivityFullOrder.this, ""+viewHolder.txt_child_text.getText(), Toast.LENGTH_SHORT).show();
+                                fullOrders = new FullOrders(str, viewHolder.txt_child_text.getText().toString(),23, idclient.getText().toString(), idorder.getText().toString());
+                                ordersList.add(fullOrders);
+//                                myDbReferenceOrder = database.getReference("FullOrders");
+//                                key = myDbReferenceOrder.push().getKey();
+                                // добавление заказа
+
+//                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                             }
+
                         });
+
+                            
                         viewHolder.setiItemClickListener(new IItemClickListener() {
                             @Override
                             public void onClick(View view, int position) {
