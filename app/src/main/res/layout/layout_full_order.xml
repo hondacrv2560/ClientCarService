@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp">
+
     <RelativeLayout
         android:id="@+id/button"
         android:gravity="center"
@@ -18,8 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_keyboard_arrow_up_black_24dp"/>
-
-
     </RelativeLayout>
 
         <TextView
@@ -41,15 +40,42 @@
         app:ael_duration="400"
         app:ael_expanded="false"
         app:ael_interpolator="bounce">
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_child"
-            android:padding="8dp"
-            android:textSize="16dp"
-            android:text="text"
-            android:layout_margin="25dp"
-            android:layout_gravity="center"
-            android:textColor="#000000"/>
-    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_child"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/price_child"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"/>
+            <CheckBox
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkboxOrders"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
 </RelativeLayout>
