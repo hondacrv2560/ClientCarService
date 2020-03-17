@@ -47,17 +47,16 @@ public class ActivityFullOrder extends AppCompatActivity {
     RecyclerView recyclerView;
     List<FullOrder> fullOrderList = new ArrayList<>();
     FirebaseRecyclerAdapter<FullOrder, FullOrderViewHolder> adapter;
-    CheckBox checkBox;
     public Button buttonOrder;
     public EditText idorder;
     public EditText idclient;
     List<FullOrders> ordersList = new ArrayList<>();
-    LayoutInflater layoutInflater;
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private String key;
     private String str = null;
+    public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
 
     @Override
@@ -70,8 +69,6 @@ public class ActivityFullOrder extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        final View view = layoutInflater.inflate(R.layout.layout_full_order,null,false);
-//        checkBox=view.findViewById(R.id.checkboxOrders);
         retrieveData();
         setData();
         buttonOrder.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +78,7 @@ public class ActivityFullOrder extends AppCompatActivity {
                 key = myDbReferenceOrder.push().getKey();
                 myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                 ordersList.clear();
+                finish();
             }
         });
     }
@@ -136,16 +134,6 @@ public class ActivityFullOrder extends AppCompatActivity {
                                 changeRotate(viewHolder.relativeLayout, 180f, 0f).start();
                                 sparseBooleanArray.put(position,false);
                             }
-//
-//                            @Override
-//                            public void onOpened() {
-//                                super.onOpened();
-//                            }
-//
-//                            @Override
-//                            public void onClosed() {
-//                                super.onClosed();
-//                            }
                         });
                         viewHolder.relativeLayout.setRotation(sparseBooleanArray.get(position)?180f:0f);
                         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -157,30 +145,41 @@ public class ActivityFullOrder extends AppCompatActivity {
                         });
                         viewHolder.txt_child_text.setText(fullOrder.getText());
 
-//                        str = viewHolder.txt_child_text.getText().toString();
-                            viewHolder.txt_child_text.setOnClickListener(new View.OnClickListener() {
+                        viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
-                            public void onClick(View v) {
-//                                checkBox.setChecked(true);
-                                Toast.makeText(ActivityFullOrder.this, ""+viewHolder.txt_child_text.getText(), Toast.LENGTH_SHORT).show();
-                                fullOrders = new FullOrders(str, viewHolder.txt_child_text.getText().toString(),23, idclient.getText().toString(), idorder.getText().toString());
-                                ordersList.add(fullOrders);
-//                                myDbReferenceOrder = database.getReference("FullOrders");
-//                                key = myDbReferenceOrder.push().getKey();
-                                // добавление заказа
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked){
+                                    fullOrders = new FullOrders(str, viewHolder.txt_child_text.getText().toString(),23, idclient.getText().toString(), idorder.getText().toString());
+                                    ordersList.add(fullOrders);
+                                } else {
+                                    ordersList.remove(ordersList.size() - 1);
+                                }
 
-//                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
-                            }
-
-                        });
-
-                            
-                        viewHolder.setiItemClickListener(new IItemClickListener() {
-                            @Override
-                            public void onClick(View view, int position) {
-                                Toast.makeText(ActivityFullOrder.this, ""+fullOrder.getText(), Toast.LENGTH_SHORT).show();
                             }
                         });
+//                            viewHolder.txt_child_text.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+////                                checkBox.setChecked(true);
+//                                    Toast.makeText(ActivityFullOrder.this, "" + viewHolder.txt_child_text.getText(), Toast.LENGTH_SHORT).show();
+//                                    fullOrders = new FullOrders(str, viewHolder.txt_child_text.getText().toString(), 23, idclient.getText().toString(), idorder.getText().toString());
+//                                    ordersList.add(fullOrders);
+////                                myDbReferenceOrder = database.getReference("FullOrders");
+////                                key = myDbReferenceOrder.push().getKey();
+//                                    // добавление заказа
+//
+////                                myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
+//                                }
+//
+//                            });
+//
+//
+//                        viewHolder.setiItemClickListener(new IItemClickListener() {
+//                            @Override
+//                            public void onClick(View view, int position) {
+//                                Toast.makeText(ActivityFullOrder.this, "" + fullOrder.getText(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                     }
                     break;
 
