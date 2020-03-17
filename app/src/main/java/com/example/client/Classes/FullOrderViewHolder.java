@@ -1,6 +1,7 @@
 package com.example.client.Classes;
 
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class FullOrderViewHolder extends RecyclerView.ViewHolder {
 
     public TextView txt_item_text;
     public TextView txt_child_text;
+    public CheckBox checkBox;
     public RelativeLayout relativeLayout;
     public ExpandableLinearLayout expandableLinearLayout;
 
@@ -30,18 +32,19 @@ public class FullOrderViewHolder extends RecyclerView.ViewHolder {
         if(isExpandable){
             txt_item_text = itemView.findViewById(R.id.txt_item_view);
             txt_child_text = itemView.findViewById(R.id.txt_child);
+            checkBox = itemView.findViewById(R.id.checkboxOrders);
             relativeLayout = itemView.findViewById(R.id.rowUp);
             expandableLinearLayout = itemView.findViewById(R.id.expandableLayout);
         }else{
             txt_item_text = itemView.findViewById(R.id.txt_item_view);
         }
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iItemClickListener.onClick(v, getAdapterPosition());
-            }
-        });
+//        itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                iItemClickListener.onClick(v, getAdapterPosition());
+//            }
+//        });
 
     }
 }
