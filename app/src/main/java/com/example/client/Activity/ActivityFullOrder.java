@@ -84,7 +84,7 @@ public class ActivityFullOrder extends AppCompatActivity {
     }
 
     private void setData() {
-        Query query = FirebaseDatabase.getInstance().getReference().child("Items");
+        Query query = FirebaseDatabase.getInstance().getReference().child("OrderCWStandart");
         FirebaseRecyclerOptions<FullOrder> options = new FirebaseRecyclerOptions.Builder<FullOrder>()
                 .setQuery(query, FullOrder.class)
                 .build();
@@ -102,13 +102,24 @@ public class ActivityFullOrder extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FullOrderViewHolder fullOrderViewHolder, int position, @NonNull FullOrder fullOrder) {
                 switch (fullOrderViewHolder.getItemViewType()){
                     case 0:{
+//                        FullOrderViewHolder viewHolder=(FullOrderViewHolder)fullOrderViewHolder;
+//                        viewHolder.setIsRecyclable(false);
+//                        viewHolder.txt_item_text.setText(fullOrder.getTitleService());
+//                        viewHolder.setiItemClickListener(new IItemClickListener() {
+//                            @Override
+//                            public void onClick(View view, int position) {
+//                                Toast.makeText(ActivityFullOrder.this, "without child"+fullOrderList.get(position).getText(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+
                         FullOrderViewHolder viewHolder=(FullOrderViewHolder)fullOrderViewHolder;
                         viewHolder.setIsRecyclable(false);
-                        viewHolder.txt_item_text.setText(fullOrder.getText());
+                        viewHolder.txt_titleService.setText(fullOrder.getTitleService());
+
                         viewHolder.setiItemClickListener(new IItemClickListener() {
                             @Override
                             public void onClick(View view, int position) {
-                                Toast.makeText(ActivityFullOrder.this, "without child"+fullOrderList.get(position).getText(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityFullOrder.this, "without child"+fullOrderList.get(position).getTitleService(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -116,7 +127,9 @@ public class ActivityFullOrder extends AppCompatActivity {
                     case 1:{
                         FullOrderViewHolder viewHolder=(FullOrderViewHolder)fullOrderViewHolder;
                         viewHolder.setIsRecyclable(false);
-                        viewHolder.txt_item_text.setText(fullOrder.getText());
+                        viewHolder.txt_titleService.setText(fullOrder.getTitleService());
+                        viewHolder.txt_idService.setText(fullOrder.getIdService()+"");
+                        viewHolder.txt_idService.setVisibility(View.GONE);
 
                         viewHolder.expandableLinearLayout.setInRecyclerView(true);
                         viewHolder.expandableLinearLayout.setExpanded(sparseBooleanArray.get(position));
@@ -143,18 +156,112 @@ public class ActivityFullOrder extends AppCompatActivity {
 
                             }
                         });
-                        viewHolder.txt_child_text.setText(fullOrder.getText());
 
-                        viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        viewHolder.txt_price_sedan.setText(fullOrder.getPrice_sedan()+"");
+                        viewHolder.txt_price_premium.setText(fullOrder.getPrice_premium()+"");
+                        viewHolder.txt_price_business.setText(fullOrder.getPrice_business()+"");
+                        viewHolder.txt_price_SUV.setText(fullOrder.getPrice_SUV()+"");
+                        viewHolder.txt_price_BigSUV.setText(fullOrder.getPrice_BigSUV()+"");
+
+                        viewHolder.txt_cat_sedan.setText(fullOrder.getCat_sedan());
+                        viewHolder.txt_cat_premium.setText(fullOrder.getCat_premium());
+                        viewHolder.txt_cat_business.setText(fullOrder.getCat_business());
+                        viewHolder.txt_cat_SUV.setText(fullOrder.getCat_SUV());
+                        viewHolder.txt_cat_BigSUV.setText(fullOrder.getCat_BigSUV());
+
+                        viewHolder.checkBoxPremium.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(str, viewHolder.txt_child_text.getText().toString(),23, idclient.getText().toString(), idorder.getText().toString());
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
                                     ordersList.add(fullOrders);
+                                    viewHolder.checkBoxSedan.setEnabled(false);
+                                    viewHolder.checkBoxBigSUV.setEnabled(false);
+                                    viewHolder.checkBoxSUV.setEnabled(false);
+                                    viewHolder.checkBoxBusiness.setEnabled(false);
                                 } else {
                                     ordersList.remove(ordersList.size() - 1);
+                                    viewHolder.checkBoxSedan.setEnabled(true);
+                                    viewHolder.checkBoxBigSUV.setEnabled(true);
+                                    viewHolder.checkBoxSUV.setEnabled(true);
+                                    viewHolder.checkBoxBusiness.setEnabled(true);
                                 }
-
+                            }
+                        });
+                        viewHolder.checkBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked){
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    ordersList.add(fullOrders);
+                                    viewHolder.checkBoxSedan.setEnabled(false);
+                                    viewHolder.checkBoxBigSUV.setEnabled(false);
+                                    viewHolder.checkBoxSUV.setEnabled(false);
+                                    viewHolder.checkBoxPremium.setEnabled(false);
+                                } else {
+                                    ordersList.remove(ordersList.size() - 1);
+                                    viewHolder.checkBoxSedan.setEnabled(true);
+                                    viewHolder.checkBoxBigSUV.setEnabled(true);
+                                    viewHolder.checkBoxSUV.setEnabled(true);
+                                    viewHolder.checkBoxPremium.setEnabled(true);
+                                }
+                            }
+                        });
+                        viewHolder.checkBoxSUV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked){
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    ordersList.add(fullOrders);
+                                    viewHolder.checkBoxSedan.setEnabled(false);
+                                    viewHolder.checkBoxBigSUV.setEnabled(false);
+                                    viewHolder.checkBoxBusiness.setEnabled(false);
+                                    viewHolder.checkBoxPremium.setEnabled(false);
+                                } else {
+                                    ordersList.remove(ordersList.size() - 1);
+                                    viewHolder.checkBoxSedan.setEnabled(true);
+                                    viewHolder.checkBoxBigSUV.setEnabled(true);
+                                    viewHolder.checkBoxBusiness.setEnabled(true);
+                                    viewHolder.checkBoxPremium.setEnabled(true);
+                                }
+                            }
+                        });
+                        viewHolder.checkBoxBigSUV.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked){
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    ordersList.add(fullOrders);
+                                    viewHolder.checkBoxSedan.setEnabled(false);
+                                    viewHolder.checkBoxBusiness.setEnabled(false);
+                                    viewHolder.checkBoxSUV.setEnabled(false);
+                                    viewHolder.checkBoxPremium.setEnabled(false);
+                                } else {
+                                    ordersList.remove(ordersList.size() - 1);
+                                    viewHolder.checkBoxSedan.setEnabled(true);
+                                    viewHolder.checkBoxBusiness.setEnabled(true);
+                                    viewHolder.checkBoxSUV.setEnabled(true);
+                                    viewHolder.checkBoxPremium.setEnabled(true);
+                                }
+                            }
+                        });
+                        viewHolder.checkBoxSedan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if(isChecked){
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    ordersList.add(fullOrders);
+                                    viewHolder.checkBoxBusiness.setEnabled(false);
+                                    viewHolder.checkBoxBigSUV.setEnabled(false);
+                                    viewHolder.checkBoxSUV.setEnabled(false);
+                                    viewHolder.checkBoxPremium.setEnabled(false);
+                                } else {
+                                    ordersList.remove(ordersList.size() - 1);
+                                    viewHolder.checkBoxBusiness.setEnabled(true);
+                                    viewHolder.checkBoxBigSUV.setEnabled(true);
+                                    viewHolder.checkBoxSUV.setEnabled(true);
+                                    viewHolder.checkBoxPremium.setEnabled(true);
+                                }
                             }
                         });
 //                            viewHolder.txt_child_text.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +289,6 @@ public class ActivityFullOrder extends AppCompatActivity {
 //                        });
                     }
                     break;
-
                 }
             }
 
@@ -219,7 +325,7 @@ public class ActivityFullOrder extends AppCompatActivity {
     private void retrieveData() {
         fullOrderList.clear();
         DatabaseReference dbFullOrder = FirebaseDatabase.getInstance().getReference()
-                .child("Items");
+                .child("OrderCWStandart");
         dbFullOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
