@@ -24,18 +24,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_item_view"
+            android:id="@+id/titleService"
             android:padding="8dp"
             android:textSize="16dp"
             android:text="text"
             android:layout_margin="25dp"
             android:layout_gravity="center"
             android:textColor="#000000"/>
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/idService"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:textColor="#000000" />
     <com.github.aakira.expandablelayout.ExpandableLinearLayout
         android:id="@+id/expandableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_item_view"
+        android:layout_below="@+id/titleService"
         android:orientation="vertical"
         app:ael_duration="400"
         app:ael_expanded="false"
@@ -45,12 +53,74 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt_child"
+                android:id="@+id/cat_sedan"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/price_sedan"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:inputType="number"/>
+            <CheckBox
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkboxOrdersSedan"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cat_business"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/price_business"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:inputType="number"/>
+            <CheckBox
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkboxOrdersBusiness"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cat_premium"
                 android:padding="5dp"
                 android:textSize="14dp"
                 android:text="text"
@@ -60,17 +130,86 @@
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/price_child"
+                android:id="@+id/price_premium"
                 android:padding="5dp"
                 android:textSize="14dp"
                 android:text="text"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:inputType="number"/>
             <CheckBox
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkboxOrders"
+                android:id="@+id/checkboxOrdersPremium"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cat_SUV"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/price_SUV"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:inputType="number"/>
+            <CheckBox
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkboxOrdersSuv"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cat_BigSUV"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/price_BigSUV"
+                android:padding="5dp"
+                android:textSize="14dp"
+                android:text="text"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:inputType="number"/>
+            <CheckBox
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkboxOrdersBigSuv"
                 android:padding="5dp"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
