@@ -54,7 +54,11 @@ public class RepairWindshieldActivity extends AppCompatActivity {
         public LinearLayout root;
         public TextView txtIdRepairWindshield;
         public TextView txtTitleRepairWindshield;
-        public TextView txtPriceRepairWindshield;
+        public TextView txtPriceRepairWindshield_sedan;
+        public TextView txtPriceRepairWindshield_business;
+        public TextView txtPriceRepairWindshield_premium;
+        public TextView txtPriceRepairWindshield_SUV;
+        public TextView txtPriceRepairWindshield_BigSUV;
 
 
         public ViewHolder(View itemView) {
@@ -62,7 +66,11 @@ public class RepairWindshieldActivity extends AppCompatActivity {
             root = itemView.findViewById(R.id.list_root);
             txtIdRepairWindshield = itemView.findViewById(R.id.id_title);
             txtTitleRepairWindshield = itemView.findViewById(R.id.list_title);
-            txtPriceRepairWindshield = itemView.findViewById(R.id.priceRepairWindShield);
+            txtPriceRepairWindshield_sedan = itemView.findViewById(R.id.priceRepairWindshield_sedan);
+            txtPriceRepairWindshield_business = itemView.findViewById(R.id.priceRepairWindshield_business);
+            txtPriceRepairWindshield_premium = itemView.findViewById(R.id.priceRepairWindshield_premium);
+            txtPriceRepairWindshield_SUV = itemView.findViewById(R.id.priceRepairWindshield_SUV);
+            txtPriceRepairWindshield_BigSUV = itemView.findViewById(R.id.priceRepairWindshield_BigSUV);
         }
 
         public void setTxtIdRepairWindshield(String string) {
@@ -73,8 +81,24 @@ public class RepairWindshieldActivity extends AppCompatActivity {
             txtTitleRepairWindshield.setText(string);
         }
 
-        public void setTxtPriceRepairWindshield(String string) {
-            txtPriceRepairWindshield.setText(string);
+        public void setTxtPriceRepairWindshield_sedan(String string){
+            txtPriceRepairWindshield_sedan.setText(string);
+        }
+
+        public void setTxtPriceRepairWindshield_business(String string){
+            txtPriceRepairWindshield_business.setText(string);
+        }
+
+        public void setTxtPriceRepairWindshield_premium(String string){
+            txtPriceRepairWindshield_premium.setText(string);
+        }
+
+        public void setTxtPriceRepairWindshield_SUV(String string){
+            txtPriceRepairWindshield_SUV.setText(string);
+        }
+
+        public void setTxtPriceRepairWindshield_BigSUV(String string){
+            txtPriceRepairWindshield_BigSUV.setText(string);
         }
     }
 
@@ -89,7 +113,11 @@ public class RepairWindshieldActivity extends AppCompatActivity {
                             public RepairWindshield parseSnapshot(@NonNull DataSnapshot snapshot) {
                                 return new RepairWindshield(snapshot.child("idRepairWindshield").getValue().toString(),
                                         snapshot.child("titleRepairWindshield").getValue().toString(),
-                                        snapshot.child("priceRepairWindshield").getValue().toString());
+                                        snapshot.child("priceRepairWindshield_sedan").getValue().toString(),
+                                        snapshot.child("priceRepairWindshield_business").getValue().toString(),
+                                        snapshot.child("priceRepairWindshield_premium").getValue().toString(),
+                                        snapshot.child("priceRepairWindshield_SUV").getValue().toString(),
+                                        snapshot.child("priceRepairWindshield_BigSUV").getValue().toString());
                             }
                         })
                         .build();
@@ -104,13 +132,15 @@ public class RepairWindshieldActivity extends AppCompatActivity {
                 return new RepairWindshieldActivity.ViewHolder(view);
             }
 
-
             @Override
             protected void onBindViewHolder(RepairWindshieldActivity.ViewHolder holder, final int position, RepairWindshield repairWindshield) {
                 holder.setTxtIdRepairWindshield(repairWindshield.getIdRepairWindshield());
                 holder.setTxtTitleRepairWindshield(repairWindshield.getTitleRepairWindshield());
-                holder.setTxtPriceRepairWindshield(repairWindshield.getPriceRepairWindshield());
-
+                holder.setTxtPriceRepairWindshield_sedan(repairWindshield.getPriceRepairWindshield_sedan());
+                holder.setTxtPriceRepairWindshield_business(repairWindshield.getPriceRepairWindshield_business());
+                holder.setTxtPriceRepairWindshield_premium(repairWindshield.getPriceRepairWindshield_premium());
+                holder.setTxtPriceRepairWindshield_SUV(repairWindshield.getPriceRepairWindshield_SUV());
+                holder.setTxtPriceRepairWindshield_BigSUV(repairWindshield.getPriceRepairWindshield_BigSUV());
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
