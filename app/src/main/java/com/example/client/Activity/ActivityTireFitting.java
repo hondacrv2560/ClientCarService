@@ -1,20 +1,29 @@
 package com.example.client.Activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.client.Models.TireFitting;
 import com.example.client.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class ActivityTireFitting extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -35,6 +44,7 @@ public class ActivityTireFitting extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        fetch();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,5 +94,60 @@ public class ActivityTireFitting extends AppCompatActivity {
         }
     }
 
+    private void fetch() {
+        Query query = tireFittingRef;
 
+        FirebaseRecyclerOptions<TireFitting> options =
+                new FirebaseRecyclerOptions.Builder<TireFitting>()
+                        .setQuery(query, new SnapshotParser<TireFitting>() {
+                            @NonNull
+                            @Override
+                            public TireFitting parseSnapshot(@NonNull DataSnapshot snapshot) {
+                                return new TireFitting(snapshot.child("idTireFitting").getValue().toString(),
+                                        snapshot.child("titleTireFitting").getValue().toString(),
+                                        snapshot.child("priceTireFitting_sedan").getValue().toString(),
+                                        snapshot.child("priceTireFitting_business").getValue().toString(),
+                                        snapshot.child("priceTireFitting_premium").getValue().toString(),
+                                        snapshot.child("priceTireFitting_SUV").getValue().toString(),
+                                        snapshot.child("priceTireFitting_BigSUV").getValue().toString());
+                            }
+                        })
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<TireFitting, ActivityTireFitting.ViewHolder>(options) {
+
+            @Override
+            public ActivityTireFitting.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.tire_fitting_list, parent, false);
+
+                return new ActivityTireFitting.ViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(ActivityTireFitting.ViewHolder holder, final int position, TireFitting tireFitting) {
+                holder.setTxtIdTireFitting(tireFitting.getIdTireFitting());
+                holder.setTxtTitleTireFitting(tireFitting.getTitleTireFitting());
+                holder.setTxtPriceTireFitting_sedan(tireFitting.getPriceTireFitting_sedan());
+                holder.setTxtPriceTireFitting_business(tireFitting.getPriceTireFitting_business());
+                holder.setTxtPriceTireFitting_premium(tireFitting.getPriceTireFitting_premium());
+                holder.setTxtPriceTireFitting_SUV(tireFitting.getPriceTireFitting_SUV());
+                holder.setTxtPriceTireFitting_BigSUV(tireFitting.getPriceTireFitting_BigSUV());
+
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActivityTireFitting.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        };
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 }
