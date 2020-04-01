@@ -130,7 +130,8 @@ public class ServiceClientActivity extends AppCompatActivity {
                                 break;
 
                             case 1:
-
+                                Intent carWashing_Standart = new Intent (ServiceClientActivity.this, ActivityCarWashing_Standart.class);
+                                startActivity(carWashing_Standart);
                                 break;
 
                             case 2:

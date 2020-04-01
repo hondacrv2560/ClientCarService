@@ -33,18 +33,19 @@ public class ActivityCarWashing_Standart extends AppCompatActivity {
     // получение ссылки на БД
     DatabaseReference myDbReference = database.getReference();
     // поключение к child CarWashing
-    DatabaseReference carWashingRef = myDbReference.child("CarWashing");
+    DatabaseReference carWashingRef = myDbReference.child("CarWashingStandard");
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tire_fitting_view);
+        setContentView(R.layout.car_washing_standart_view);
 
         recyclerView = findViewById(R.id.CarWashing_Standart_list);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+        fetch();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -109,13 +110,13 @@ public class ActivityCarWashing_Standart extends AppCompatActivity {
                             @NonNull
                             @Override
                             public CarWashing_Standart parseSnapshot(@NonNull DataSnapshot snapshot) {
-                                return new CarWashing_Standart(snapshot.child("idCW_Standart").getValue().toString(),
-                                        snapshot.child("titleCW_Standart").getValue().toString(),
-                                        snapshot.child("priceCW_Standart_sedan").getValue().toString(),
-                                        snapshot.child("priceCW_Standart_business").getValue().toString(),
-                                        snapshot.child("priceCW_Standart_premium").getValue().toString(),
-                                        snapshot.child("priceCW_Standart_SUV").getValue().toString(),
-                                        snapshot.child("priceCW_Standart_BigSUV").getValue().toString());
+                                return new CarWashing_Standart(snapshot.child("idCwStandard").getValue().toString(),
+                                        snapshot.child("titleCw_Standard").getValue().toString(),
+                                        snapshot.child("priceCwStandard_sedan").getValue().toString(),
+                                        snapshot.child("priceCwStandard_business").getValue().toString(),
+                                        snapshot.child("priceCwStandard_premium").getValue().toString(),
+                                        snapshot.child("priceCwStandard_SUV").getValue().toString(),
+                                        snapshot.child("priceCwStandard_BigSUV").getValue().toString());
                             }
                         })
                         .build();
@@ -132,14 +133,14 @@ public class ActivityCarWashing_Standart extends AppCompatActivity {
 
 
             @Override
-            protected void onBindViewHolder(ActivityCarWashing_Standart.ViewHolder holder, final int position, CarWashing_Standart carWashing_standart) {
-                holder.setTxtIdCarWashingStandart(carWashing_standart.getIdCw_Standart());
-                holder.setTxtTitleCarWashingStandart(carWashing_standart.getTitleCw_Standart());
-                holder.setTxtCarWashingStandart_sedan(carWashing_standart.getPriceCw_Standart_sedan());
-                holder.setTxtPriceCarWashingStandart_business(carWashing_standart.getPriceCw_Standart_business());
-                holder.setTxtPriceCarWashingStandart_premium(carWashing_standart.getPriceCw_Standart_premium());
-                holder.setTxtPriceCarWashingStandart_SUV(carWashing_standart.getPriceCw_Standart_SUV());
-                holder.setTxtPriceCarWashingStandart_BigSUV(carWashing_standart.getPriceCw_Standart_BigSUV());
+            protected void onBindViewHolder(ActivityCarWashing_Standart.ViewHolder holder, final int position, CarWashing_Standart carWashingStandart) {
+                holder.setTxtIdCarWashingStandart(carWashingStandart.getIdCw_Standart());
+                holder.setTxtTitleCarWashingStandart(carWashingStandart.getTitleCw_Standart());
+                holder.setTxtCarWashingStandart_sedan(carWashingStandart.getPriceCw_Standart_sedan());
+                holder.setTxtPriceCarWashingStandart_business(carWashingStandart.getPriceCw_Standart_business());
+                holder.setTxtPriceCarWashingStandart_premium(carWashingStandart.getPriceCw_Standart_premium());
+                holder.setTxtPriceCarWashingStandart_SUV(carWashingStandart.getPriceCw_Standart_SUV());
+                holder.setTxtPriceCarWashingStandart_BigSUV(carWashingStandart.getPriceCw_Standart_BigSUV());
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -153,10 +154,10 @@ public class ActivityCarWashing_Standart extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
     }
-
 }
