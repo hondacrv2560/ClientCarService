@@ -3,6 +3,7 @@ package com.example.client.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +54,10 @@ public class ActivityClientInfo extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_info_view);
+
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         addCar = findViewById(R.id.addCar);
         qrCode = findViewById(R.id.qrCodeView);
@@ -129,4 +136,16 @@ public class ActivityClientInfo extends AppCompatActivity {
 
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
