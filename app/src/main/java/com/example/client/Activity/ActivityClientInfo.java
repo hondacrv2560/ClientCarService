@@ -65,13 +65,26 @@ public class ActivityClientInfo extends AppCompatActivity {
         firebaseAuth = firebaseAuth.getInstance();
         // gjkextv Uid user
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null){
-            Toast.makeText(ActivityClientInfo.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
+//        if(user != null){
+//            Query query = dbInfoClient
+//                    .orderByChild("UserId")
+//                    .equalTo(user.getUid());
+//            query.addListenerForSingleValueEvent(valueEventListener);
+//            Toast.makeText(ActivityClientInfo.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
+//        } else{
+//            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию" + user.getUid(), Toast.LENGTH_LONG).show();
+//        }
+
+        try {
+            Query query = dbInfoClient
+                    .orderByChild("UserId")
+                    .equalTo(user.getUid());
+            query.addListenerForSingleValueEvent(valueEventListener);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
         }
-        Query query = dbInfoClient
-                .orderByChild("UserId")
-                .equalTo(user.getUid());
-        query.addListenerForSingleValueEvent(valueEventListener);
+
 
         addCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,15 +94,20 @@ public class ActivityClientInfo extends AppCompatActivity {
             }
         });
 
-        String getUserId= user.getUid();
-        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(getUserId, BarcodeFormat.QR_CODE, 300,300);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            qrCode.setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
+        if (user!=null){
+            String getUserId= user.getUid();
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            try {
+                BitMatrix bitMatrix = multiFormatWriter.encode(getUserId, BarcodeFormat.QR_CODE, 300,300);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                qrCode.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                e.printStackTrace();
+            }
+        } else{
+            addCar.setEnabled(false);
+            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
         }
     }
 
