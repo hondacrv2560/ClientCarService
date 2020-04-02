@@ -921,7 +921,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     @Override
     public void onEmptyViewLongPress(Calendar time) {
         Toast.makeText(getActivity(), "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
-
     }
 
     public WeekView getWeekView() {
