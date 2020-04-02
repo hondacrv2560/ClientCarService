@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">Аква Детейлинг</string>
     <string name="async_error">Could not download events from the internet</string>
-    <string name="CarWashing">Записаться на мойку</string>
-    <string name="ChemicalCleaningSalon">Записаться на химчистку слона</string>
-    <string name="NanoCeramics">Записаться на нанесение Нанокерамики</string>
-    <string name="Polishing">Записаться на полировку</string>
-    <string name="CarWashing_3Phases">Записаться на 3-х фазную мойку</string>
-    <string name="ProtectiveFilm">Записаться на поклейку пленки</string>
-    <string name="RepairWindshield">Записаться на ремонт стекла</string>
-    <string name="SalonProtection">Записаться на защиту салона</string>
-    <string name="Toning">Записаться тонировку</string>
-    <string name="TireFitting">записаться на шиномонтаж</string>
+    <string name="CarWashing">Мойка стандарт</string>
+    <string name="ChemicalCleaningSalon">Химчистка слона</string>
+    <string name="NanoCeramics">Нанесение Нанокерамики</string>
+    <string name="Polishing">Полировка</string>
+    <string name="CarWashing_3Phases">3-х фазная мойка</string>
+    <string name="ProtectiveFilm">Поклейка пленки</string>
+    <string name="RepairWindshield">Ремонт стекла</string>
+    <string name="SalonProtection">Защита салона</string>
+    <string name="Toning">Тонировка</string>
+    <string name="TireFitting">Шиномонтаж</string>
     <string name="date">Дата:</string>
     <string name="addOrder">Запись клиента:</string>
     <string name="title_activity_maps">Map</string>
