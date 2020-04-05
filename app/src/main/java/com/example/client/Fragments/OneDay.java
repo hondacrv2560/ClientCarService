@@ -47,6 +47,8 @@ import java.util.Calendar;
 
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class OneDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
@@ -73,6 +75,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     private LayoutInflater layoutInflater;
     private View view;
 
+    Timer mTimer;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,6 +84,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         mWeekView = showOneDay.findViewById(R.id.weekView);
         speedDialView = showOneDay.findViewById(R.id.speedDial);
 
+        mTimer = new Timer();
+        startAutoRefresh();
         mWeekView.setNumberOfVisibleDays(1);
 
         // Lets change some dimensions to best fit the view.
@@ -963,5 +969,20 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 .detach(fragment)
                 .attach(fragment)
                 .commit();
+
     }
+
+    private void startAutoRefresh() {
+
+        mTimer.scheduleAtFixedRate(new TimerTask() {
+
+                                       @Override
+                                       public void run() {
+                                           refreshFragment();
+                                       }
+                                   }
+                , 300000      // Это задержка старта, сейчас 0;
+                , 3000000); // Это период в 5 минут;
+    }
+
 }
