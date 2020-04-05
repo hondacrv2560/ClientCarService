@@ -1,11 +1,14 @@
 package com.example.client.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,9 @@ import com.example.client.Classes.ClientInfoAdapter;
 import com.example.client.Models.Client;
 import com.example.client.Models.ClientInfo;
 import com.example.client.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,12 +49,15 @@ public class ActivityClientInfo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ClientInfoAdapter clientInfoAdapter;
     private ArrayList<ClientInfo> clientInfoList;
-
+    private Activity activityClientInfo;
     private FirebaseAuth firebaseAuth;
     DatabaseReference dbInfoClient;
 
     Button addCar;
     ImageView qrCode;
+    Button btnOk;
+    EditText userAuth;
+    EditText passAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +68,12 @@ public class ActivityClientInfo extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        activityClientInfo = ActivityClientInfo.this;
+
+
+        btnOk = findViewById(R.id.okBtn);
+        userAuth = findViewById(R.id.authUser);
+        passAuth = findViewById(R.id.authPass);
         addCar = findViewById(R.id.addCar);
         qrCode = findViewById(R.id.qrCodeView);
         recyclerView = findViewById(R.id.clientInfo);
@@ -87,6 +102,9 @@ public class ActivityClientInfo extends AppCompatActivity {
                     .orderByChild("UserId")
                     .equalTo(user.getUid());
             query.addListenerForSingleValueEvent(valueEventListener);
+            btnOk.setVisibility(View.INVISIBLE);
+            userAuth.setVisibility(View.INVISIBLE);
+            passAuth.setVisibility(View.INVISIBLE);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
@@ -113,9 +131,18 @@ public class ActivityClientInfo extends AppCompatActivity {
                 e.printStackTrace();
             }
         } else{
-            addCar.setEnabled(false);
+            qrCode.setVisibility(View.INVISIBLE);
+            addCar.setVisibility(View.INVISIBLE);
             Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
         }
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn(userAuth.getText().toString(), passAuth.getText().toString());
+                restartActivity(activityClientInfo);
+            }
+        });
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -147,5 +174,25 @@ public class ActivityClientInfo extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    // вход зарегистрированного клиента
+    public void signIn(String e_mail, String pass){
+        firebaseAuth.signInWithEmailAndPassword(e_mail,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ActivityClientInfo.this, "Ok", Toast.LENGTH_SHORT).show();
+                }else{
+                    String TAG="test";
+                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(ActivityClientInfo.this, "Bad", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public static void restartActivity(Activity activity){
+        activity.recreate();
     }
 }
