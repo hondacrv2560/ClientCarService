@@ -167,6 +167,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                   refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -180,6 +181,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -188,6 +190,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -232,6 +235,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -245,6 +249,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -253,6 +258,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -299,6 +305,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    refreshFragment();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
@@ -312,6 +319,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    refreshFragment();
                                 }
                             }
                         });
@@ -319,6 +327,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -362,6 +371,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -375,6 +385,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -383,6 +394,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -427,6 +439,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -440,6 +453,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -449,6 +463,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -492,6 +507,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -505,6 +521,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -513,6 +530,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -557,6 +575,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -570,6 +589,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -578,6 +598,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -622,6 +643,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -635,6 +657,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -643,6 +666,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -687,6 +711,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -700,6 +725,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -709,6 +735,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -753,6 +780,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -766,6 +794,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -774,6 +803,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -925,5 +955,13 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     public WeekView getWeekView() {
         return mWeekView;
+    }
+
+    public void refreshFragment(){
+        OneDay fragment = (OneDay)getFragmentManager().findFragmentById(R.id.fr);
+        getFragmentManager().beginTransaction()
+                .detach(fragment)
+                .attach(fragment)
+                .commit();
     }
 }
