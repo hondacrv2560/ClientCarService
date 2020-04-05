@@ -17,15 +17,18 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/authUser"/>
+        android:id="@+id/authUser"
+        android:hint="введите e-mail"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/authPass"/>
+        android:id="@+id/authPass"
+        android:hint="введите пароль"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/okBtn"
+        android:layout_gravity="center_horizontal"
         android:text="Aвторизироваться"/>
 
         <Button
