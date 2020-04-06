@@ -78,6 +78,11 @@ public String str;
     DatabaseReference myDbReference = database.getReference();
     // поключение к child Orders
     DatabaseReference orderRef = myDbReference.child("Orders");
+
+    public ToDay toDay;
+    public OneDay oneDay;
+    public ThreeDays threeDays;
+    public SevenDays sevenDays;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +118,7 @@ public String str;
             @Override
             public void run() {
                 fragmentManager = getSupportFragmentManager();
-                ToDay toDay = new ToDayActivity();
+                toDay = new ToDayActivity();
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,toDay);
                 transaction.commit();
@@ -187,11 +192,9 @@ public String str;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
-        String bgrnd = "#D5D5D5";
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
-
                 builder_regular_customer = new AlertDialog.Builder(MainActivity.this);
                 builder_regular_customer.setTitle("Регистрация нового клиента");
                 inflater_regular_customer = MainActivity.this.getLayoutInflater();
@@ -243,6 +246,7 @@ public String str;
                         signIn(eMail.getText().toString(), pass.getText().toString());
                     }
                 });
+
                 showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -274,53 +278,24 @@ public String str;
             case R.id.contacts:
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
-//            case R.id.carWashing_3Phases:
-//                str = "CarWashing_3Phases";
-//                break;
-//            case R.id.carWashing:
-//                str = "CarWashing";
-//                break;
-//            case R.id.chemicalCleaningSalon:
-//                str = "ChemicalCleaningSalon";
-//                break;
-//            case R.id.nanoCeramics:
-//                str = "NanoCeramics";
-//                break;
-//            case R.id.polishing:
-//                str = "Polishing";
-//                break;
-//            case R.id.protectiveFilm:
-//                str = "ProtectiveFilm";
-//                break;
-//            case R.id.repairWindshield:
-//                str = "RepairWindshield";
-//                break;
-//            case R.id.salonProtection:
-//                str = "SalonProtection";
-//                break;
-//            case R.id.toning:
-//                str = "Toning";
-//                break;
-//            case R.id.tireFitting:
-//                str = "TireFitting";
-//                break;
             case R.id.day_1:
+                toDay.stopAutoRefresh();
                 fragmentManager=getSupportFragmentManager();
-                OneDay oneDay = new OneDayActivity();
+                oneDay = new OneDayActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr, oneDay);
                 transaction.commit();
                 break;
             case R.id.days_3:
                 fragmentManager=getSupportFragmentManager();
-                ThreeDays threeDays=new ThreeDaysActivity();
+                threeDays=new ThreeDaysActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,threeDays);
                 transaction.commit();
                 break;
             case R.id.week:
                 fragmentManager=getSupportFragmentManager();
-                SevenDays sevenDays=new SevenDaysActivity();
+                sevenDays=new SevenDaysActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,sevenDays);
                 transaction.commit();
