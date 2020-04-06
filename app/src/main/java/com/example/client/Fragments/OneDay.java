@@ -965,8 +965,10 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     public void refreshFragment(){
         OneDay fragment = (OneDay)getFragmentManager().findFragmentById(R.id.fr);
+
         getFragmentManager().beginTransaction()
                 .detach(fragment)
+                .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                 .attach(fragment)
                 .commit();
 
@@ -981,8 +983,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                            refreshFragment();
                                        }
                                    }
-                , 3000      // Это задержка старта, сейчас 3 cek;
-                , 300000); // Это период в 5 минут;
+                , 60000      // Это задержка старта, сейчас 60 cek;
+                , 600000); // Это период в 10 минут;
     }
 
 }
