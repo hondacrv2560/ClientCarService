@@ -95,6 +95,7 @@ public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeL
                                                    .detach(fragment)
                                                    .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                                                    .attach(fragment)
+                                                   .addToBackStack(null)
                                                    .commit();
                                        }
                                    }
