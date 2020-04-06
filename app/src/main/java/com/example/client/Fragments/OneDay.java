@@ -986,5 +986,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 , 60000      // Это задержка старта, сейчас 60 cek;
                 , 600000); // Это период в 10 минут;
     }
-
+    public void stopAutoRefresh(){
+        mTimer.cancel();
+    }
 }
