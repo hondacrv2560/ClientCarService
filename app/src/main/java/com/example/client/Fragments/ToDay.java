@@ -19,16 +19,23 @@ import com.example.client.R;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeListener {
 
     private WeekView mWeekView;
+    Timer mTimer;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View showToDay = inflater.inflate(R.layout.activity_start_view, container,false);
         mWeekView = showToDay.findViewById(R.id.weekView);
+
+        mTimer = new Timer();
+        startAutoRefresh();
+
         mWeekView.goToToday();
 
         // Lets change some dimensions to best fit the view.
@@ -75,5 +82,23 @@ public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeL
     }
     public WeekView getWeekView() {
         return mWeekView;
+    }
+
+    private void startAutoRefresh() {
+
+        mTimer.scheduleAtFixedRate(new TimerTask() {
+
+                                       @Override
+                                       public void run() {
+                                           ToDay fragment = (ToDay) getFragmentManager().findFragmentById(R.id.fr);
+                                           getFragmentManager().beginTransaction()
+                                                   .detach(fragment)
+                                                   .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
+                                                   .attach(fragment)
+                                                   .commit();
+                                       }
+                                   }
+                , 60000      // Это задержка старта, сейчас 60 cek;
+                , 600000); // Это период в 10 минут;
     }
 }
