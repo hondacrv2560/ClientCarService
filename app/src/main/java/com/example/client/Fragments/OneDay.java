@@ -970,8 +970,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 .detach(fragment)
                 .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                 .attach(fragment)
+                .addToBackStack(null)
                 .commit();
-
     }
 
     private void startAutoRefresh() {
