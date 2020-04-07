@@ -264,22 +264,40 @@ public String str;
                 dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
             case R.id.clientOrder:
+                toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
                 Intent showOrder = new Intent(MainActivity.this, ActivityOrdersClientView.class);
                 startActivity(showOrder);
                 break;
             case R.id.infoClient:
+                toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
                 Intent showInfoClient = new Intent(MainActivity.this, ActivityClientInfo.class);
                 startActivity(showInfoClient);
                 break;
             case R.id.mapView:
+                toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
                 Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(showMap);
                 break;
             case R.id.contacts:
+                toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
             case R.id.day_1:
                 toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
                 fragmentManager=getSupportFragmentManager();
                 oneDay = new OneDayActivity();
                 transaction=fragmentManager.beginTransaction();
@@ -287,6 +305,9 @@ public String str;
                 transaction.commit();
                 break;
             case R.id.days_3:
+                toDay.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
+                sevenDays.stopAutoRefresh();
                 fragmentManager=getSupportFragmentManager();
                 threeDays=new ThreeDaysActivity();
                 transaction=fragmentManager.beginTransaction();
@@ -294,6 +315,9 @@ public String str;
                 transaction.commit();
                 break;
             case R.id.week:
+                toDay.stopAutoRefresh();
+                threeDays.stopAutoRefresh();
+                oneDay.stopAutoRefresh();
                 fragmentManager=getSupportFragmentManager();
                 sevenDays=new SevenDaysActivity();
                 transaction=fragmentManager.beginTransaction();
