@@ -923,7 +923,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         return mWeekView;
     }
 
-    public void refreshFragment(){
+    private void refreshFragment(){
         SevenDays fragment = (SevenDays)getFragmentManager().findFragmentById(R.id.fr);
 
         getFragmentManager().beginTransaction()

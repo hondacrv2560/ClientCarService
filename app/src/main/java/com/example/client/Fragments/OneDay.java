@@ -963,7 +963,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         return mWeekView;
     }
 
-    public void refreshFragment(){
+    private void refreshFragment(){
         OneDay fragment = (OneDay)getFragmentManager().findFragmentById(R.id.fr);
 
         getFragmentManager().beginTransaction()
