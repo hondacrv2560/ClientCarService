@@ -77,6 +77,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         speedDialView = showSevenDays.findViewById(R.id.speedDial);
 
         mTimer = new Timer();
+        startAutoRefresh();
         mWeekView.setNumberOfVisibleDays(7);
 
         // Lets change some dimensions to best fit the view.
