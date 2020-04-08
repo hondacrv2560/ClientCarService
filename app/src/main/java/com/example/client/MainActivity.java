@@ -49,11 +49,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //создание подключения к БД
@@ -195,6 +192,7 @@ public String str;
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
+                checkCreateFragment();
                 builder_regular_customer = new AlertDialog.Builder(MainActivity.this);
                 builder_regular_customer.setTitle("Регистрация нового клиента");
                 inflater_regular_customer = MainActivity.this.getLayoutInflater();
@@ -231,6 +229,7 @@ public String str;
                 break;
                 // вход зарегистрированного клиента
             case R.id.enter_register:
+                checkCreateFragment();
                 builder_enter_register = new AlertDialog.Builder(MainActivity.this);
                 builder_enter_register.setTitle("Вход зарегистрированного клиента");
                 inflater_enter_register = MainActivity.this.getLayoutInflater();
@@ -264,40 +263,26 @@ public String str;
                 dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
             case R.id.clientOrder:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
+                checkCreateFragment();
                 Intent showOrder = new Intent(MainActivity.this, ActivityOrdersClientView.class);
                 startActivity(showOrder);
                 break;
             case R.id.infoClient:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
+                checkCreateFragment();
                 Intent showInfoClient = new Intent(MainActivity.this, ActivityClientInfo.class);
                 startActivity(showInfoClient);
                 break;
             case R.id.mapView:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
+                checkCreateFragment();
                 Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(showMap);
                 break;
             case R.id.contacts:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
+                break;
             case R.id.day_1:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
                 oneDay = new OneDayActivity();
                 transaction=fragmentManager.beginTransaction();
@@ -305,9 +290,7 @@ public String str;
                 transaction.commit();
                 break;
             case R.id.days_3:
-                toDay.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
-                sevenDays.stopAutoRefresh();
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
                 threeDays=new ThreeDaysActivity();
                 transaction=fragmentManager.beginTransaction();
@@ -315,9 +298,7 @@ public String str;
                 transaction.commit();
                 break;
             case R.id.week:
-                toDay.stopAutoRefresh();
-                threeDays.stopAutoRefresh();
-                oneDay.stopAutoRefresh();
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
                 sevenDays=new SevenDaysActivity();
                 transaction=fragmentManager.beginTransaction();
@@ -326,5 +307,17 @@ public String str;
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    // проверка содания фрагмента, если фрагмент существует, то останавливаем таймер автоматического обновления
+    public void checkCreateFragment(){
+        if(oneDay!=null){
+            oneDay.stopAutoRefresh();
+        } else if(sevenDays!=null){
+            sevenDays.stopAutoRefresh();
+        }else if(toDay!=null){
+            toDay.stopAutoRefresh();
+        }else if(threeDays!=null){
+            threeDays.stopAutoRefresh();
+        }
     }
 }
