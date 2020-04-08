@@ -923,7 +923,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
         return mWeekView;
     }
 
-    public void refreshFragment(){
+    private void refreshFragment(){
         ThreeDays fragment = (ThreeDays)getFragmentManager().findFragmentById(R.id.fr);
 
         getFragmentManager().beginTransaction()
