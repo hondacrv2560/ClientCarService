@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -40,9 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import okhttp3.internal.Util;
-
-public class ActivityFullOrder extends AppCompatActivity {
+public class ActivityFullOrderCW_Standart extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<FullOrder> fullOrderList = new ArrayList<>();
@@ -119,7 +116,7 @@ public class ActivityFullOrder extends AppCompatActivity {
                         viewHolder.setiItemClickListener(new IItemClickListener() {
                             @Override
                             public void onClick(View view, int position) {
-                                Toast.makeText(ActivityFullOrder.this, "without child"+fullOrderList.get(position).getTitleService(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityFullOrderCW_Standart.this, "without child"+fullOrderList.get(position).getTitleService(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

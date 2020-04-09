@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 import com.example.client.Activity.ActivityClientInfo;
 import com.example.client.Activity.ActivityContacts;
-import com.example.client.Activity.ActivityFullOrder;
+import com.example.client.Activity.ActivityFullOrderCW_Standart;
 import com.example.client.Activity.ActivityOrdersClientView;
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
@@ -39,7 +39,6 @@ import com.example.client.Fragments.OneDay;
 import com.example.client.Fragments.SevenDays;
 import com.example.client.Fragments.ThreeDays;
 import com.example.client.Fragments.ToDay;
-import com.example.client.Models.FullOrder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -51,11 +50,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //создание подключения к БД
@@ -288,7 +284,7 @@ public String str;
                 startActivity(showContact);
             case R.id.fullOrder:
                 checkCreateFragment();
-                Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrder.class);
+                Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrderCW_Standart.class);
                 startActivity(fullOrder);
             case R.id.day_1:
                 checkCreateFragment();
