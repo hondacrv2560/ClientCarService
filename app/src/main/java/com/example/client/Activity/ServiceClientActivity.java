@@ -130,7 +130,8 @@ public class ServiceClientActivity extends AppCompatActivity {
                                 break;
 
                             case 1:
-
+                                Intent carWashing_Standart = new Intent(ServiceClientActivity.this, ActivityCarWashing_Standart.class);
+                                startActivity(carWashing_Standart);
                                 break;
 
                             case 2:
@@ -164,7 +165,8 @@ public class ServiceClientActivity extends AppCompatActivity {
                                 break;
 
                             case 8:
-
+                                Intent tireFitting = new Intent(ServiceClientActivity.this, ActivityTireFitting.class);
+                                startActivity(tireFitting);
                                 break;
 
                             case 9:

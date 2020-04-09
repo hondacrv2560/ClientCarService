@@ -45,6 +45,8 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".Activity.ActivityCarWashing_Standart"/>
+        <activity android:name=".Activity.ActivityTireFitting"/>
         <activity android:name=".Activity.ActivityFullOrder"/>
         <activity android:name=".Activity.ActivityClientInfo"/>
         <activity android:name=".Activity.ActivityOrdersClientView"/>
