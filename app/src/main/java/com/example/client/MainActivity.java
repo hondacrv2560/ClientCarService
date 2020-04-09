@@ -80,6 +80,11 @@ public String str;
     DatabaseReference myDbReference = database.getReference();
     // поключение к child Orders
     DatabaseReference orderRef = myDbReference.child("Orders");
+
+    public ToDay toDay;
+    public OneDay oneDay;
+    public ThreeDays threeDays;
+    public SevenDays sevenDays;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +120,7 @@ public String str;
             @Override
             public void run() {
                 fragmentManager = getSupportFragmentManager();
-                ToDay toDay = new ToDayActivity();
+                toDay = new ToDayActivity();
                 transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,toDay);
                 transaction.commit();
@@ -193,7 +198,7 @@ public String str;
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
-
+                checkCreateFragment();
                 builder_regular_customer = new AlertDialog.Builder(MainActivity.this);
                 builder_regular_customer.setTitle("Регистрация нового клиента");
                 inflater_regular_customer = MainActivity.this.getLayoutInflater();
@@ -230,6 +235,7 @@ public String str;
                 break;
                 // вход зарегистрированного клиента
             case R.id.enter_register:
+                checkCreateFragment();
                 builder_enter_register = new AlertDialog.Builder(MainActivity.this);
                 builder_enter_register.setTitle("Вход зарегистрированного клиента");
                 inflater_enter_register = MainActivity.this.getLayoutInflater();
@@ -262,75 +268,66 @@ public String str;
                 dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
             case R.id.clientOrder:
+                checkCreateFragment();
                 Intent showOrder = new Intent(MainActivity.this, ActivityOrdersClientView.class);
                 startActivity(showOrder);
                 break;
             case R.id.infoClient:
+                checkCreateFragment();
                 Intent showInfoClient = new Intent(MainActivity.this, ActivityClientInfo.class);
                 startActivity(showInfoClient);
                 break;
             case R.id.mapView:
+                checkCreateFragment();
                 Intent showMap = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(showMap);
                 break;
             case R.id.contacts:
+                checkCreateFragment();
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
             case R.id.fullOrder:
+                checkCreateFragment();
                 Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrder.class);
                 startActivity(fullOrder);
-//            case R.id.carWashing_3Phases:
-//                str = "CarWashing_3Phases";
-//                break;
-//            case R.id.carWashing:
-//                str = "CarWashing";
-//                break;
-//            case R.id.chemicalCleaningSalon:
-//                str = "ChemicalCleaningSalon";
-//                break;
-//            case R.id.nanoCeramics:
-//                str = "NanoCeramics";
-//                break;
-//            case R.id.polishing:
-//                str = "Polishing";
-//                break;
-//            case R.id.protectiveFilm:
-//                str = "ProtectiveFilm";
-//                break;
-//            case R.id.repairWindshield:
-//                str = "RepairWindshield";
-//                break;
-//            case R.id.salonProtection:
-//                str = "SalonProtection";
-//                break;
-//            case R.id.toning:
-//                str = "Toning";
-//                break;
-//            case R.id.tireFitting:
-//                str = "TireFitting";
-//                break;
             case R.id.day_1:
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
-                OneDay oneDay = new OneDayActivity();
+                oneDay = new OneDayActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr, oneDay);
                 transaction.commit();
                 break;
             case R.id.days_3:
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
-                ThreeDays threeDays=new ThreeDaysActivity();
+                threeDays=new ThreeDaysActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,threeDays);
                 transaction.commit();
                 break;
             case R.id.week:
+                checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
-                SevenDays sevenDays=new SevenDaysActivity();
+                sevenDays=new SevenDaysActivity();
                 transaction=fragmentManager.beginTransaction();
                 transaction.replace(R.id.fr,sevenDays);
                 transaction.commit();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // проверка содания фрагмента, если фрагмент существует, то останавливаем таймер автоматического обновления
+    public void checkCreateFragment(){
+        if(oneDay!=null){
+            oneDay.stopAutoRefresh();
+        } else if(sevenDays!=null){
+            sevenDays.stopAutoRefresh();
+        }else if(toDay!=null){
+            toDay.stopAutoRefresh();
+        }else if(threeDays!=null){
+            threeDays.stopAutoRefresh();
+        }
     }
 }
