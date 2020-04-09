@@ -172,6 +172,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -185,6 +186,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -237,6 +239,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -250,6 +253,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -303,6 +307,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -316,6 +321,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -367,6 +373,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -380,6 +387,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -432,6 +440,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -445,6 +454,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -497,6 +507,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -510,6 +521,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -562,6 +574,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -574,6 +587,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
@@ -626,6 +640,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
@@ -640,6 +655,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -691,6 +707,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
@@ -705,6 +722,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -757,6 +775,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
@@ -771,6 +790,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
