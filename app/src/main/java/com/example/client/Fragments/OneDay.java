@@ -47,6 +47,8 @@ import java.util.Calendar;
 
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class OneDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
@@ -73,6 +75,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     private LayoutInflater layoutInflater;
     private View view;
 
+    Timer mTimer;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,6 +83,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         mWeekView = showOneDay.findViewById(R.id.weekView);
         speedDialView = showOneDay.findViewById(R.id.speedDial);
 
+        mTimer = new Timer();
+        startAutoRefresh();
         mWeekView.setNumberOfVisibleDays(1);
 
         // Lets change some dimensions to best fit the view.
@@ -926,5 +931,32 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     public WeekView getWeekView() {
         return mWeekView;
+    }
+
+    private void refreshFragment(){
+        OneDay fragment = (OneDay)getFragmentManager().findFragmentById(R.id.fr);
+
+        getFragmentManager().beginTransaction()
+                .detach(fragment)
+                .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
+                .attach(fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void startAutoRefresh() {
+
+        mTimer.scheduleAtFixedRate(new TimerTask() {
+
+                                       @Override
+                                       public void run() {
+                                           refreshFragment();
+                                       }
+                                   }
+                , 60000      // Это задержка старта, сейчас 60 cek;
+                , 600000); // Это период в 10 минут;
+    }
+    public void stopAutoRefresh(){
+        mTimer.cancel();
     }
 }
