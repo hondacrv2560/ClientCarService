@@ -37,8 +37,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ActivityFullOrderCW_Standart extends AppCompatActivity {
@@ -58,6 +62,11 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     private String str = null;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+    Date currentDate;
+    DateFormat dateFormat;
+    DateFormat timeFormat;
+    public String dateText;
+    public String timeText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -173,7 +182,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    getCurrentDateTime();
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -192,7 +202,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    getCurrentDateTime();
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -211,7 +222,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    getCurrentDateTime();
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -230,7 +242,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    getCurrentDateTime();
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
@@ -249,7 +262,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString());
+                                    getCurrentDateTime();
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -372,5 +386,16 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                     break;
         }
         return false;
+    }
+
+    public void getCurrentDateTime(){
+        // Текущее время
+        currentDate = new Date();
+        // Форматирование времени как "день.месяц.год"
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+// Форматирование времени как "часы:минуты:секунды"
+        timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        dateText = dateFormat.format(currentDate);
+        timeText = timeFormat.format(currentDate);
     }
 }
