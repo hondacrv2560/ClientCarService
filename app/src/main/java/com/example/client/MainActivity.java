@@ -190,7 +190,6 @@ public String str;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
-        String bgrnd = "#D5D5D5";
         switch (id){
             //регистрация нового клиента
             case R.id.regular_customer:
@@ -282,10 +281,12 @@ public String str;
                 checkCreateFragment();
                 Intent showContact = new Intent(MainActivity.this, ActivityContacts.class);
                 startActivity(showContact);
+                break;
             case R.id.fullOrder:
                 checkCreateFragment();
                 Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrderCW_Standart.class);
                 startActivity(fullOrder);
+                break;
             case R.id.day_1:
                 checkCreateFragment();
                 fragmentManager=getSupportFragmentManager();
