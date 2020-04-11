@@ -74,14 +74,16 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
 
     Toolbar myToolbar;
     Spinner mySpinner;
+
+    public String titleService;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
-        myToolbar.setTitle(getResources().getString(R.string.app_name));
-
+//        myToolbar.setTitle(getResources().getString(R.string.app_name));
+        myToolbar.setTitle("Мойка стандарт");
         getSupportActionBar().hide();
 
         buttonOrder = findViewById(R.id.buttonOrders);

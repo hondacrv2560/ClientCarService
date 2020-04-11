@@ -15,14 +15,15 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/toolbar"
             android:layout_alignStart="@+id/toolbar"
             android:layout_below="@+id/toolbar"
             android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
+
             android:layout_marginRight="10dp"
+            android:spinnerMode="dialog"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.widget.Toolbar>
     <Button

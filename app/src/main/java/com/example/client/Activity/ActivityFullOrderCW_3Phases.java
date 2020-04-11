@@ -71,6 +71,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     public String dateText;
     public String timeText;
 
+    public String titleService;
     Toolbar myToolbar;
     Spinner mySpinner;
     @Override
@@ -80,7 +81,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
         myToolbar.setTitle(getResources().getString(R.string.app_name));
-
+        myToolbar.setTitle("3-х фазная мойка");
         getSupportActionBar().hide();
 
         buttonOrder = findViewById(R.id.buttonOrders);
@@ -113,11 +114,14 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
                     case 0:
+
                     case 1:
                         break;
                     case 2:
                         Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
                         startActivity(cwStandart);
+                        titleService = mySpinner.getSelectedItem().toString();
+                        Toast.makeText(ActivityFullOrderCW_3Phases.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
