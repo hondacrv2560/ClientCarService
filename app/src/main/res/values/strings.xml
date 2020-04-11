@@ -14,4 +14,19 @@
     <string name="date">Дата:</string>
     <string name="addOrder">Запись клиента:</string>
     <string name="title_activity_maps">Map</string>
+
+    <string-array name="names">
+        <item>3-х ФАЗНАЯ МОЙКА</item>
+        <item>МОЙКА СТАНДАРТ</item>
+        <item>РЕМОНТ СТЕКОЛ</item>
+        <item>ПОЛИРОВКА</item>
+        <item>НАНОКЕРАМИКА</item>
+        <item>ЗАЩИТНАЯ ПЛЕНКА</item>
+        <item>ХИМЧИСТКА САЛОНА</item>
+        <item>ЗАЩИТА САЛОНА</item>
+        <item>ШИНОМОНТАЖ</item>
+        <item>ТОНИРОВКА</item>
+    </string-array>
 </resources>
+
+
