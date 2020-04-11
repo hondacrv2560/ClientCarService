@@ -16,6 +16,7 @@
     <string name="title_activity_maps">Map</string>
 
     <string-array name="names">
+        <item>ВЫБОР УСЛУГИ:</item>
         <item>3-х ФАЗНАЯ МОЙКА</item>
         <item>МОЙКА СТАНДАРТ</item>
         <item>РЕМОНТ СТЕКОЛ</item>
