@@ -73,7 +73,6 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
 
     Toolbar myToolbar;
     Spinner mySpinner;
-    String[] districts;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +106,6 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                 R.layout.spinner_item,
                 getResources().getStringArray(R.array.names));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        districts = getResources().getStringArray(R.array.names);
         mySpinner.setAdapter(myAdapter);
 
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -115,7 +113,6 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
                     case 0:
-                        break;
                     case 1:
                         break;
                     case 2:
@@ -123,78 +120,6 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                         startActivity(cwStandart);
                         break;
                 }
-//                switch (mySpinner.getSelectedItemPosition()){
-//                    case 0:
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString() + " test",
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-////                    case 1:
-////
-////                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-////                                mySpinner.getSelectedItem().toString(),
-////                                Toast.LENGTH_LONG)
-////                                .show();
-////                        break;
-//                    case 2:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString() + "tetst",
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 3:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 4:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 5:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 6:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 7:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 8:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                    case 9:
-//
-//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-//                                mySpinner.getSelectedItem().toString(),
-//                                Toast.LENGTH_LONG)
-//                                .show();
-//                        break;
-//                }
-
             }
 
             @Override
