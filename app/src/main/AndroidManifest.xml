@@ -48,6 +48,7 @@
         <activity android:name=".Activity.ActivityCarWashing_Standart"/>
         <activity android:name=".Activity.ActivityTireFitting"/>
         <activity android:name=".Activity.ActivityFullOrderCW_Standart"/>
+        <activity android:name=".Activity.ActivityFullOrderCW_3Phases"/>
         <activity android:name=".Activity.ActivityClientInfo"/>
         <activity android:name=".Activity.ActivityOrdersClientView"/>
         <activity android:name=".Activity.RegularClientActivity" />
