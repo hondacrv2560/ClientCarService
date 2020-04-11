@@ -114,19 +114,18 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (mySpinner.getSelectedItemPosition()){
                     case 0:
-
                         Toast.makeText(ActivityFullOrderCW_Standart.this,
                                 mySpinner.getSelectedItem().toString(),
                                 Toast.LENGTH_LONG)
                                 .show();
                         break;
-                    case 1:
-
-                        Toast.makeText(ActivityFullOrderCW_Standart.this,
-                                mySpinner.getSelectedItem().toString(),
-                                Toast.LENGTH_LONG)
-                                .show();
-                        break;
+//                    case 1:
+//
+//                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+//                                mySpinner.getSelectedItem().toString(),
+//                                Toast.LENGTH_LONG)
+//                                .show();
+//                        break;
                     case 2:
 
                         Toast.makeText(ActivityFullOrderCW_Standart.this,
