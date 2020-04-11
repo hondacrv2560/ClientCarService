@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,10 +72,18 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     public String dateText;
     public String timeText;
 
+    Toolbar myToolbar;
+    Spinner mySpinner;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mySpinner = (Spinner) findViewById(R.id.spinner);
+        myToolbar.setTitle(getResources().getString(R.string.app_name));
+
+        getSupportActionBar().hide();
+
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
         idorder = findViewById(R.id.id_Order);
@@ -88,6 +100,96 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                 myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                 ordersList.clear();
                 finish();
+            }
+        });
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ActivityFullOrderCW_Standart.this,
+                R.layout.spinner_item,
+                getResources().getStringArray(R.array.names));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(myAdapter);
+
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (mySpinner.getSelectedItemPosition()){
+                    case 0:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 1:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 2:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 3:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 4:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 5:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 6:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 7:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 8:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 9:
+
+                        Toast.makeText(ActivityFullOrderCW_Standart.this,
+                                mySpinner.getSelectedItem().toString(),
+                                Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
