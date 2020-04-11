@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.example.client.Activity.ActivityClientInfo;
 import com.example.client.Activity.ActivityContacts;
+import com.example.client.Activity.ActivityFullOrderCW_3Phases;
 import com.example.client.Activity.ActivityFullOrderCW_Standart;
 import com.example.client.Activity.ActivityOrdersClientView;
 import com.example.client.Activity.RegularClientActivity;
@@ -284,7 +285,7 @@ public String str;
                 break;
             case R.id.fullOrder:
                 checkCreateFragment();
-                Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrderCW_Standart.class);
+                Intent fullOrder = new Intent(MainActivity.this, ActivityFullOrderCW_3Phases.class);
                 startActivity(fullOrder);
                 break;
             case R.id.day_1:
