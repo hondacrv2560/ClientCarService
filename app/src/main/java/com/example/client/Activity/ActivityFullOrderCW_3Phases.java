@@ -2,6 +2,7 @@ package com.example.client.Activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -16,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -74,13 +76,14 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     public String titleService;
     Toolbar myToolbar;
     Spinner mySpinner;
+
+    public Boolean spinnerTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
-        myToolbar.setTitle(getResources().getString(R.string.app_name));
         myToolbar.setTitle("3-х фазная мойка");
         getSupportActionBar().hide();
 
@@ -106,23 +109,35 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ActivityFullOrderCW_3Phases.this,
                 R.layout.spinner_item,
                 getResources().getStringArray(R.array.names));
+
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        mySpinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                spinnerTouched = true;
+                return false;
+            }
+        });
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                switch (position) {
-                    case 0:
-
-                    case 1:
-                        break;
-                    case 2:
-                        Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
-                        startActivity(cwStandart);
-                        titleService = mySpinner.getSelectedItem().toString();
-                        Toast.makeText(ActivityFullOrderCW_3Phases.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                        break;
+                if(spinnerTouched){
+                    switch (position) {
+                        case 0:
+                            break;
+                        case 1:
+                            Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
+                            startActivity(cwStandart);
+                            break;
+                        case 2:
+//                            Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
+//                            startActivity(cwStandart);
+//                            titleService = mySpinner.getSelectedItem().toString();
+                            Toast.makeText(ActivityFullOrderCW_3Phases.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
             }
 
@@ -380,7 +395,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     private void retrieveData() {
         fullOrderList.clear();
         DatabaseReference dbFullOrder = FirebaseDatabase.getInstance().getReference()
-                .child("OrderCWStandart");
+                .child("OrderCW3Phases");
         dbFullOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -75,15 +75,15 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     Toolbar myToolbar;
     Spinner mySpinner;
 
-    public String titleService;
+    public Boolean spinnerTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
-//        myToolbar.setTitle(getResources().getString(R.string.app_name));
         myToolbar.setTitle("Мойка стандарт");
+
         getSupportActionBar().hide();
 
         buttonOrder = findViewById(R.id.buttonOrders);
@@ -111,19 +111,32 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        mySpinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                spinnerTouched = true;
+                return false;
+            }
+        });
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                switch (position) {
-                    case 0:
-                    case 2:
-                        break;
-                    case 1:
-                        Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
-                        startActivity(cw3Phases);
-                        break;
+                if(spinnerTouched){
+                    switch (position) {
+                        case 0:
+                            Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
+                            startActivity(cw3Phases);
+                            break;
+                        case 1:
+//                            Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
+//                            startActivity(cw3Phases);
+                            break;
+
+                            case 2:
+                            break;
+                    }
                 }
             }
 
@@ -423,6 +436,9 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                     y2=touchEvent.getY();
                     if (x1<x2){
                         Intent intent = new Intent(ActivityFullOrderCW_Standart.this, ActivityClientInfo.class);
+                        startActivity(intent);
+                    } else if (x2<x1){
+                        Intent intent = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
                         startActivity(intent);
                     }
                     break;
