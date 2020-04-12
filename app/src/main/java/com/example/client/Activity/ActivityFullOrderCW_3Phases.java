@@ -124,6 +124,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if(spinnerTouched){
+                    Toast.makeText(ActivityFullOrderCW_3Phases.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     switch (position) {
                         case 0:
                             break;
@@ -132,10 +133,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             startActivity(cwStandart);
                             break;
                         case 2:
-//                            Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
-//                            startActivity(cwStandart);
-//                            titleService = mySpinner.getSelectedItem().toString();
-                            Toast.makeText(ActivityFullOrderCW_3Phases.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                            Intent repairWindshield = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_RepairWindshield.class);
+                            startActivity(repairWindshield);
                             break;
                     }
                 }

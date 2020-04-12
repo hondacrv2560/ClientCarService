@@ -119,22 +119,20 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
             }
         });
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if(spinnerTouched){
+                    Toast.makeText(ActivityFullOrderCW_Standart.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     switch (position) {
                         case 0:
                             Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
                             startActivity(cw3Phases);
                             break;
                         case 1:
-//                            Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
-//                            startActivity(cw3Phases);
                             break;
-
-                            case 2:
+                        case 2:
+                            Intent repairWindshield = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrder_RepairWindshield.class);
+                            startActivity(repairWindshield);
                             break;
                     }
                 }
@@ -435,8 +433,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                     x2=touchEvent.getX();
                     y2=touchEvent.getY();
                     if (x1<x2){
-                        Intent intent = new Intent(ActivityFullOrderCW_Standart.this, ActivityClientInfo.class);
-                        startActivity(intent);
+                        Intent repairWindshield = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrder_RepairWindshield.class);
+                        startActivity(repairWindshield);
                     } else if (x2<x1){
                         Intent intent = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
                         startActivity(intent);
