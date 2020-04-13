@@ -51,6 +51,7 @@
         <activity android:name=".Activity.ActivityFullOrderCW_3Phases"/>
         <activity android:name=".Activity.ActivityFullOrder_RepairWindshield"/>
         <activity android:name=".Activity.ActivityFullOrder_Polishing"/>
+        <activity android:name=".Activity.ActivityFullOrder_Nanoceramics"/>
         <activity android:name=".Activity.ActivityClientInfo"/>
         <activity android:name=".Activity.ActivityOrdersClientView"/>
         <activity android:name=".Activity.RegularClientActivity" />
