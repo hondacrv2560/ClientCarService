@@ -151,7 +151,7 @@ public class ActivityFullOrder_Nanoceramics extends AppCompatActivity {
     }
 
     private void setData() {
-        Query query = FirebaseDatabase.getInstance().getReference().child("OrderPolishing");
+        Query query = FirebaseDatabase.getInstance().getReference().child("OrderNanoCeramics");
         FirebaseRecyclerOptions<FullOrder> options = new FirebaseRecyclerOptions.Builder<FullOrder>()
                 .setQuery(query, FullOrder.class)
                 .build();
@@ -397,7 +397,7 @@ public class ActivityFullOrder_Nanoceramics extends AppCompatActivity {
     private void retrieveData() {
         fullOrderList.clear();
         DatabaseReference dbFullOrder = FirebaseDatabase.getInstance().getReference()
-                .child("OrderPolishing");
+                .child("OrderNanoCeramics");
         dbFullOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
