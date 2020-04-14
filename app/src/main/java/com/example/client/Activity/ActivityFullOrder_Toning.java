@@ -49,7 +49,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class ActivityFullOrder_TireFitting extends AppCompatActivity {
+public class ActivityFullOrder_Toning extends AppCompatActivity {
     float x1, x2, y1,y2;
     RecyclerView recyclerView;
     List<FullOrder> fullOrderList = new ArrayList<>();
@@ -82,7 +82,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
         setContentView(R.layout.activity_create_full_order);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
-        myToolbar.setTitle("Шиномонтаж");
+        myToolbar.setTitle("Тонировка");
         getSupportActionBar().hide();
 
         buttonOrder = findViewById(R.id.buttonOrders);
@@ -104,7 +104,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ActivityFullOrder_TireFitting.this,
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ActivityFullOrder_Toning.this,
                 R.layout.spinner_item,
                 getResources().getStringArray(R.array.names));
 
@@ -122,18 +122,18 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if(spinnerTouched){
-                    Toast.makeText(ActivityFullOrder_TireFitting.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityFullOrder_Toning.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     switch (position) {
                         case 0:
-                            Intent cw3Phases = new Intent(ActivityFullOrder_TireFitting.this, ActivityFullOrderCW_3Phases.class);
+                            Intent cw3Phases = new Intent(ActivityFullOrder_Toning.this, ActivityFullOrderCW_3Phases.class);
                             startActivity(cw3Phases);
                             break;
                         case 1:
-                            Intent cwStandart = new Intent(ActivityFullOrder_TireFitting.this, ActivityFullOrderCW_Standart.class);
+                            Intent cwStandart = new Intent(ActivityFullOrder_Toning.this, ActivityFullOrderCW_Standart.class);
                             startActivity(cwStandart);
                             break;
                         case 2:
-                            Intent repairWindshield = new Intent(ActivityFullOrder_TireFitting.this, ActivityFullOrder_Polishing.class);
+                            Intent repairWindshield = new Intent(ActivityFullOrder_Toning.this, ActivityFullOrder_Polishing.class);
                             startActivity(repairWindshield);
                             break;
                         case 3:
@@ -151,7 +151,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
     }
 
     private void setData() {
-        Query query = FirebaseDatabase.getInstance().getReference().child("OrderTireFitting");
+        Query query = FirebaseDatabase.getInstance().getReference().child("OrderToning");
         FirebaseRecyclerOptions<FullOrder> options = new FirebaseRecyclerOptions.Builder<FullOrder>()
                 .setQuery(query, FullOrder.class)
                 .build();
@@ -186,7 +186,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
                         viewHolder.setiItemClickListener(new IItemClickListener() {
                             @Override
                             public void onClick(View view, int position) {
-                                Toast.makeText(ActivityFullOrder_TireFitting.this, "without child"+fullOrderList.get(position).getTitleService(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityFullOrder_Toning.this, "without child"+fullOrderList.get(position).getTitleService(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -397,7 +397,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
     private void retrieveData() {
         fullOrderList.clear();
         DatabaseReference dbFullOrder = FirebaseDatabase.getInstance().getReference()
-                .child("OrderTireFitting");
+                .child("OrderToning");
         dbFullOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -438,10 +438,10 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
                 x2=touchEvent.getX();
                 y2=touchEvent.getY();
                 if (x1<x2){
-                    Intent repairWindshield = new Intent(ActivityFullOrder_TireFitting.this, ActivityFullOrder_Toning.class);
+                    Intent repairWindshield = new Intent(ActivityFullOrder_Toning.this, ActivityFullOrderCW_3Phases.class);
                     startActivity(repairWindshield);
                 } else if (x2<x1){
-                    Intent intent = new Intent(ActivityFullOrder_TireFitting.this, ActivityFullOrder_SalonProtection.class);
+                    Intent intent = new Intent(ActivityFullOrder_Toning.this, ActivityFullOrder_TireFitting.class);
                     startActivity(intent);
                 }
 
@@ -460,4 +460,5 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
     }
+
 }
