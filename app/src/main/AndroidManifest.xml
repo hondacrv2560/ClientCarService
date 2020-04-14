@@ -55,6 +55,7 @@
         <activity android:name=".Activity.ActivityFullOrder_ProtectiveFilm"/>
         <activity android:name=".Activity.ActivityFullOrder_ChemicalCleaningSalon"/>
         <activity android:name=".Activity.ActivityFullOrder_SalonProtection"/>
+        <activity android:name=".Activity.ActivityFullOrder_TireFitting"/>
         <activity android:name=".Activity.ActivityClientInfo"/>
         <activity android:name=".Activity.ActivityOrdersClientView"/>
         <activity android:name=".Activity.RegularClientActivity" />
