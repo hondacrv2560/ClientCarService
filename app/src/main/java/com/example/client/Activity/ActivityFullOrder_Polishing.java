@@ -121,8 +121,8 @@ public class ActivityFullOrder_Polishing extends AppCompatActivity {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(spinnerTouched){
-                    Toast.makeText(ActivityFullOrder_Polishing.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                if (spinnerTouched) {
+                    Toast.makeText(ActivityFullOrder_Polishing.this, mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     switch (position) {
                         case 0:
                             Intent cw3Phases = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrderCW_3Phases.class);
@@ -133,6 +133,34 @@ public class ActivityFullOrder_Polishing extends AppCompatActivity {
                             startActivity(cwStandart);
                             break;
                         case 2:
+                            Intent repairWindshield = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_RepairWindshield.class);
+                            startActivity(repairWindshield);
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            Intent nanoCeramics = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_Nanoceramics.class);
+                            startActivity(nanoCeramics);
+                            break;
+                        case 5:
+                            Intent protectiveFilm = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_ProtectiveFilm.class);
+                            startActivity(protectiveFilm);
+                            break;
+                        case 6:
+                            Intent chemicalCleaning = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_ChemicalCleaningSalon.class);
+                            startActivity(chemicalCleaning);
+                            break;
+                        case 7:
+                            Intent protectiveSalon = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_SalonProtection.class);
+                            startActivity(protectiveSalon);
+                            break;
+                        case 8:
+                            Intent tireFitting = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_TireFitting.class);
+                            startActivity(tireFitting);
+                            break;
+                        case 9:
+                            Intent toning = new Intent(ActivityFullOrder_Polishing.this, ActivityFullOrder_Toning.class);
+                            startActivity(toning);
                             break;
                     }
                 }
