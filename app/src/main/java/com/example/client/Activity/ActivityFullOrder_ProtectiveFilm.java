@@ -133,12 +133,35 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                             startActivity(cwStandart);
                             break;
                         case 2:
-                            Intent repairWindshield = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_Polishing.class);
+                            Intent repairWindshield = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_RepairWindshield.class);
                             startActivity(repairWindshield);
                             break;
                         case 3:
+                            Intent polishing = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_Polishing.class);
+                            startActivity(polishing);
                             break;
-
+                        case 4:
+                            Intent nanoCeramics = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_Nanoceramics.class);
+                            startActivity(nanoCeramics);
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            Intent chemicalCleaning = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_ChemicalCleaningSalon.class);
+                            startActivity(chemicalCleaning);
+                            break;
+                        case 7:
+                            Intent protectiveSalon = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_SalonProtection.class);
+                            startActivity(protectiveSalon);
+                            break;
+                        case 8:
+                            Intent tireFitting = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_TireFitting.class);
+                            startActivity(tireFitting);
+                            break;
+                        case 9:
+                            Intent toning = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityFullOrder_Toning.class);
+                            startActivity(toning);
+                            break;
                     }
                 }
             }
