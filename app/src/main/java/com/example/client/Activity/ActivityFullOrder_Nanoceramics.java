@@ -133,12 +133,35 @@ public class ActivityFullOrder_Nanoceramics extends AppCompatActivity {
                             startActivity(cwStandart);
                             break;
                         case 2:
-                            Intent repairWindshield = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_Polishing.class);
+                            Intent repairWindshield = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_RepairWindshield.class);
                             startActivity(repairWindshield);
                             break;
                         case 3:
+                            Intent polishing = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_Polishing.class);
+                            startActivity(polishing);
                             break;
-
+                        case 4:
+                            break;
+                        case 5:
+                            Intent protectiveFilm = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_ProtectiveFilm.class);
+                            startActivity(protectiveFilm);
+                            break;
+                        case 6:
+                            Intent chemicalCleaning = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_ChemicalCleaningSalon.class);
+                            startActivity(chemicalCleaning);
+                            break;
+                        case 7:
+                            Intent protectiveSalon = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_SalonProtection.class);
+                            startActivity(protectiveSalon);
+                            break;
+                        case 8:
+                            Intent tireFitting = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_TireFitting.class);
+                            startActivity(tireFitting);
+                            break;
+                        case 9:
+                            Intent toning = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityFullOrder_Toning.class);
+                            startActivity(toning);
+                            break;
                     }
                 }
             }
