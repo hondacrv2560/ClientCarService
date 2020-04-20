@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.common.StringUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -81,12 +82,13 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     Spinner mySpinner;
     Spinner selectOrder;
 
-    String textData = "";
+    private String textData;
     ValueEventListener listener;
     ArrayAdapter<String> adapterSpinner;
     ArrayList<String> spinnerListOrder;
 
     public Boolean spinnerTouched = false;
+    public Boolean spinnerOrderTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,11 +132,36 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        selectOrder.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                spinnerOrderTouched = true;
+                return false;
+            }
+        });
+
         mySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 spinnerTouched = true;
                 return false;
+            }
+        });
+
+        selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinnerOrderTouched){
+                    textData = selectOrder.getSelectedItem().toString();
+                    textData = textData.substring(0, textData.lastIndexOf('(')).trim();
+                    idorder.setText(textData);
+                    Toast.makeText(ActivityFullOrderCW_3Phases.this,  selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -476,7 +503,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     spinnerKey = ds.getKey();
-                    spinnerListOrder.add(spinnerKey.toString()+ ds.getValue().toString());
+                    spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
+                    +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
                 }
                 adapterSpinner.notifyDataSetChanged();
 
