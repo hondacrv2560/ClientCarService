@@ -62,8 +62,11 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     List<FullOrders> ordersList = new ArrayList<>();
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
+    private DatabaseReference spinnerDbReferenceOrder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase spinnerDb = FirebaseDatabase.getInstance();
     private String key;
+    private String spinnerKey;
     private String str = null;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
@@ -76,16 +79,30 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     public String titleService;
     Toolbar myToolbar;
     Spinner mySpinner;
+    Spinner selectOrder;
+
+    String textData = "";
+    ValueEventListener listener;
+    ArrayAdapter<String> adapterSpinner;
+    ArrayList<String> spinnerListOrder;
 
     public Boolean spinnerTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
+
+        spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
+        selectOrder = (Spinner) findViewById(R.id.idOrder);
         myToolbar.setTitle("3-х фазная мойка");
         getSupportActionBar().hide();
+
+        spinnerListOrder = new ArrayList<>();
+        adapterSpinner = new ArrayAdapter<String>(ActivityFullOrderCW_3Phases.this, android.R.layout.simple_spinner_dropdown_item,spinnerListOrder);
+       selectOrder.setAdapter(adapterSpinner);
+        retrieveDataSpinnerOrder();
 
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
@@ -451,6 +468,25 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         if(adapter!=null)
             adapter.stopListening();
         super.onStop();
+    }
+
+    public void retrieveDataSpinnerOrder(){
+        listener = spinnerDbReferenceOrder.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    spinnerKey = ds.getKey();
+                    spinnerListOrder.add(spinnerKey.toString()+ ds.getValue().toString());
+                }
+                adapterSpinner.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
