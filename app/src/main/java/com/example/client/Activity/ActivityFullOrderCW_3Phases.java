@@ -83,7 +83,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     Spinner selectOrder;
 
     private String textData;
-    ValueEventListener listener;
+
     ArrayAdapter<String> adapterSpinner;
     ArrayList<String> spinnerListOrder;
 
@@ -104,7 +104,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         spinnerListOrder = new ArrayList<>();
         adapterSpinner = new ArrayAdapter<String>(ActivityFullOrderCW_3Phases.this, android.R.layout.simple_spinner_dropdown_item,spinnerListOrder);
        selectOrder.setAdapter(adapterSpinner);
-        retrieveDataSpinnerOrder();
+
 
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
@@ -217,6 +217,12 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
 
             }
         });
+
+        // запрос на выборку заказов по ИД клиента 
+        Query query = spinnerDbReferenceOrder
+                .orderByChild("UserId")
+                .equalTo("user unregister");
+        query.addListenerForSingleValueEvent(listener);
     }
 
     private void setData() {
@@ -497,7 +503,26 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         super.onStop();
     }
 
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            for(DataSnapshot ds:dataSnapshot.getChildren()){
+                spinnerKey = ds.getKey();
+                spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
+                        +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
+            }
+            adapterSpinner.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
+
     public void retrieveDataSpinnerOrder(){
+
         listener = spinnerDbReferenceOrder.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -515,6 +540,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
