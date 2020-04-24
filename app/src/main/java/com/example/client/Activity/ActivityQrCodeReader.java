@@ -28,6 +28,7 @@ public class ActivityQrCodeReader extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_reader);
+        String txtTitleService = getIntent().getStringExtra("titleService");
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
         final Activity activity = this;
 
@@ -58,11 +59,16 @@ public class ActivityQrCodeReader extends AppCompatActivity {
         btnQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_3Phases.class);
-//                intent.putExtra("qrCode", "user unregister");
-                intent.putExtra("qrCode", qrCode);
-                startActivity(intent);
-                finish();
+                switch (txtTitleService){
+                    case "CW_3Phases":
+                        Intent intent = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_3Phases.class);
+                intent.putExtra("qrCode", "user unregister");
+//                        intent.putExtra("qrCode", qrCode);
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+
             }
         });
     }
