@@ -178,14 +178,17 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                         case 1:
                             Intent cwStandart = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrderCW_Standart.class);
                             startActivity(cwStandart);
+                            finish();
                             break;
                         case 2:
                             Intent repairWindshield = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_RepairWindshield.class);
                             startActivity(repairWindshield);
+                            finish();
                             break;
                         case 3:
                             Intent polishing = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_Polishing.class);
                             startActivity(polishing);
+                            finish();
                             break;
                         case 4:
                             Intent nanoCeramics = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_Nanoceramics.class);
@@ -194,22 +197,27 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                         case 5:
                             Intent protectiveFilm = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_ProtectiveFilm.class);
                             startActivity(protectiveFilm);
+                            finish();
                             break;
                         case 6:
                             Intent chemicalCleaning = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_ChemicalCleaningSalon.class);
                             startActivity(chemicalCleaning);
+                            finish();
                             break;
                         case 7:
                             Intent protectiveSalon = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_SalonProtection.class);
                             startActivity(protectiveSalon);
+                            finish();
                             break;
                         case 8:
                             Intent tireFitting = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_TireFitting.class);
                             startActivity(tireFitting);
+                            finish();
                             break;
                         case 9:
                             Intent toning = new Intent(ActivityFullOrderCW_3Phases.this, ActivityFullOrder_Toning.class);
                             startActivity(toning);
+                            finish();
                             break;
                     }
                 }
@@ -328,7 +336,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -348,7 +356,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -368,7 +376,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -388,7 +396,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
@@ -408,7 +416,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
