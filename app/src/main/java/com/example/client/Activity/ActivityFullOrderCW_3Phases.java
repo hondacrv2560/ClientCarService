@@ -94,6 +94,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
 
+        String txtQrCode = getIntent().getStringExtra("qrCode");
+
         spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
@@ -108,6 +110,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
 
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
+        idclient.setText(txtQrCode);
         idorder = findViewById(R.id.id_Order);
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
@@ -221,8 +224,17 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         // запрос на выборку заказов по ИД клиента 
         Query query = spinnerDbReferenceOrder
                 .orderByChild("UserId")
-                .equalTo("user unregister");
+                .equalTo(idclient.getText().toString());
         query.addListenerForSingleValueEvent(listener);
+
+        idclient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFullOrderCW_3Phases.this, ActivityQrCodeReader.class);
+                intent.putExtra("titleService", "CW_3Phases");
+                startActivity(intent);
+            }
+        });
     }
 
     private void setData() {
@@ -521,28 +533,28 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     };
 
 
-    public void retrieveDataSpinnerOrder(){
-
-        listener = spinnerDbReferenceOrder.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    spinnerKey = ds.getKey();
-                    spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
-                    +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
-                }
-                adapterSpinner.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }
+//    public void retrieveDataSpinnerOrder(){
+//
+//        listener = spinnerDbReferenceOrder.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot ds:dataSnapshot.getChildren()){
+//                    spinnerKey = ds.getKey();
+//                    spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
+//                    +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
+//                }
+//                adapterSpinner.notifyDataSetChanged();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//
+//    }
 
     public boolean onTouchEvent(MotionEvent touchEvent){
         switch (touchEvent.getAction()){
