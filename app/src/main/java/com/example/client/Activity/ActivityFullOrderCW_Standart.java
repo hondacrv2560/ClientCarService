@@ -61,8 +61,11 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     List<FullOrders> ordersList = new ArrayList<>();
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
+    private DatabaseReference spinnerDbReferenceOrder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase spinnerDb = FirebaseDatabase.getInstance();
     private String key;
+    private String spinnerKey;
     private String str = null;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
@@ -72,22 +75,39 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     public String dateText;
     public String timeText;
 
+    public String titleService;
     Toolbar myToolbar;
     Spinner mySpinner;
+    Spinner selectOrder;
+
+    private String textData;
+
+    ArrayAdapter<String> adapterSpinner;
+    ArrayList<String> spinnerListOrder;
 
     public Boolean spinnerTouched = false;
+    public Boolean spinnerOrderTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
+
+        String txtQrCode = getIntent().getStringExtra("qrCode");
+
+        spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
+        selectOrder = (Spinner) findViewById(R.id.idOrder);
         myToolbar.setTitle("Мойка стандарт");
-
         getSupportActionBar().hide();
+
+        spinnerListOrder = new ArrayList<>();
+        adapterSpinner = new ArrayAdapter<String>(ActivityFullOrderCW_Standart.this, android.R.layout.simple_spinner_dropdown_item,spinnerListOrder);
+        selectOrder.setAdapter(adapterSpinner);
 
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
+        idclient.setText(txtQrCode);
         idorder = findViewById(R.id.id_Order);
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
@@ -111,6 +131,30 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        selectOrder.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                spinnerOrderTouched = true;
+                return false;
+            }
+        });
+
+       selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               if (spinnerOrderTouched){
+                   textData = selectOrder.getSelectedItem().toString();
+                   textData = textData.substring(0, textData.lastIndexOf('(')).trim();
+                   idorder.setText(textData);
+                   Toast.makeText(ActivityFullOrderCW_Standart.this,  selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+               }
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
         mySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -169,6 +213,21 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        // запрос на выборку заказов по ИД клиента
+        Query query = spinnerDbReferenceOrder
+                .orderByChild("UserId")
+                .equalTo(idclient.getText().toString());
+        query.addListenerForSingleValueEvent(listener);
+
+        idclient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFullOrderCW_Standart.this, ActivityQrCodeReader.class);
+                intent.putExtra("titleService", "CW_Standard");
+                startActivity(intent);
             }
         });
     }
@@ -450,6 +509,23 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
             adapter.stopListening();
         super.onStop();
     }
+
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            for(DataSnapshot ds:dataSnapshot.getChildren()){
+                spinnerKey = ds.getKey();
+                spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
+                        +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
+            }
+            adapterSpinner.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 
     public boolean onTouchEvent(MotionEvent touchEvent){
         switch (touchEvent.getAction()){

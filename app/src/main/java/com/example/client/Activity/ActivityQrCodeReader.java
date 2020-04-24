@@ -61,10 +61,17 @@ public class ActivityQrCodeReader extends AppCompatActivity {
             public void onClick(View v) {
                 switch (txtTitleService){
                     case "CW_3Phases":
-                        Intent intent = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_3Phases.class);
-                intent.putExtra("qrCode", "user unregister");
-//                        intent.putExtra("qrCode", qrCode);
-                        startActivity(intent);
+                        Intent cw_3Phases = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_3Phases.class);
+                        cw_3Phases.putExtra("qrCode", "user unregister");
+//                        cw_3Phases.putExtra("qrCode", qrCode);
+                        startActivity(cw_3Phases);
+                        finish();
+                        break;
+                    case "CW_Standard":
+                        Intent cw_Standard = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_Standart.class);
+                        cw_Standard.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(cw_Standard);
                         finish();
                         break;
                 }
