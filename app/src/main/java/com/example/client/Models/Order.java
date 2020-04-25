@@ -50,15 +50,7 @@ public class Order implements Serializable {
         this.recordDate = recordDate;
         this.recordTime = recordTime;
     }
-
-    public String getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(String userId) {
-        UserId = userId;
-    }
-
+    
     public int getStartTimeHour() {
         return startTimeHour;
     }
