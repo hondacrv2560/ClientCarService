@@ -243,7 +243,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -280,7 +280,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -316,7 +316,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -353,7 +353,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -388,7 +388,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -425,7 +425,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -461,7 +461,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -499,7 +499,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -534,7 +534,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -571,7 +571,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -607,7 +607,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -644,7 +644,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -680,7 +680,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -717,7 +717,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -753,7 +753,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -791,7 +791,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
@@ -827,7 +827,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getCurrentDateTime();
@@ -864,7 +864,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
