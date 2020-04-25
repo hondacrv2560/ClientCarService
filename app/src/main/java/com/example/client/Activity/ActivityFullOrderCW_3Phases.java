@@ -2,7 +2,6 @@ package com.example.client.Activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -13,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -42,7 +41,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.zxing.common.StringUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -60,6 +58,11 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     public Button buttonOrder;
     public EditText idorder;
     public EditText idclient;
+    public EditText phoneClient;
+    public EditText govNumCar;
+    public Button searchPhoneClient;
+    public Button searchGovNumber;
+    public CheckBox checkUnregClient;
     List<FullOrders> ordersList = new ArrayList<>();
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
@@ -112,6 +115,15 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         idclient = findViewById(R.id.id_Client);
         idclient.setText(txtQrCode);
         idorder = findViewById(R.id.id_Order);
+        checkUnregClient = findViewById(R.id.userChekUnreg);
+        phoneClient = findViewById(R.id.phoneUnregClient);
+        govNumCar = findViewById(R.id.govNumberCarClient);
+        searchPhoneClient = findViewById(R.id.searchPhone);
+        searchGovNumber = findViewById(R.id.searchGovNumber);
+        phoneClient.setVisibility((View.GONE));
+        govNumCar.setVisibility((View.GONE));
+        searchPhoneClient.setVisibility((View.GONE));
+        searchGovNumber.setVisibility((View.GONE));
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -241,6 +253,26 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                 Intent intent = new Intent(ActivityFullOrderCW_3Phases.this, ActivityQrCodeReader.class);
                 intent.putExtra("titleService", "CW_3Phases");
                 startActivity(intent);
+            }
+        });
+        checkUnregClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked){
+                    idclient.setVisibility(View.VISIBLE);
+                    phoneClient.setVisibility((View.GONE));
+                    govNumCar.setVisibility((View.GONE));
+                    searchPhoneClient.setVisibility((View.GONE));
+                    searchGovNumber.setVisibility((View.GONE));
+                }
+                else {
+                    idclient.setVisibility(View.GONE);
+                    phoneClient.setVisibility((View.VISIBLE));
+                    govNumCar.setVisibility((View.VISIBLE));
+                    searchPhoneClient.setVisibility((View.VISIBLE));
+                    searchGovNumber.setVisibility((View.VISIBLE));
+                    Toast.makeText(ActivityFullOrderCW_3Phases.this, "bad", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
