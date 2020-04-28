@@ -45,6 +45,8 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private WeekView mWeekView;
@@ -63,7 +65,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
     TextView txtTimeOrder;
     EditText addComment;
     EditText txtGovNumber;
-    EditText txtPhoneClient;
+    MaskedEditText txtPhoneClient;
     int startOrderDay;
     int startOrderMonth;
     int startOrderYear;

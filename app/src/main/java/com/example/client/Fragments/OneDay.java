@@ -52,6 +52,8 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public abstract class OneDay extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private WeekView mWeekView;
@@ -70,7 +72,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     TextView txtTimeOrder;
     EditText addComment;
     EditText txtGovNumber;
-    EditText txtPhoneClient;
     int startOrderDay;
     int startOrderMonth;
     int startOrderYear;
@@ -78,7 +79,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     int startOrderMinute=-1;
     private LayoutInflater layoutInflater;
     private View view;
-
+    MaskedEditText txtPhoneClient;
     Date currentDate;
     DateFormat dateFormat;
     DateFormat timeFormat;
@@ -167,7 +168,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);;
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
