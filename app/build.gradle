@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     implementation 'com.budiyev.android:code-scanner:2.1.0'
-//    implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+    implementation 'ru.egslava:MaskedEditText:1.0.5'
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
