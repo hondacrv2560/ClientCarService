@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <android.widget.Toolbar
@@ -52,12 +53,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/phoneUnregClient"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:id="@+id/phoneUnregClient"
-            android:hint="Поиск по телефону клиента"
+            android:inputType="phone"
+            android:typeface="monospace"
+            mask:allowed_chars="1234567890"
+            mask:mask="+380(##)###-##-##"
+            android:hint="1234567890"
+            app:keep_hint="true"
             android:layout_marginRight="10dp"/>
         <Button
             android:layout_width="50dp"

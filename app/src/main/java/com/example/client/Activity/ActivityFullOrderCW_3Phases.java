@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,6 +52,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     float x1, x2, y1,y2;
     RecyclerView recyclerView;
@@ -58,7 +62,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     public Button buttonOrder;
     public EditText idorder;
     public EditText idclient;
-    public EditText phoneClient;
+    //    MaskedEditText phoneClient;
+    MaskedEditText phoneClient;
     public EditText govNumCar;
     public Button searchPhoneClient;
     public Button searchGovNumber;
@@ -71,7 +76,6 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     FirebaseDatabase spinnerDb = FirebaseDatabase.getInstance();
     private String key;
     private String spinnerKey;
-    private String str = null;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
     Date currentDate;
@@ -91,7 +95,8 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
     ArrayList<String> spinnerListOrder;
 
     public Boolean spinnerTouched = false;
-    public Boolean spinnerOrderTouched = false;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,11 +152,25 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
-        selectOrder.setOnTouchListener(new View.OnTouchListener() {
+        searchGovNumber.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                spinnerOrderTouched = true;
-                return false;
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру автомобиля клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("carGovNumber")
+                        .equalTo(govNumCar.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
+            }
+        });
+
+        searchPhoneClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру телефона клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("phoneNumberClient")
+                        .equalTo(phoneClient.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
             }
         });
 
@@ -166,19 +185,17 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spinnerOrderTouched){
-                    textData = selectOrder.getSelectedItem().toString();
-                    textData = textData.substring(0, textData.lastIndexOf('(')).trim();
-                    idorder.setText(textData);
-                    Toast.makeText(ActivityFullOrderCW_3Phases.this,  selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                }
+                textData = selectOrder.getSelectedItem().toString();
+                textData = textData.substring(0, textData.lastIndexOf('(')).trim();
+                idorder.setText(textData);
+                Toast.makeText(ActivityFullOrderCW_3Phases.this, selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
+
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
