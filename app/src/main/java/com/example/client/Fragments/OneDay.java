@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -168,6 +170,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);;
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -241,6 +244,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -314,6 +318,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -386,6 +391,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -459,6 +465,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -532,6 +539,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -605,6 +613,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -678,6 +687,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -751,6 +761,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -825,6 +836,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
                         txtPhoneClient = view.findViewById(R.id.phoneClient);
                         addComment = view.findViewById(R.id.addComment);
 
@@ -1059,5 +1071,29 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        txtGovNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    txtGovNumber.setText(strGovNumber);
+                }
+                txtGovNumber.setSelection(txtGovNumber.getText().length());
+            }
+        });
     }
 }
