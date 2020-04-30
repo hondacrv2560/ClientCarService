@@ -3,6 +3,8 @@ package com.example.client.Activity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -12,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -49,6 +53,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public class ActivityFullOrderCW_Standart extends AppCompatActivity {
 
     float x1, x2, y1,y2;
@@ -56,8 +62,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     List<FullOrder> fullOrderList = new ArrayList<>();
     FirebaseRecyclerAdapter<FullOrder, FullOrderViewHolder> adapter;
     public Button buttonOrder;
-    public EditText idorder;
-    public EditText idclient;
+    public TextView idorder;
+    public TextView idclient;
+    MaskedEditText phoneClient;
+    public EditText govNumCar;
+    public Button searchPhoneClient;
+    public Button searchGovNumber;
+    public CheckBox checkUnregClient;
     List<FullOrders> ordersList = new ArrayList<>();
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
@@ -66,7 +77,6 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     FirebaseDatabase spinnerDb = FirebaseDatabase.getInstance();
     private String key;
     private String spinnerKey;
-    private String str = null;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
     Date currentDate;
@@ -86,7 +96,6 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
     ArrayList<String> spinnerListOrder;
 
     public Boolean spinnerTouched = false;
-    public Boolean spinnerOrderTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,13 +111,23 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         getSupportActionBar().hide();
 
         spinnerListOrder = new ArrayList<>();
-        adapterSpinner = new ArrayAdapter<String>(ActivityFullOrderCW_Standart.this, android.R.layout.simple_spinner_dropdown_item,spinnerListOrder);
+        adapterSpinner = new ArrayAdapter<String>(ActivityFullOrderCW_Standart.this, android.R.layout.simple_spinner_dropdown_item, spinnerListOrder);
         selectOrder.setAdapter(adapterSpinner);
 
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
         idclient.setText(txtQrCode);
         idorder = findViewById(R.id.id_Order);
+        checkUnregClient = findViewById(R.id.userChekUnreg);
+        phoneClient = findViewById(R.id.phoneUnregClient);
+        govNumCar = findViewById(R.id.govNumberCarClient);
+        setUpperCase();
+        searchPhoneClient = findViewById(R.id.searchPhone);
+        searchGovNumber = findViewById(R.id.searchGovNumber);
+        phoneClient.setVisibility((View.GONE));
+        govNumCar.setVisibility((View.GONE));
+        searchPhoneClient.setVisibility((View.GONE));
+        searchGovNumber.setVisibility((View.GONE));
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -131,30 +150,44 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
-        selectOrder.setOnTouchListener(new View.OnTouchListener() {
+
+        selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                spinnerOrderTouched = true;
-                return false;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textData = selectOrder.getSelectedItem().toString();
+                textData = textData.substring(0, textData.lastIndexOf('(')).trim();
+                idorder.setText(textData);
+                Toast.makeText(ActivityFullOrderCW_Standart.this, selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
-       selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               if (spinnerOrderTouched){
-                   textData = selectOrder.getSelectedItem().toString();
-                   textData = textData.substring(0, textData.lastIndexOf('(')).trim();
-                   idorder.setText(textData);
-                   Toast.makeText(ActivityFullOrderCW_Standart.this,  selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-               }
-           }
+        searchGovNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру автомобиля клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("carGovNumber")
+                        .equalTo(govNumCar.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
+            }
+        });
 
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
+        searchPhoneClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру телефона клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("phoneNumberClient")
+                        .equalTo(phoneClient.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
+            }
+        });
 
-           }
-       });
         mySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -165,8 +198,8 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if(spinnerTouched){
-                    Toast.makeText(ActivityFullOrderCW_Standart.this,  mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                if (spinnerTouched) {
+                    Toast.makeText(ActivityFullOrderCW_Standart.this, mySpinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                     switch (position) {
                         case 0:
                             Intent cw3Phases = new Intent(ActivityFullOrderCW_Standart.this, ActivityFullOrderCW_3Phases.class);
@@ -238,7 +271,28 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        checkUnregClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked) {
+                    idclient.setVisibility(View.VISIBLE);
+                    phoneClient.setVisibility((View.GONE));
+                    govNumCar.setVisibility((View.GONE));
+                    searchPhoneClient.setVisibility((View.GONE));
+                    searchGovNumber.setVisibility((View.GONE));
+                } else {
+                    idclient.setVisibility(View.GONE);
+                    phoneClient.setVisibility((View.VISIBLE));
+                    govNumCar.setVisibility((View.VISIBLE));
+                    searchPhoneClient.setVisibility((View.VISIBLE));
+                    searchGovNumber.setVisibility((View.VISIBLE));
+                    Toast.makeText(ActivityFullOrderCW_Standart.this, "bad", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
 
     private void setData() {
         Query query = FirebaseDatabase.getInstance().getReference().child("OrderCWStandart");
@@ -331,7 +385,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if (govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -351,7 +411,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if (govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -371,7 +437,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if (govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -391,7 +463,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if (govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
@@ -411,7 +489,13 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if (govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -565,5 +649,29 @@ public class ActivityFullOrderCW_Standart extends AppCompatActivity {
         timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        govNumCar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    govNumCar.setText(strGovNumber);
+                }
+                govNumCar.setSelection(govNumCar.getText().length());
+            }
+        });
     }
 }
