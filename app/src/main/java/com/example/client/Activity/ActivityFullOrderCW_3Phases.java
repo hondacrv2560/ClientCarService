@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -125,6 +127,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         checkUnregClient = findViewById(R.id.userChekUnreg);
         phoneClient = findViewById(R.id.phoneUnregClient);
         govNumCar = findViewById(R.id.govNumberCarClient);
+        setUpperCase();
         searchPhoneClient = findViewById(R.id.searchPhone);
         searchGovNumber = findViewById(R.id.searchGovNumber);
         phoneClient.setVisibility((View.GONE));
@@ -672,5 +675,29 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
         timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        govNumCar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    govNumCar.setText(strGovNumber);
+                }
+                govNumCar.setSelection(govNumCar.getText().length());
+            }
+        });
     }
 }
