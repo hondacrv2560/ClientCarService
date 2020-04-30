@@ -390,12 +390,12 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    if (idclient!=null){
+                                    if (idclient.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if (phoneClient!=null){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if(govNumCar!=null){
+                                    } else if (govNumCar.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -416,12 +416,12 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    if (idclient!=null){
+                                    if (idclient.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if (phoneClient!=null){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if(govNumCar!=null){
+                                    } else if (govNumCar.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -442,12 +442,12 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    if (idclient!=null){
+                                    if (idclient.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if (phoneClient!=null){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if(govNumCar!=null){
+                                    } else if (govNumCar.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -468,12 +468,12 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    if (idclient!=null){
+                                    if (idclient.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if (phoneClient!=null){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if(govNumCar!=null){
+                                    } else if (govNumCar.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -496,10 +496,10 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
-                                    } else if(govNumCar.length()>0){
+                                    } else if (govNumCar.length()>0){
                                         fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    } else if(phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
