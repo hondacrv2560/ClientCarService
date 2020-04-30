@@ -30,25 +30,28 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttonOrders"
         android:text="Сформировать наряд"/>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id_Client"
-        android:hint="ID Клиента"/>
+        android:hint="ID Клиента"
+        android:layout_margin="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
         <EditText
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:id="@+id/govNumberCarClient"
             android:hint="Поиск по гос. номеру т/с"
-            android:layout_marginRight="10dp"/>
+            android:layout_margin="5dp"/>
         <Button
             android:id="@+id/searchGovNumber"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/search" />
+            android:drawableStart="@drawable/search"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -65,27 +68,32 @@
             mask:mask="+380(##)###-##-##"
             android:hint="1234567890"
             app:keep_hint="true"
-            android:layout_marginRight="10dp"/>
+            android:layout_margin="5dp"/>
         <Button
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/searchPhone"
-            android:drawableStart="@drawable/search"/>
+            android:drawableStart="@drawable/search"
+            android:layout_margin="5dp"/>
     </LinearLayout>
     <CheckBox
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/userChekUnreg"
-        android:text="Незарегистрированный клиент"/>
-    <EditText
+        android:text="Незарегистрированный клиент"
+        android:layout_margin="5dp"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id_Order"
-        android:hint="ID Заказа"/>
+        android:hint="ID Заказа"
+        android:layout_margin="5dp"/>
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/idOrder"/>
+        android:id="@+id/idOrder"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="50dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
