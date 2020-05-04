@@ -267,7 +267,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_TireFitting.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "tireFitting");
                 startActivity(intent);
             }
         });

@@ -263,7 +263,7 @@ public class ActivityFullOrder_Toning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_Toning.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "toning");
                 startActivity(intent);
             }
         });
