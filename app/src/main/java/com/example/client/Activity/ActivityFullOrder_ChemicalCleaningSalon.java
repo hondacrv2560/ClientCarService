@@ -3,6 +3,8 @@ package com.example.client.Activity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -12,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -49,20 +53,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
     float x1, x2, y1,y2;
     RecyclerView recyclerView;
     List<FullOrder> fullOrderList = new ArrayList<>();
     FirebaseRecyclerAdapter<FullOrder, FullOrderViewHolder> adapter;
     public Button buttonOrder;
-    public EditText idorder;
-    public EditText idclient;
+    public TextView idorder;
+    public TextView idclient;
+    MaskedEditText phoneClient;
+    public EditText govNumCar;
+    public Button searchPhoneClient;
+    public Button searchGovNumber;
+    public CheckBox checkUnregClient;
     List<FullOrders> ordersList = new ArrayList<>();
     FullOrders fullOrders;
     private DatabaseReference myDbReferenceOrder;
+    private DatabaseReference spinnerDbReferenceOrder;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase spinnerDb = FirebaseDatabase.getInstance();
     private String key;
-    private String str = null;
+    private String spinnerKey;
     public FullOrderViewHolder viewHolder;
     SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
     Date currentDate;
@@ -75,19 +88,46 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
     Toolbar myToolbar;
     Spinner mySpinner;
 
+    Spinner selectOrder;
+
+    private String textData;
+
+    ArrayAdapter<String> adapterSpinner;
+    ArrayList<String> spinnerListOrder;
+
     public Boolean spinnerTouched = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_full_order);
+
+        String txtQrCode = getIntent().getStringExtra("qrCode");
+
+        spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
+        selectOrder = (Spinner) findViewById(R.id.idOrder);
         myToolbar.setTitle("Химчистка салона");
         getSupportActionBar().hide();
 
+        spinnerListOrder = new ArrayList<>();
+        adapterSpinner = new ArrayAdapter<String>(ActivityFullOrder_ChemicalCleaningSalon.this, android.R.layout.simple_spinner_dropdown_item,spinnerListOrder);
+        selectOrder.setAdapter(adapterSpinner);
+
         buttonOrder = findViewById(R.id.buttonOrders);
         idclient = findViewById(R.id.id_Client);
+        idclient.setText(txtQrCode);
         idorder = findViewById(R.id.id_Order);
+        checkUnregClient = findViewById(R.id.userChekUnreg);
+        phoneClient = findViewById(R.id.phoneUnregClient);
+        govNumCar = findViewById(R.id.govNumberCarClient);
+        setUpperCase();
+        searchPhoneClient = findViewById(R.id.searchPhone);
+        searchGovNumber = findViewById(R.id.searchGovNumber);
+        phoneClient.setVisibility((View.GONE));
+        govNumCar.setVisibility((View.GONE));
+        searchPhoneClient.setVisibility((View.GONE));
+        searchGovNumber.setVisibility((View.GONE));
         recyclerView = findViewById(R.id.recycler_Expand);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -111,11 +151,50 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+//        int count = myAdapter.getCount();
+//        idclient.setText(count+"");
+
+        searchGovNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру автомобиля клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("carGovNumber")
+                        .equalTo(govNumCar.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
+            }
+        });
+
+        searchPhoneClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // запрос на выборку заказов по номеру телефона клиента
+                Query query = spinnerDbReferenceOrder
+                        .orderByChild("phoneNumberClient")
+                        .equalTo(phoneClient.getText().toString());
+                query.addListenerForSingleValueEvent(listener);
+            }
+        });
+
         mySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 spinnerTouched = true;
                 return false;
+            }
+        });
+
+        selectOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textData = selectOrder.getSelectedItem().toString();
+                textData = textData.substring(0, textData.lastIndexOf('(')).trim();
+                idorder.setText(textData);
+                Toast.makeText(ActivityFullOrder_ChemicalCleaningSalon.this, selectOrder.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -178,6 +257,41 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        // запрос на выборку заказов по ИД клиента
+        Query query = spinnerDbReferenceOrder
+                .orderByChild("UserId")
+                .equalTo(idclient.getText().toString());
+        query.addListenerForSingleValueEvent(listener);
+
+        idclient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityFullOrder_ChemicalCleaningSalon.this, ActivityQrCodeReader.class);
+                intent.putExtra("titleService", "CW_3Phases");
+                startActivity(intent);
+            }
+        });
+        checkUnregClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked){
+                    idclient.setVisibility(View.VISIBLE);
+                    phoneClient.setVisibility((View.GONE));
+                    govNumCar.setVisibility((View.GONE));
+                    searchPhoneClient.setVisibility((View.GONE));
+                    searchGovNumber.setVisibility((View.GONE));
+                }
+                else {
+                    idclient.setVisibility(View.GONE);
+                    phoneClient.setVisibility((View.VISIBLE));
+                    govNumCar.setVisibility((View.VISIBLE));
+                    searchPhoneClient.setVisibility((View.VISIBLE));
+                    searchGovNumber.setVisibility((View.VISIBLE));
+                    Toast.makeText(ActivityFullOrder_ChemicalCleaningSalon.this, "bad", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -460,6 +574,23 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         super.onStop();
     }
 
+    ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            for(DataSnapshot ds:dataSnapshot.getChildren()){
+                spinnerKey = ds.getKey();
+                spinnerListOrder.add(spinnerKey.toString()+" (дата ордера: "+ds.child("startDayOfMonth").getValue().toString()
+                        +"."+ds.child("startTimeMonth").getValue().toString()+"."+ds.child("startTimeYear").getValue().toString()+")");
+            }
+            adapterSpinner.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
+
     public boolean onTouchEvent(MotionEvent touchEvent){
         switch (touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -491,5 +622,29 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        govNumCar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    govNumCar.setText(strGovNumber);
+                }
+                govNumCar.setSelection(govNumCar.getText().length());
+            }
+        });
     }
 }
