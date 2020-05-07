@@ -59,7 +59,7 @@ public class ActivityQrCodeReader extends AppCompatActivity {
         btnQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (txtTitleService){
+                switch (txtTitleService) {
                     case "CW_3Phases":
                         Intent cw_3Phases = new Intent(ActivityQrCodeReader.this, ActivityFullOrderCW_3Phases.class);
                         cw_3Phases.putExtra("qrCode", "user unregister");
@@ -74,8 +74,56 @@ public class ActivityQrCodeReader extends AppCompatActivity {
                         startActivity(cw_Standard);
                         finish();
                         break;
+                    case "toning":
+                        Intent toning = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_Toning.class);
+                        toning.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(toning);
+                        finish();
+                        break;
+                    case "tireFitting":
+                        Intent tireFitting = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_TireFitting.class);
+                        tireFitting.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(tireFitting);
+                        finish();
+                        break;
+                    case "salonProtection":
+                        Intent salonProtection = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_SalonProtection.class);
+                        salonProtection.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(salonProtection);
+                        finish();
+                        break;
+                    case "repairWindshield":
+                        Intent repairWindshield = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_RepairWindshield.class);
+                        repairWindshield.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(repairWindshield);
+                        finish();
+                        break;
+                    case "protectiveFilm":
+                        Intent protectiveFilm = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_ProtectiveFilm.class);
+                        protectiveFilm.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(protectiveFilm);
+                        finish();
+                        break;
+                    case "polishing":
+                        Intent polishing = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_Polishing.class);
+                        polishing.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(polishing);
+                        finish();
+                        break;
+                    case "nanoCeramics":
+                        Intent nanoCeramics = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_Nanoceramics.class);
+                        nanoCeramics.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(nanoCeramics);
+                        finish();
+                        break;
                 }
-
             }
         });
     }
