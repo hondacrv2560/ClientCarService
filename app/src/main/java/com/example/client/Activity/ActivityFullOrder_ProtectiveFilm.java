@@ -267,7 +267,7 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_ProtectiveFilm.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "protectiveFilm");
                 startActivity(intent);
             }
         });

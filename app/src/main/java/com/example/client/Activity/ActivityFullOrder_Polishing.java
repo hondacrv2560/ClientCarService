@@ -265,7 +265,7 @@ public class ActivityFullOrder_Polishing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_Polishing.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "polishing");
                 startActivity(intent);
             }
         });

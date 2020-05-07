@@ -270,7 +270,7 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_ChemicalCleaningSalon.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "chemicalCleaning");
                 startActivity(intent);
             }
         });

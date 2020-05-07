@@ -267,7 +267,7 @@ public class ActivityFullOrder_Nanoceramics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityFullOrder_Nanoceramics.this, ActivityQrCodeReader.class);
-                intent.putExtra("titleService", "CW_3Phases");
+                intent.putExtra("titleService", "nanoCeramics");
                 startActivity(intent);
             }
         });
