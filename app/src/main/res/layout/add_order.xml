@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/addOrder">
     <TextView
@@ -10,12 +13,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="17dp"
         android:id="@+id/dateOrder"
         android:hint="нажмите для выбора даты"
-        android:drawableLeft="@drawable/ic_calendar_purple_24dp"/>
+        android:drawableLeft="@drawable/ic_calendar"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,12 +24,25 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="17dp"
         android:id="@+id/timeOrder"
-        android:drawableLeft="@drawable/ic_access_time_purple_24dp"
+        android:drawableLeft="@drawable/ic_access_time"
         android:hint="нажмите для выбора времени"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/govNumberCarClient"
+        android:hint="введите гос.номер т/с клиента"/>
+    <br.com.sapereaude.maskedEditText.MaskedEditText
+        android:id="@+id/phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:typeface="monospace"
+        mask:allowed_chars="1234567890"
+        mask:mask="+380(##)###-##-##"
+        android:hint="1234567890"
+        app:keep_hint="true"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
