@@ -989,4 +989,39 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public void stopAutoRefresh(){
         mTimer.cancel();
     }
+
+    public void getCurrentDateTime(){
+        // Текущее время
+        currentDate = new Date();
+        // Форматирование времени как "день.месяц.год"
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+// Форматирование времени как "часы:минуты:секунды"
+        timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        dateText = dateFormat.format(currentDate);
+        timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        txtGovNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    txtGovNumber.setText(strGovNumber);
+                }
+                txtGovNumber.setSelection(txtGovNumber.getText().length());
+            }
+        });
+    }
 }
