@@ -22,11 +22,15 @@ public class Order implements Serializable {
     public String color;
     public int idService;
     public String comment;
+    public String carGovNumber;
+    public String phoneNumberClient;
+    public String recordDate;
+    public String recordTime;
 
     public Order(){}
 
     public Order(String userId, int startTimeHour, int startTimeMinute, int startDayOfMonth, int startTimeMonth, int startTimeYear, int endTimeHour, int endTimeMinute, int endDayOfMonth, int endTimeMonth, int endTimeYear,
-                 String color, int idService, String comment) {
+                 String color, int idService, String comment, String carGovNumber, String phoneNumberClient, String recordDate, String recordTime) {
         UserId = userId;
         this.startTimeHour = startTimeHour;
         this.startTimeMinute = startTimeMinute;
@@ -41,6 +45,10 @@ public class Order implements Serializable {
         this.color = color;
         this.idService = idService;
         this.comment = comment;
+        this.carGovNumber = carGovNumber;
+        this.phoneNumberClient = phoneNumberClient;
+        this.recordDate = recordDate;
+        this.recordTime = recordTime;
     }
 
     public int getStartTimeHour() {
@@ -145,5 +153,37 @@ public class Order implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getCarGovNumber() {
+        return carGovNumber;
+    }
+
+    public void setCarGovNumber(String carGovNumber) {
+        this.carGovNumber = carGovNumber;
+    }
+
+    public String getPhoneNumberClient() {
+        return phoneNumberClient;
+    }
+
+    public void setPhoneNumberClient(String phoneNumberClient) {
+        this.phoneNumberClient = phoneNumberClient;
+    }
+
+    public String getRecordDate() {
+        return recordDate;
+    }
+
+    public void setRecordDate(String recordDate) {
+        this.recordDate = recordDate;
+    }
+
+    public String getRecordTime() {
+        return recordTime;
+    }
+
+    public void setRecordTime(String recordTime) {
+        this.recordTime = recordTime;
     }
 }
