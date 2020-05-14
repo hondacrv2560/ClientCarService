@@ -6,6 +6,8 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -36,12 +38,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import br.com.sapereaude.maskedEditText.MaskedEditText;
 
 public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewClickListener, WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
@@ -60,6 +66,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
     TextView txtdateOrder;
     TextView txtTimeOrder;
     EditText addComment;
+    EditText txtGovNumber;
     int startOrderDay;
     int startOrderMonth;
     int startOrderYear;
@@ -67,9 +74,14 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
     int startOrderMinute=-1;
     private LayoutInflater layoutInflater;
     private View view;
+    MaskedEditText txtPhoneClient;
+    Date currentDate;
+    DateFormat dateFormat;
+    DateFormat timeFormat;
+    public String dateText;
+    public String timeText;
 
     Timer mTimer;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -150,14 +162,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);;
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString());
+                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -169,8 +186,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString());
+                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -183,7 +202,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -215,14 +234,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString());
+                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -234,8 +258,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString());
+                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -248,7 +274,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -280,15 +306,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                getCurrentDateTime();
                                 try{
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString());
+                                            startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -300,8 +330,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString());
+                                            startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -314,7 +346,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -345,14 +377,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -364,8 +401,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -378,7 +417,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -410,14 +449,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -429,8 +473,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -444,7 +490,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -475,14 +521,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -494,8 +545,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -508,7 +561,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -540,14 +593,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString());
+                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -559,8 +617,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString());
+                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -573,7 +633,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -605,14 +665,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString());
+                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -624,8 +689,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString());
+                                            startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -638,7 +705,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -670,14 +737,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString());
+                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -689,8 +761,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString());
+                                            startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -704,7 +778,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -736,14 +810,19 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                         alertDialogBuilder.setView(view);
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
+                        txtGovNumber = view.findViewById(R.id.govNumberCarClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                getCurrentDateTime();
                                 try {
                                     order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -755,8 +834,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString());
+                                            startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString(),
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -769,7 +850,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                                 }
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogThreeDays.dismiss();
@@ -858,7 +939,7 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
                 ThreeDays.this.startOrderDay=dayOfMonth;
             }
         };
-        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Записаться", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
