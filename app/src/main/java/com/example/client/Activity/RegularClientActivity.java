@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,11 @@ public class RegularClientActivity extends AppCompatActivity {
     EditText govNumberCarNewClient;
     EditText manufacturerCarNewClient;
     EditText modelCarNewClient;
+
+    String strNameSurnameNewClient;
+    String strGovNumberCarNewClient;
+    String strManufacturerCarNewClient;
+    String strModelCarNewClient;
 
     Button btnAddNewClient;
 
@@ -92,6 +99,7 @@ public class RegularClientActivity extends AppCompatActivity {
                 startActivity(intentRegularClient);
             }
         });
+        setUpperCase();
     }
 
     @Override
@@ -125,5 +133,76 @@ public class RegularClientActivity extends AppCompatActivity {
             }
         });
         datePickerDialog.show();
+    }
+
+    public void setUpperCase(){
+        nameSurnameNewClient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+               strNameSurnameNewClient = s.toString();
+                if(!strNameSurnameNewClient.equals(strNameSurnameNewClient.toUpperCase())){
+                    strNameSurnameNewClient = strNameSurnameNewClient.toUpperCase();
+                    nameSurnameNewClient.setText(strNameSurnameNewClient);
+                }
+                nameSurnameNewClient.setSelection(nameSurnameNewClient.getText().length());
+            }
+        });
+        govNumberCarNewClient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                strGovNumberCarNewClient = s.toString();
+                if(!strGovNumberCarNewClient.equals(strGovNumberCarNewClient.toUpperCase())){
+                    strGovNumberCarNewClient = strGovNumberCarNewClient.toUpperCase();
+                    govNumberCarNewClient.setText(strGovNumberCarNewClient);
+                }
+                govNumberCarNewClient.setSelection(govNumberCarNewClient.getText().length());
+            }
+        });
+        manufacturerCarNewClient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                strManufacturerCarNewClient = s.toString();
+                if(!strManufacturerCarNewClient.equals(strManufacturerCarNewClient.toUpperCase())){
+                    strManufacturerCarNewClient = strManufacturerCarNewClient.toUpperCase();
+                    manufacturerCarNewClient.setText(strManufacturerCarNewClient);
+                }
+                manufacturerCarNewClient.setSelection(manufacturerCarNewClient.getText().length());
+            }
+        });
+        modelCarNewClient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                strModelCarNewClient = s.toString();
+                if(!strModelCarNewClient.equals(strModelCarNewClient.toUpperCase())){
+                    strModelCarNewClient = strModelCarNewClient.toUpperCase();
+                    modelCarNewClient.setText(strModelCarNewClient);
+                }
+                modelCarNewClient.setSelection(modelCarNewClient.getText().length());
+            }
+        });
     }
 }
