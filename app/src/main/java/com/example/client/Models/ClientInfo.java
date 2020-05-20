@@ -6,12 +6,12 @@ public class ClientInfo {
     public String manufacturerCarNewClient;
     public String modelCarNewClient;
     public String nameSurnameNewClient;
-    public int numPhoneNewClient;
+    public String numPhoneNewClient;
 
     public ClientInfo() {
     }
 
-    public ClientInfo(String userId, String govNumberCarNewClient, String manufacturerCarNewClient, String modelCarNewClient, String nameSurnameNewClient, int numPhoneNewClient) {
+    public ClientInfo(String userId, String govNumberCarNewClient, String manufacturerCarNewClient, String modelCarNewClient, String nameSurnameNewClient, String numPhoneNewClient) {
         UserId = userId;
         this.govNumberCarNewClient = govNumberCarNewClient;
         this.manufacturerCarNewClient = manufacturerCarNewClient;
@@ -52,11 +52,11 @@ public class ClientInfo {
         this.nameSurnameNewClient = nameSurnameNewClient;
     }
 
-    public int getNumPhoneNewClient() {
+    public String getNumPhoneNewClient() {
         return numPhoneNewClient;
     }
 
-    public void setNumPhoneNewClient(int numPhoneNewClient) {
+    public void setNumPhoneNewClient(String numPhoneNewClient) {
         this.numPhoneNewClient = numPhoneNewClient;
     }
 }

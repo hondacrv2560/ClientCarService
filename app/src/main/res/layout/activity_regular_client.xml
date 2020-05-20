@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainLr"
@@ -8,84 +10,105 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="name_surname"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:text="Имя Фамилия"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter_name_surname"
+        android:hint="введите имя и фамилию"
         android:id="@+id/name_surname_new_client"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="17dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="birthday_new_client"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:text="Дата рождения"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="enter_birthday_new_client"
+        android:text="выберите дату"
         android:id="@+id/birthday_new_client"
-        android:paddingBottom="20dp"
+        android:paddingBottom="17dp"
         android:onClick="onClick"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="um_phone"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="enter_num_phone"
+        android:text="Номер телефона"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/num_phone_new_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:inputType="phone"
-        android:paddingBottom="20dp"/>
+        android:typeface="monospace"
+        mask:allowed_chars="1234567890"
+        mask:mask="+380(##)###-##-##"
+        android:hint="1234567890"
+        app:keep_hint="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="gov_number_car"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:text="Гос. номер т/с"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter_gov_number_car"
+        android:hint="введите номер т/с"
         android:id="@+id/gov_number_car_new_client"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="manufacturer_car"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:text="Производитель т/с"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter_manufacturer_car"
+        android:hint="введите производителя т/с"
         android:id="@+id/manufacturer_car_new_client"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="model_car"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:text="Модель т/с"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="enter_model_car"
+        android:hint="введите модель т/с"
         android:id="@+id/model_car_new_client"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -93,7 +116,9 @@
         android:text="ok"
         android:id="@+id/add_new_client"
         android:textSize="20dp"
-        android:textStyle="italic"
-        android:fontFamily="sans-serif-condensed-medium"/>
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

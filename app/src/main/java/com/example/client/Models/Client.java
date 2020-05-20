@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Client implements Serializable {
     public String UserId;
     public String nameSurnameNewClient;
-    public int numPhoneNewClient;
+    public String numPhoneNewClient;
     public String govNumberCarNewClient;
     public String manufacturerCarNewClient;
     public String modelCarNewClient;
@@ -15,7 +15,7 @@ public class Client implements Serializable {
 
     }
 
-    public Client(String userId, String nameSurnameNewClient, int numPhoneNewClient, String govNumberCarNewClient, String manufacturerCarNewClient, String modelCarNewClient, String setDataBirthday) {
+    public Client(String userId, String nameSurnameNewClient, String numPhoneNewClient, String govNumberCarNewClient, String manufacturerCarNewClient, String modelCarNewClient, String setDataBirthday) {
         UserId = userId;
         this.nameSurnameNewClient = nameSurnameNewClient;
         this.numPhoneNewClient = numPhoneNewClient;
@@ -29,7 +29,7 @@ public class Client implements Serializable {
         return nameSurnameNewClient;
     }
 
-    public int getNumPhoneNewClient() {
+    public String getNumPhoneNewClient() {
         return numPhoneNewClient;
     }
 

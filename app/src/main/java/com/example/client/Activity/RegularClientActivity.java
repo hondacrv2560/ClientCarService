@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 import java.util.Objects;
 
+import br.com.sapereaude.maskedEditText.MaskedEditText;
+
 public class RegularClientActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     private DatabaseReference myDbReference;
@@ -40,7 +42,7 @@ public class RegularClientActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     EditText nameSurnameNewClient;
-    EditText numPhoneNewClient;
+    MaskedEditText numPhoneNewClient;
     EditText govNumberCarNewClient;
     EditText manufacturerCarNewClient;
     EditText modelCarNewClient;
@@ -87,7 +89,7 @@ public class RegularClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Client client = new Client(user.getUid(), nameSurnameNewClient.getText().toString(),
-                        Integer.valueOf(numPhoneNewClient.getText().toString()),
+                        numPhoneNewClient.getText().toString(),
                         govNumberCarNewClient.getText().toString(),
                         manufacturerCarNewClient.getText().toString(),
                         modelCarNewClient.getText().toString(),
