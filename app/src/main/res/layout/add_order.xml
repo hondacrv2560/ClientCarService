@@ -9,30 +9,40 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/date"/>
+        android:text="@string/date"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17dp"
         android:id="@+id/dateOrder"
         android:hint="нажмите для выбора даты"
-        android:drawableLeft="@drawable/ic_calendar"/>
+        android:drawableLeft="@drawable/ic_calendar"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Время:"/>
+        android:text="Время:"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17dp"
         android:id="@+id/timeOrder"
         android:drawableLeft="@drawable/ic_access_time"
-        android:hint="нажмите для выбора времени"/>
+        android:hint="нажмите для выбора времени"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/govNumberCarClient"
-        android:hint="введите гос.номер т/с клиента"/>
+        android:hint="введите гос.номер т/с клиента"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <br.com.sapereaude.maskedEditText.MaskedEditText
         android:id="@+id/phone_input"
         android:layout_width="match_parent"
@@ -42,10 +52,14 @@
         mask:allowed_chars="1234567890"
         mask:mask="+380(##)###-##-##"
         android:hint="1234567890"
-        app:keep_hint="true"/>
+        app:keep_hint="true"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="добавить коментарий"
-        android:id="@+id/addComment"/>
+        android:id="@+id/addComment"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
 </LinearLayout>

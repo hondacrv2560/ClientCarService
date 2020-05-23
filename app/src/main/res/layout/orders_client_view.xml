@@ -15,17 +15,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/orderList"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/authUserOrder"
-        android:hint="введите e-mail"/>
+        android:hint="введите e-mail"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/authPassOrder"
-        android:hint="введите пароль"/>
+        android:hint="введите пароль"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

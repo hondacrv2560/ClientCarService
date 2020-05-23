@@ -8,35 +8,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Цены указаны в национальной валюте Украины(гривна)"
-        android:id="@+id/txtInfo"/>
+        android:id="@+id/txtInfo"
+        android:layout_marginLeft="3dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Кат 1: седан"
-        android:id="@+id/cat1"/>
+        android:id="@+id/cat1"
+        android:layout_marginLeft="3dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Кат 2: бизнес"
-        android:id="@+id/cat2"/>
+        android:id="@+id/cat2"
+        android:layout_marginLeft="3dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Кат 3: премиум"
-        android:id="@+id/cat3"/>
+        android:id="@+id/cat3"
+        android:layout_marginLeft="3dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Кат 4: паркетник"
-        android:id="@+id/cat4"/>
+        android:id="@+id/cat4"
+        android:layout_marginLeft="3dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Кат 5: внедорожник"
-        android:id="@+id/cat5"/>
+        android:id="@+id/cat5"
+        android:layout_marginLeft="3dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/CarWashing_3Phases_list"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
 </LinearLayout>

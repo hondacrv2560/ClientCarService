@@ -20,7 +20,9 @@
         android:layout_height="match_parent"
         android:id="@+id/OrderViewClient"
         android:scrollbars="horizontal"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
