@@ -1006,12 +1006,10 @@ public abstract class ThreeDays extends Fragment implements WeekView.EmptyViewCl
 
     private void refreshFragment(){
         ThreeDays fragment = (ThreeDays)getFragmentManager().findFragmentById(R.id.fr);
-
+        fragment.onDestroy();
         getFragmentManager().beginTransaction()
                 .detach(fragment)
-                .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                 .attach(fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
