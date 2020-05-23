@@ -308,16 +308,20 @@ public String str;
         }
         return super.onOptionsItemSelected(item);
     }
-    // проверка содания фрагмента, если фрагмент существует, то останавливаем таймер автоматического обновления
+    // проверка содания фрагмента, если фрагмент существует, то останавливаем таймер автоматического обновления и уничтожаем фрагмент
     public void checkCreateFragment(){
         if(oneDay!=null){
             oneDay.stopAutoRefresh();
+            oneDay.onDestroy();
         } else if(sevenDays!=null){
             sevenDays.stopAutoRefresh();
+            sevenDays.onDestroy();
         }else if(toDay!=null){
             toDay.stopAutoRefresh();
+            toDay.onDestroy();
         }else if(threeDays!=null){
             threeDays.stopAutoRefresh();
+            threeDays.onDestroy();
         }
     }
 }
