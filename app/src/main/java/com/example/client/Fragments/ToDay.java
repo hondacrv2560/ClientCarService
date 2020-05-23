@@ -91,11 +91,10 @@ public abstract class ToDay extends Fragment implements MonthLoader.MonthChangeL
                                        @Override
                                        public void run() {
                                            ToDay fragment = (ToDay) getFragmentManager().findFragmentById(R.id.fr);
+                                           fragment.onDestroy();
                                            getFragmentManager().beginTransaction()
                                                    .detach(fragment)
-                                                   .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                                                    .attach(fragment)
-                                                   .addToBackStack(null)
                                                    .commit();
                                        }
                                    }
