@@ -13,6 +13,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -237,11 +240,12 @@ public String str;
                 password = view_enter_register.findViewById(R.id.password);
                 showPass = view_enter_register.findViewById(R.id.checkViewPass);
                 builder_enter_register.setView(view_enter_register);
+                EditText eMail = view_enter_register.findViewById(R.id.e_mail);
+                EditText pass = view_enter_register.findViewById(R.id.password);
                 builder_enter_register.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText eMail = view_enter_register.findViewById(R.id.e_mail);
-                        EditText pass = view_enter_register.findViewById(R.id.password);
+
                         signIn(eMail.getText().toString(), pass.getText().toString());
                     }
                 });
@@ -259,6 +263,47 @@ public String str;
                 });
                 AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
                 dialog_enter_regular_customer.show();
+                dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                eMail.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(TextUtils.isEmpty(s)){
+                            dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                        } else{
+                            pass.addTextChangedListener(new TextWatcher() {
+                                @Override
+                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                }
+
+                                @Override
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable s) {
+                                    if(TextUtils.isEmpty(s)){
+                                        dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                                    } else{
+                                        dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
                 //setup color background
                 dialog_enter_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
