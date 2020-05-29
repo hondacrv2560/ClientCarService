@@ -73,7 +73,8 @@
                 android:layout_height="match_parent"
                 android:text="Понедельник"
                 android:id="@+id/monday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -99,7 +100,8 @@
                 android:layout_height="match_parent"
                 android:text="Вторник"
                 android:id="@+id/tuesday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -121,7 +123,8 @@
                 android:layout_height="match_parent"
                 android:text="Среда"
                 android:id="@+id/wednesday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -143,7 +146,8 @@
                 android:layout_height="match_parent"
                 android:text="Четверг"
                 android:id="@+id/thursday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -165,7 +169,8 @@
                 android:layout_height="match_parent"
                 android:text="Пятница"
                 android:id="@+id/friday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -187,7 +192,8 @@
                 android:layout_height="match_parent"
                 android:text="Суббота"
                 android:id="@+id/saturday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -209,7 +215,8 @@
                 android:layout_height="match_parent"
                 android:text="Воскресенье"
                 android:id="@+id/sunday"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -229,29 +236,43 @@
 
     <LinearLayout
         android:paddingTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Аква Детейлинг в: "
-            android:id="@+id/socialNet"/>
+            android:id="@+id/socialNet"
+            android:layout_gravity="center_vertical"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/facebook"
+            android:src="@drawable/facebook"
+            android:layout_marginLeft="15dp"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/whatsapp"
+            android:src="@drawable/whatsapp"
+            android:layout_marginLeft="15dp"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/viber"
+            android:src="@drawable/viber"
+            android:layout_marginLeft="15dp"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/telegram"
+            android:src="@drawable/telegram"
+            android:layout_marginLeft="15dp"/>
+        <ImageView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/youtube"
+            android:src="@drawable/youtube"
+            android:layout_marginLeft="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/instagram"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/facebook"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/telegram"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/youtube"/>
     </LinearLayout>
 </LinearLayout>
