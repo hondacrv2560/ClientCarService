@@ -1008,7 +1008,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
 
     private void refreshFragment(){
         SevenDays fragment = (SevenDays)getFragmentManager().findFragmentById(R.id.fr);
-        fragment.onDestroy();
         getFragmentManager().beginTransaction()
                 .detach(fragment)
                 .attach(fragment)
