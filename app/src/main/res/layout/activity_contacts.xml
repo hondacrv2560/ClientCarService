@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/serviceViewBg">
-
     <TextView
         android:paddingTop="20dp"
         android:layout_width="match_parent"
@@ -13,7 +17,6 @@
         android:text="г. Киев, ул. Сергея Данченко 28-г, паркинг № 1"
         android:id="@+id/adress"
         android:gravity="center_horizontal"/>
-
     <TextView
         android:paddingTop="10dp"
         android:id="@+id/vodafone"
@@ -277,3 +280,4 @@
             android:id="@+id/instagram"/>
     </LinearLayout>
 </LinearLayout>
+</ScrollView>
