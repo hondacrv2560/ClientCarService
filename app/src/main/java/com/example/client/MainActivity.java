@@ -203,12 +203,12 @@ public String str;
                 password = view_regular_customer.findViewById(R.id.password);
                 showPass = view_regular_customer.findViewById(R.id.checkViewPass);
                 builder_regular_customer.setView(view_regular_customer);
+                EditText eMailReg = view_regular_customer.findViewById(R.id.e_mail);
+                EditText passReg = view_regular_customer.findViewById(R.id.password);
                 builder_regular_customer.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        EditText eMail = view_regular_customer.findViewById(R.id.e_mail);
-                        EditText pass = view_regular_customer.findViewById(R.id.password);
-                        registartion(eMail.getText().toString(), pass.getText().toString());
+                        registartion(eMailReg.getText().toString(), passReg.getText().toString());
                         Intent intentRegularClient = new Intent(MainActivity.this, RegularClientActivity.class);
                         startActivity(intentRegularClient);
                     }
@@ -227,6 +227,47 @@ public String str;
                 });
                 AlertDialog dialog_regular_customer = builder_regular_customer.create();
                 dialog_regular_customer.show();
+
+                dialog_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                eMailReg.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(TextUtils.isEmpty(s)){
+                            dialog_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                        } else{
+                            passReg.addTextChangedListener(new TextWatcher() {
+                                @Override
+                                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                }
+
+                                @Override
+                                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable s) {
+                                    if(TextUtils.isEmpty(s)){
+                                        dialog_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                                    } else{
+                                        dialog_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
                 //setup color background
                 dialog_regular_customer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
                 break;
