@@ -111,10 +111,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"/>
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ok"
+        android:text="Зарегистрировать"
         android:id="@+id/add_new_client"
         android:textSize="20dp"
         android:textStyle="bold"

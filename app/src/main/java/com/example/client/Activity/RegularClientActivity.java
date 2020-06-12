@@ -52,7 +52,7 @@ public class RegularClientActivity extends AppCompatActivity {
     String strManufacturerCarNewClient;
     String strModelCarNewClient;
 
-    Button btnAddNewClient;
+    TextView addNewClient;
 
     TextView setDataBirthday;
     LinearLayout mainLr;
@@ -73,7 +73,7 @@ public class RegularClientActivity extends AppCompatActivity {
         manufacturerCarNewClient = findViewById(R.id.manufacturer_car_new_client);
         modelCarNewClient = findViewById(R.id.model_car_new_client);
         setDataBirthday=findViewById(R.id.birthday_new_client);
-        btnAddNewClient = findViewById(R.id.add_new_client);
+        addNewClient = findViewById(R.id.add_new_client);
         mainLr=findViewById(R.id.mainLr);
 
         ActionBar actionBar=getSupportActionBar();
@@ -85,7 +85,7 @@ public class RegularClientActivity extends AppCompatActivity {
         month=calendar.get(Calendar.MONTH);
         year=calendar.get(Calendar.YEAR);
 
-        btnAddNewClient.setOnClickListener(new View.OnClickListener() {
+        addNewClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Client client = new Client(user.getUid(), nameSurnameNewClient.getText().toString(),
