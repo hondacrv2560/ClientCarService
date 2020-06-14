@@ -8,54 +8,28 @@
     android:background="@color/serviceViewBg"
     tools:context=".Activity.ActivityClientInfo">
 
-    <Button
-        android:id="@+id/addCar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/sharp_add_black_36"
-        android:text="Добавить т\с"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
-    <ImageView
-        android:id="@+id/qrCodeView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clientInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:scrollbars="horizontal"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/authUser"
-        android:hint="введите e-mail"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/authPass"
-        android:hint="введите пароль"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/okBtn"
-        android:layout_gravity="center_horizontal"
-        android:text="Aвторизироваться"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"/>
-
-
+        <Button
+            android:id="@+id/addCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/sharp_add_black_36"
+            android:text="Добавить т\с"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"/>
+        <ImageView
+            android:id="@+id/qrCodeView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"/>
 </LinearLayout>

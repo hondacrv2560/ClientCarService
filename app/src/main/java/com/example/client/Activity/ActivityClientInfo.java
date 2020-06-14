@@ -1,13 +1,25 @@
 package com.example.client.Activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,11 +29,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.Classes.ClientInfoAdapter;
+import com.example.client.Classes.ToDayActivity;
+import com.example.client.MainActivity;
 import com.example.client.Models.Client;
 import com.example.client.Models.ClientInfo;
 import com.example.client.R;
@@ -52,12 +67,13 @@ public class ActivityClientInfo extends AppCompatActivity {
     private Activity activityClientInfo;
     private FirebaseAuth firebaseAuth;
     DatabaseReference dbInfoClient;
-
+    private TextView password;
+    private CheckBox showPass;
+    AlertDialog.Builder builder_enter_register;
+    LayoutInflater inflater_enter_register;
     Button addCar;
     ImageView qrCode;
-    Button btnOk;
-    EditText userAuth;
-    EditText passAuth;
+    public FirebaseUser user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,10 +86,6 @@ public class ActivityClientInfo extends AppCompatActivity {
 
         activityClientInfo = ActivityClientInfo.this;
 
-
-        btnOk = findViewById(R.id.okBtn);
-        userAuth = findViewById(R.id.authUser);
-        passAuth = findViewById(R.id.authPass);
         addCar = findViewById(R.id.addCar);
         qrCode = findViewById(R.id.qrCodeView);
         recyclerView = findViewById(R.id.clientInfo);
@@ -86,30 +98,7 @@ public class ActivityClientInfo extends AppCompatActivity {
 
         firebaseAuth = firebaseAuth.getInstance();
         // gjkextv Uid user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        if(user != null){
-//            Query query = dbInfoClient
-//                    .orderByChild("UserId")
-//                    .equalTo(user.getUid());
-//            query.addListenerForSingleValueEvent(valueEventListener);
-//            Toast.makeText(ActivityClientInfo.this, "signed in" + user.getUid(), Toast.LENGTH_SHORT).show();
-//        } else{
-//            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию" + user.getUid(), Toast.LENGTH_LONG).show();
-//        }
-
-        try {
-            Query query = dbInfoClient
-                    .orderByChild("UserId")
-                    .equalTo(user.getUid());
-            query.addListenerForSingleValueEvent(valueEventListener);
-            btnOk.setVisibility(View.INVISIBLE);
-            userAuth.setVisibility(View.INVISIBLE);
-            passAuth.setVisibility(View.INVISIBLE);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
-        }
-
+        user = firebaseAuth.getCurrentUser();
 
         addCar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,30 +108,86 @@ public class ActivityClientInfo extends AppCompatActivity {
             }
         });
 
-        if (user!=null){
-            String getUserId= user.getUid();
-            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-            try {
-                BitMatrix bitMatrix = multiFormatWriter.encode(getUserId, BarcodeFormat.QR_CODE, 300,300);
-                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                qrCode.setImageBitmap(bitmap);
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
-        } else{
-            qrCode.setVisibility(View.INVISIBLE);
-            addCar.setVisibility(View.INVISIBLE);
-            Toast.makeText(ActivityClientInfo.this, "пожалуйста пройдите авторизацию", Toast.LENGTH_LONG).show();
-        }
+        try {
+            viewQrCode();
+            Query query = dbInfoClient
+                    .orderByChild("UserId")
+                    .equalTo(user.getUid());
+            query.addListenerForSingleValueEvent(valueEventListener);
+        } catch (Exception e) {
+            e.printStackTrace();
+            builder_enter_register = new AlertDialog.Builder(ActivityClientInfo.this);
+            builder_enter_register.setTitle("Вход зарегистрированного клиента");
+            inflater_enter_register = ActivityClientInfo.this.getLayoutInflater();
+            final View view_enter_register = inflater_enter_register.inflate(R.layout.activity_enter_regular_client,null,false);
+            password = view_enter_register.findViewById(R.id.password);
+            showPass = view_enter_register.findViewById(R.id.checkViewPass);
+            builder_enter_register.setView(view_enter_register);
+            EditText eMail = view_enter_register.findViewById(R.id.e_mail);
+            EditText pass = view_enter_register.findViewById(R.id.password);
+            builder_enter_register.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    signIn(eMail.getText().toString(), pass.getText().toString());
+                    restartActivity(activityClientInfo);
+                    Toast.makeText(activityClientInfo, "Идет связь с сервером", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn(userAuth.getText().toString(), passAuth.getText().toString());
-                restartActivity(activityClientInfo);
-            }
-        });
+            showPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (!isChecked){
+                        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    }
+                    else {
+                        password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    }
+                }
+            });
+            AlertDialog dialog_enter_regular_customer = builder_enter_register.create();
+            dialog_enter_regular_customer.show();
+            dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+            eMail.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if(TextUtils.isEmpty(s)){
+                        dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                    } else{
+                        pass.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if(TextUtils.isEmpty(s)){
+                                    dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                                } else{
+                                    dialog_enter_regular_customer.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -192,7 +237,29 @@ public class ActivityClientInfo extends AppCompatActivity {
         });
     }
 
-    public static void restartActivity(Activity activity){
-        activity.recreate();
+    public void restartActivity(Activity activity){
+        activity.finish();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(ActivityClientInfo.this, ActivityClientInfo.class);
+                startActivity(intent);
+            }
+        },2000);
+
+    }
+
+    public void viewQrCode(){
+        String getUserId = user.getUid();
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(getUserId, BarcodeFormat.QR_CODE, 300, 300);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            qrCode.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 }
