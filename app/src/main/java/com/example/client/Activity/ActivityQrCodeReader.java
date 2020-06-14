@@ -123,6 +123,13 @@ public class ActivityQrCodeReader extends AppCompatActivity {
                         startActivity(nanoCeramics);
                         finish();
                         break;
+                        case "chemicalCleaning":
+                        Intent chemicalCleaning = new Intent(ActivityQrCodeReader.this, ActivityFullOrder_ChemicalCleaningSalon.class);
+                        chemicalCleaning.putExtra("qrCode", "user unregister");
+//                        cw_Standard.putExtra("qrCode", qrCode);
+                        startActivity(chemicalCleaning);
+                        finish();
+                        break;
                 }
             }
         });
