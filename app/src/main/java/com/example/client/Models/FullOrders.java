@@ -13,11 +13,12 @@ public class FullOrders {
     public String idOrder;
     public String currentDate;
     public String currentTime;
+    public String box;
 
     public FullOrders() {
     }
 
-    public FullOrders(String idService, String titleService, String category, int priceService, String idClient, String idOrder, String currentDate, String currentTime) {
+    public FullOrders(String idService, String titleService, String category, int priceService, String idClient, String idOrder, String currentDate, String currentTime, String box) {
         this.idService = idService;
         this.titleService = titleService;
         this.category = category;
@@ -26,6 +27,7 @@ public class FullOrders {
         this.idOrder = idOrder;
         this.currentDate = currentDate;
         this.currentTime = currentTime;
+        this.box = box;
     }
 
     public String getIdService() {
@@ -90,5 +92,13 @@ public class FullOrders {
 
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
+    }
+
+    public String getBox() {
+        return box;
+    }
+
+    public void setBox (String box) {
+        this.box = box;
     }
 }
