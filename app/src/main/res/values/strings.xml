@@ -27,6 +27,14 @@
         <item>ШИНОМОНТАЖ</item>
         <item>ТОНИРОВКА</item>
     </string-array>
+    <string-array name="boxes">
+        <item>Выберите бокс:</item>
+        <item>БОКС №1</item>
+        <item>БОКС №2</item>
+        <item>БОКС №3</item>
+        <item>БОКС №4</item>
+        <item>БОКС №5</item>
+    </string-array>
 </resources>
 
 

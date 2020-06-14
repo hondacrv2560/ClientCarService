@@ -2,6 +2,7 @@ package com.example.client.Activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -89,9 +90,10 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
     Spinner mySpinner;
 
     Spinner selectOrder;
+    Spinner boxSpinner;
 
     private String textData;
-
+    private String boxData;
     ArrayAdapter<String> adapterSpinner;
     ArrayList<String> spinnerListOrder;
 
@@ -106,6 +108,7 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
+        boxSpinner = (Spinner) findViewById(R.id.idBox);
         selectOrder = (Spinner) findViewById(R.id.idOrder);
         myToolbar.setTitle("Химчистка салона");
         getSupportActionBar().hide();
@@ -151,6 +154,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        ArrayAdapter<String> boxAdapter = new ArrayAdapter<String>(ActivityFullOrder_ChemicalCleaningSalon.this,
+                R.layout.spinner_item,
+                getResources().getStringArray(R.array.boxes));
+
+        boxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boxSpinner.setAdapter(boxAdapter);
+
 //        int count = myAdapter.getCount();
 //        idclient.setText(count+"");
 
@@ -181,6 +191,19 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 spinnerTouched = true;
                 return false;
+            }
+        });
+
+        boxSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) view).setTextColor(Color.RED);
+                boxData = boxSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -387,7 +410,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if (phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if(govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -407,7 +436,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(),Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if (phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if(govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -427,7 +462,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if (phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if(govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);
@@ -447,7 +488,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(),Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if (phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if(govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
@@ -467,7 +514,13 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 if(isChecked){
                                     getCurrentDateTime();
-                                    fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(),Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText,timeText);
+                                    if (idclient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if (phoneClient.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    } else if(govNumCar.length()>0){
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                    }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
                                     viewHolder.checkBoxBigSUV.setEnabled(false);

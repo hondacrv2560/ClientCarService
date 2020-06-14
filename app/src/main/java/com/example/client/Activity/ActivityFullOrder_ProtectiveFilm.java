@@ -89,7 +89,10 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
     Spinner mySpinner;
     Spinner selectOrder;
 
+    Spinner boxSpinner;
+
     private String textData;
+    private String boxData;
 
     ArrayAdapter<String> adapterSpinner;
     ArrayList<String> spinnerListOrder;
@@ -105,6 +108,7 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
         spinnerDbReferenceOrder = spinnerDb.getReference("Orders");
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         mySpinner = (Spinner) findViewById(R.id.spinner);
+        boxSpinner = (Spinner) findViewById(R.id.idBox);
         selectOrder = (Spinner) findViewById(R.id.idOrder);
         myToolbar.setTitle("Защитная пленка");
         getSupportActionBar().hide();
@@ -150,6 +154,13 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+        ArrayAdapter<String> boxAdapter = new ArrayAdapter<String>(ActivityFullOrder_ProtectiveFilm.this,
+                R.layout.spinner_item,
+                getResources().getStringArray(R.array.boxes));
+
+        boxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boxSpinner.setAdapter(boxAdapter);
+
         mySpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -177,6 +188,18 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                         .orderByChild("phoneNumberClient")
                         .equalTo(phoneClient.getText().toString());
                 query.addListenerForSingleValueEvent(listener);
+            }
+        });
+
+        boxSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                boxData = boxSpinner.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -385,11 +408,11 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -411,11 +434,11 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -437,11 +460,11 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -463,11 +486,11 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -489,11 +512,11 @@ public class ActivityFullOrder_ProtectiveFilm extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
