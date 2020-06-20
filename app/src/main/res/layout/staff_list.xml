@@ -41,7 +41,7 @@
             android:hint="TEST"
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
-        <TextView android:id="@+id/numphoneStaff"
+        <TextView android:id="@+id/numPhoneStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
