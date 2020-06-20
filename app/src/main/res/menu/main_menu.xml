@@ -66,17 +66,17 @@
         <menu>
             <item
                 android:id="@+id/day_1"
-                android:title="oneDay"
+                android:title="1 день"
                 android:icon="@drawable/ic_filter_1_blue_grey_600_24dp_lp"
                 app:showAsAction="always"/>
             <item
                 android:id="@+id/days_3"
-                android:title="threeDay"
+                android:title="3 дня"
                 android:icon="@drawable/ic_filter_3_blue_grey_600_24dp_lp"
                 app:showAsAction="always"/>
             <item
                 android:id="@+id/week"
-                android:title="sevenDay"
+                android:title="неделя"
                 android:icon="@drawable/ic_filter_7_blue_grey_600_24dp_lp"
                 app:showAsAction="always"/>
         </menu>

@@ -2,6 +2,7 @@ package com.example.client.Activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -192,6 +193,7 @@ public class ActivityFullOrder_Polishing extends AppCompatActivity {
         boxSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) view).setTextColor(Color.DKGRAY);
                 boxData = boxSpinner.getSelectedItem().toString();
             }
 

@@ -197,7 +197,7 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
         boxSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) view).setTextColor(Color.RED);
+                ((TextView) view).setTextColor(Color.DKGRAY);
                 boxData = boxSpinner.getSelectedItem().toString();
             }
 
