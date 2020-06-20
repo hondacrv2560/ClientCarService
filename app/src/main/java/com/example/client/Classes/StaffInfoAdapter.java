@@ -64,15 +64,15 @@ public class StaffInfoAdapter extends RecyclerView.Adapter<StaffInfoAdapter.Staf
 
         public StaffInfoHolder(@NonNull View itemView) {
             super(itemView);
-            functionStaff = itemView.findViewById(R.id.userId);
-            nameStaff = itemView.findViewById(R.id.govNum);
-            surnameStaff = itemView.findViewById(R.id.manufCar);
-            numPhoneStaff = itemView.findViewById(R.id.modelCar);
-            seriesPassportStaff = itemView.findViewById(R.id.nameSurname);
-            numberPassportStaff = itemView.findViewById(R.id.phoneClient);
-            passportIssuingAuthorityStaff = itemView.findViewById(R.id.modelCar);
-            dateIssuePassportStaff = itemView.findViewById(R.id.nameSurname);
-            dateBirthStaff = itemView.findViewById(R.id.phoneClient);
+            functionStaff = itemView.findViewById(R.id.functionStaff);
+            nameStaff = itemView.findViewById(R.id.nameStaff);
+            surnameStaff = itemView.findViewById(R.id.surnameStaff);
+            numPhoneStaff = itemView.findViewById(R.id.numPhoneStaff);
+            seriesPassportStaff = itemView.findViewById(R.id.seriesPassportStaff);
+            numberPassportStaff = itemView.findViewById(R.id.numberPassportStaff);
+            passportIssuingAuthorityStaff = itemView.findViewById(R.id.passportIssuingAuthorityStaff);
+            dateIssuePassportStaff = itemView.findViewById(R.id.dateIssuePassportStaff);
+            dateBirthStaff = itemView.findViewById(R.id.dateBirthStaff);
         }
     }
 }

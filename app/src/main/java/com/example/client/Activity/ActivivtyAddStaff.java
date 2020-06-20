@@ -84,9 +84,10 @@ public class ActivivtyAddStaff extends AppCompatActivity {
                 myDbReference = database.getReference("Staff");
                 key = myDbReference.push().getKey();
                 myDbReference.child(Objects.requireNonNull(key)).setValue(addStaff);
-                Intent intentRegularClient = new Intent(ActivivtyAddStaff.this, MainActivity.class);
+                Intent intentRegularClient = new Intent(ActivivtyAddStaff.this, ActivityStaffInfo.class);
                 startActivity(intentRegularClient);
                 Toast.makeText(ActivivtyAddStaff.this, key, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         setUpperCase();
