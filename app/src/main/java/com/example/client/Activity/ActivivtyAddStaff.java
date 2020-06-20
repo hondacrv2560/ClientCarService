@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,7 +56,7 @@ public class ActivivtyAddStaff extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activivty_add_staff);
+        setContentView(R.layout.activity_add_staff);
 
         functionStaff = findViewById(R.id.functionStaff);
         nameStaff = findViewById(R.id.nameStaff);
