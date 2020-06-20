@@ -123,10 +123,11 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Дата выдачи документа: "/>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dateIssuePassportStaff"/>
+            android:id="@+id/dateIssuePassportStaff"
+            android:onClick="onClickDateIssuePassportStaff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -140,7 +141,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dateBirthStaff"/>
+            android:id="@+id/dateBirthStaff"
+            android:onClick="onClickBirthStaff"/>
     </LinearLayout>
 
     <TextView

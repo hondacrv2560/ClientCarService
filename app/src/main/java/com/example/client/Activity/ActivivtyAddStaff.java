@@ -1,15 +1,20 @@
 package com.example.client.Activity;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +24,7 @@ import com.example.client.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 import br.com.sapereaude.maskedEditText.MaskedEditText;
@@ -34,7 +40,7 @@ public class ActivivtyAddStaff extends AppCompatActivity {
     EditText seriesPassportStaff;
     EditText numberPassportStaff;
     EditText passportIssuingAuthorityStaff;
-    EditText dateIssuePassportStaff;
+    TextView dateIssuePassportStaff;
     TextView dateBirthStaff;
     TextView addStaff;
 
@@ -43,6 +49,10 @@ public class ActivivtyAddStaff extends AppCompatActivity {
     String strSurnameStaff;
     String strSeriesPassportStaff;
     String strPassportIssuingAuthorityStaff;
+
+    int day;
+    int month;
+    int year;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +91,11 @@ public class ActivivtyAddStaff extends AppCompatActivity {
             }
         });
         setUpperCase();
+
+        Calendar calendar=Calendar.getInstance();
+        day=calendar.get(Calendar.DAY_OF_MONTH);
+        month=calendar.get(Calendar.MONTH);
+        year=calendar.get(Calendar.YEAR);
     }
 
     public void setUpperCase() {
@@ -183,5 +198,47 @@ public class ActivivtyAddStaff extends AppCompatActivity {
                 passportIssuingAuthorityStaff.setSelection(passportIssuingAuthorityStaff.getText().length());
             }
         });
+    }
+
+    public void onClickBirthStaff(View arg0) {
+        DatePickerDialog datePickerDialog=new DatePickerDialog(ActivivtyAddStaff.this, AlertDialog.THEME_TRADITIONAL,
+                null,year, month,day){
+            @Override
+            public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                ActivivtyAddStaff.this.year=year;
+                ActivivtyAddStaff.this.month= ++month;
+                ActivivtyAddStaff.this.day=dayOfMonth;
+            }
+        };
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String date=day+"/"+ month+"/"+year;
+                Toast.makeText(ActivivtyAddStaff.this, date, Toast.LENGTH_SHORT).show();
+                dateBirthStaff.setText(date);
+            }
+        });
+        datePickerDialog.show();
+    }
+
+    public void onClickDateIssuePassportStaff(View arg0) {
+        DatePickerDialog datePickerDialog=new DatePickerDialog(ActivivtyAddStaff.this, AlertDialog.THEME_TRADITIONAL,
+                null,year, month,day){
+            @Override
+            public void onDateChanged(@NonNull DatePicker view, int year, int month, int dayOfMonth) {
+                ActivivtyAddStaff.this.year=year;
+                ActivivtyAddStaff.this.month= ++month;
+                ActivivtyAddStaff.this.day=dayOfMonth;
+            }
+        };
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String date=day+"/"+ month+"/"+year;
+                Toast.makeText(ActivivtyAddStaff.this, date, Toast.LENGTH_SHORT).show();
+                dateIssuePassportStaff.setText(date);
+            }
+        });
+        datePickerDialog.show();
     }
 }
