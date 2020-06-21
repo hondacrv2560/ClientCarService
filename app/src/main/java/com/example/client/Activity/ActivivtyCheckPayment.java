@@ -27,7 +27,7 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
     private CheckPaymentAdapter checkPaymentAdapter;
     private ArrayList<FullOrders> fullOrdersList;
     TextView sumPayment;
-
+    int totalPrice=0;
 
     DatabaseReference dbFullOrders;
 
@@ -48,6 +48,8 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
         Query query = dbFullOrders;
         query.addListenerForSingleValueEvent(valueEventListener);
 
+
+
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -61,6 +63,10 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
                         fullOrdersList.add(fullOrders);
                     }
                 }
+                for(int i=0;i<fullOrdersList.size();i++){
+                    totalPrice += fullOrdersList.get(i).getPriceService();
+                }
+                sumPayment.setText(Integer.toString(totalPrice));
                 checkPaymentAdapter.notifyDataSetChanged();
             }
         }

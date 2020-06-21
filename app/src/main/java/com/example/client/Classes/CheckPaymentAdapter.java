@@ -36,7 +36,7 @@ public class CheckPaymentAdapter extends RecyclerView.Adapter<CheckPaymentAdapte
         holder.idService.setText(fullOrders.idService);
         holder.titleService.setText(fullOrders.titleService);
         holder.category.setText(fullOrders.category);
-        holder.priceService.setText(fullOrders.priceService+"");
+        holder.priceService.setText(Integer.toString(fullOrders.priceService));
         holder.idClient.setText(fullOrders.idClient);
         holder.idOrder.setText((fullOrders.idOrder));
         holder.currentDate.setText(fullOrders.currentDate);
