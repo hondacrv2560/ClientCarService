@@ -33,6 +33,7 @@ import com.example.client.Activity.ActivityFullOrderCW_Standart;
 import com.example.client.Activity.ActivityOrdersClientView;
 import com.example.client.Activity.ActivityStaffInfo;
 import com.example.client.Activity.ActivivtyAddStaff;
+import com.example.client.Activity.ActivivtyCheckPayment;
 import com.example.client.Activity.RegularClientActivity;
 import com.example.client.Classes.OneDayActivity;
 import com.example.client.Classes.SevenDaysActivity;
@@ -318,6 +319,11 @@ public String str;
                 checkCreateFragment();
                 Intent intentStaff = new Intent(MainActivity.this, ActivityStaffInfo.class);
                 startActivity(intentStaff);
+                break;
+            case R.id.finReport:
+                checkCreateFragment();
+                Intent intent = new Intent(MainActivity.this, ActivivtyCheckPayment.class);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

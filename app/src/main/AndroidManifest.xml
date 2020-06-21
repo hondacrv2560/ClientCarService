@@ -47,6 +47,7 @@
         </activity>
         <activity android:name=".Activity.ActivivtyAddStaff"/>
         <activity android:name=".Activity.ActivityStaffInfo"/>
+        <activity android:name=".Activity.ActivivtyCheckPayment"/>
         <activity android:name=".Activity.ActivityQrCodeReader"/>
         <activity android:name=".Activity.ActivityCarWashing_Standart"/>
         <activity android:name=".Activity.ActivityTireFitting"/>
