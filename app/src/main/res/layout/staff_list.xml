@@ -14,6 +14,19 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Должность"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/functionStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,21 +34,60 @@
             android:textColor="@android:color/black"
             android:textSize="10sp"
             android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Имя сотрудника"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/nameStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textColor="@android:color/black"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:paddingRight="10dp"
             android:hint="TEST"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Фамилия сотрудника"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/surnameStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Номер телефона"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:hint="TEST"
@@ -50,10 +102,38 @@
             android:hint="TEST"
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Серия паспорта"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/seriesPassportStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Номер паспорта"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:hint="TEST"
@@ -68,10 +148,38 @@
             android:hint="TEST"
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Орган выдачи паспорта"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/passportIssuingAuthorityStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Дата выдачи паспорта"
             android:textColor="@android:color/black"
             android:textSize="12sp"
             android:hint="TEST"
@@ -86,6 +194,20 @@
             android:hint="TEST"
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Дата рождения"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
         <TextView android:id="@+id/dateBirthStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,5 +217,53 @@
             android:hint="TEST"
             android:paddingRight="10dp"
             android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Дата заключения договора"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+        <TextView android:id="@+id/dateContract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:hint="TEST"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Дата расторженя договора"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:hint="TEST"
+                android:paddingRight="10dp"
+                android:layout_gravity="center_vertical|center_horizontal"/>
+            <TextView android:id="@+id/dateEndContract"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:hint="TEST"
+                android:paddingRight="10dp"
+                android:layout_gravity="center_vertical|center_horizontal"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

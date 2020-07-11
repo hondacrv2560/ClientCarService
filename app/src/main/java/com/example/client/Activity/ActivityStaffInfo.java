@@ -58,7 +58,9 @@ public class ActivityStaffInfo extends AppCompatActivity {
                 finish();
             }
         });
+
     }
+
 
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override

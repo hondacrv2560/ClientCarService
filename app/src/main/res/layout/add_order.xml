@@ -42,8 +42,7 @@
         mask:allowed_chars="1234567890"
         mask:mask="+380(##)###-##-##"
         android:hint="1234567890"
-        app:keep_hint="true"
-        />
+        app:keep_hint="true"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
