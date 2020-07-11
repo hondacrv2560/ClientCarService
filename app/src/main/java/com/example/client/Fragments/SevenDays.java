@@ -6,6 +6,8 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -65,7 +67,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
     TextView txtTimeOrder;
     EditText addComment;
     EditText txtGovNumber;
-    MaskedEditText txtPhoneClient;
     int startOrderDay;
     int startOrderMonth;
     int startOrderYear;
@@ -73,7 +74,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
     int startOrderMinute=-1;
     private LayoutInflater layoutInflater;
     private View view;
-
+    MaskedEditText txtPhoneClient;
     Date currentDate;
     DateFormat dateFormat;
     DateFormat timeFormat;
@@ -163,7 +164,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);;
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -182,7 +184,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -198,7 +199,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -236,7 +236,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -255,11 +256,10 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -271,7 +271,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -309,7 +308,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -328,11 +328,10 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -344,7 +343,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -381,7 +379,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -400,11 +399,10 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -416,7 +414,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -454,7 +451,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -473,11 +471,10 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -489,7 +486,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -527,7 +523,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -546,11 +543,10 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -562,7 +558,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -600,7 +595,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -619,14 +615,13 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString(),
-                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
+                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText );
                                     myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
@@ -634,7 +629,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
@@ -673,7 +667,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -691,12 +686,11 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -708,7 +702,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -746,7 +739,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -764,12 +758,11 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -781,7 +774,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
 
@@ -820,7 +812,8 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                         txtdateOrder = view.findViewById(R.id.dateOrder);
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        setUpperCase();
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -838,12 +831,11 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -855,7 +847,6 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -927,7 +918,7 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
                 SevenDays.this.startOrderDay=dayOfMonth;
             }
         };
-        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Записаться", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
@@ -1017,12 +1008,9 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
 
     private void refreshFragment(){
         SevenDays fragment = (SevenDays)getFragmentManager().findFragmentById(R.id.fr);
-
         getFragmentManager().beginTransaction()
                 .detach(fragment)
-                .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                 .attach(fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
@@ -1051,5 +1039,29 @@ public abstract class SevenDays extends Fragment implements WeekView.EmptyViewCl
         timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         dateText = dateFormat.format(currentDate);
         timeText = timeFormat.format(currentDate);
+    }
+
+    public void setUpperCase(){
+        txtGovNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String strGovNumber = s.toString();
+                if(!strGovNumber.equals(strGovNumber.toUpperCase())){
+                    strGovNumber = strGovNumber.toUpperCase();
+                    txtGovNumber.setText(strGovNumber);
+                }
+                txtGovNumber.setSelection(txtGovNumber.getText().length());
+            }
+        });
     }
 }

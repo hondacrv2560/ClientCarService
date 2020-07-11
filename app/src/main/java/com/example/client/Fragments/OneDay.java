@@ -89,6 +89,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public String timeText;
 
     Timer mTimer;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -125,8 +126,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         setupDateTimeInterpreter(false);
         // создание плавающей книпки для записи клиентов
         speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing_3Phases, R.drawable.car_wash_3)
-                        .setLabel(R.string.CarWashing_3Phases)
-                        .create());
+                .setLabel(R.string.CarWashing_3Phases)
+                .create());
         speedDialView.addActionItem(new SpeedDialActionItem.Builder(R.id.carWashing, R.drawable.car_wash_std)
                 .setLabel(R.string.CarWashing)
                 .create());
@@ -215,6 +216,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -245,7 +247,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -267,8 +269,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#AA00FF", 2, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -289,6 +291,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -319,7 +322,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -338,11 +341,11 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    refreshFragment();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+3, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#304FFE", 3, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -354,8 +357,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    refreshFragment();
                                 }
                             }
                         });
@@ -363,6 +366,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -392,7 +396,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -414,8 +418,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#0097A7", 4, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -436,6 +440,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -466,7 +471,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -488,8 +493,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#00C853", 5, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -511,6 +516,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -540,7 +546,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -562,8 +568,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+2, startOrderMonth, startOrderYear, "#AEEA00", 6, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -584,6 +590,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -614,7 +621,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -636,8 +643,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#FFAB00", 7, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -648,8 +655,8 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -658,6 +665,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -688,7 +696,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -706,12 +714,12 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+6, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#795548", 8, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -732,6 +740,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -762,7 +771,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -780,12 +789,12 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour+1, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#212121", 9, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -807,6 +816,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -837,7 +847,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtTimeOrder = view.findViewById(R.id.timeOrder);
                         txtGovNumber = view.findViewById(R.id.govNumberCarClient);
                         setUpperCase();
-                        txtPhoneClient = view.findViewById(R.id.phoneClient);
+                        txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
@@ -855,12 +865,12 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                                     key = myDbReferenceOrder.push().getKey();
                                     // добавление заказа
                                     myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
-                                    refreshFragment();
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+                                    refreshFragment();
                                     Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
-                                    getCurrentDateTime();
                                     e.printStackTrace();
+                                    getCurrentDateTime();
                                     order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
                                             startOrderHour, startOrderMinute, startOrderDay+1, startOrderMonth, startOrderYear, "#455A64", 10, addComment.getText().toString(),
                                             txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
@@ -881,6 +891,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 alertDialogOneDay.dismiss();
+                                refreshFragment();
                             }
                         });
                         alertDialogOneDay = alertDialogBuilder.create();
@@ -939,7 +950,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 OneDay.this.startOrderDay=dayOfMonth;
             }
         };
-        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener() {
+        datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Записаться", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String date= startOrderDay+"/"+ startOrderMonth+"/"+startOrderYear;
@@ -1018,7 +1029,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
     }
-    
+
     @Override
     public void onEmptyViewClicked(final Calendar time) {
 //
@@ -1028,7 +1039,6 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     @Override
     public void onEmptyViewLongPress(Calendar time) {
         Toast.makeText(getActivity(), "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
-
     }
 
     public WeekView getWeekView() {
@@ -1037,12 +1047,9 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
 
     private void refreshFragment(){
         OneDay fragment = (OneDay)getFragmentManager().findFragmentById(R.id.fr);
-
         getFragmentManager().beginTransaction()
                 .detach(fragment)
-                .replace(R.id.fr, fragment, fragment.getClass().getCanonicalName())
                 .attach(fragment)
-                .addToBackStack(null)
                 .commit();
     }
 
