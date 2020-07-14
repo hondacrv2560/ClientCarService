@@ -53,6 +53,8 @@
         android:title="Персонал"/>
     <item android:id="@+id/fullOrder"
         android:title="Формирование наряда"/>
+    <item android:id="@+id/searchInfoClient"
+        android:title="Поиск информации о клиенте"/>
     <!--       app:showAsAction="always"/>-->
     <!--    <item android:id="@+id/action_today"-->
     <!--        android:title="action_today"-->
