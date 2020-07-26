@@ -45,6 +45,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".Activity.ActivitySearchClient"/>
         <activity android:name=".Activity.ActivivtyAddStaff"/>
         <activity android:name=".Activity.ActivityStaffInfo"/>
         <activity android:name=".Activity.ActivivtyCheckPayment"/>
