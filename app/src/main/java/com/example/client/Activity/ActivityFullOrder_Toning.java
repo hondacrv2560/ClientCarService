@@ -436,11 +436,11 @@ public class ActivityFullOrder_Toning extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(), Integer.parseInt(viewHolder.txt_price_business.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(), Integer.parseInt(viewHolder.txt_price_business.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_business.getText().toString(), Integer.parseInt(viewHolder.txt_price_business.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -462,11 +462,11 @@ public class ActivityFullOrder_Toning extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_SUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_SUV.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -488,11 +488,11 @@ public class ActivityFullOrder_Toning extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_BigSUV.getText().toString(), Integer.parseInt(viewHolder.txt_price_BigSUV.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxSedan.setEnabled(false);
@@ -514,11 +514,11 @@ public class ActivityFullOrder_Toning extends AppCompatActivity {
                                 if(isChecked){
                                     getCurrentDateTime();
                                     if (idclient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(), Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), idclient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if (phoneClient.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(), Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), phoneClient.getText().toString(), idorder.getText().toString(), dateText, timeText, boxData);
                                     } else if(govNumCar.length()>0){
-                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_premium.getText().toString(), Integer.parseInt(viewHolder.txt_price_premium.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
+                                        fullOrders = new FullOrders(viewHolder.txt_idService.getText().toString(), viewHolder.txt_titleService.getText().toString(), viewHolder.txt_cat_sedan.getText().toString(), Integer.parseInt(viewHolder.txt_price_sedan.getText().toString()), govNumCar.getText().toString(), idorder.getText().toString(), dateText, timeText,boxData);
                                     }
                                     ordersList.add(fullOrders);
                                     viewHolder.checkBoxBusiness.setEnabled(false);
