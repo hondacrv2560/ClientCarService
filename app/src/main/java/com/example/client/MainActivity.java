@@ -31,6 +31,7 @@ import com.example.client.Activity.ActivityContacts;
 import com.example.client.Activity.ActivityFullOrderCW_3Phases;
 import com.example.client.Activity.ActivityFullOrderCW_Standart;
 import com.example.client.Activity.ActivityOrdersClientView;
+import com.example.client.Activity.ActivitySearchClient;
 import com.example.client.Activity.ActivityStaffInfo;
 import com.example.client.Activity.ActivivtyAddStaff;
 import com.example.client.Activity.ActivivtyCheckPayment;
@@ -125,7 +126,7 @@ public String str;
                 transaction.replace(R.id.fr,toDay);
                 transaction.commit();
             }
-        },1000);
+        },2000);
 
         //отображение месяца в ActionBar
 //        Calendar calendar=Calendar.getInstance();
@@ -324,6 +325,12 @@ public String str;
                 checkCreateFragment();
                 Intent intent = new Intent(MainActivity.this, ActivivtyCheckPayment.class);
                 startActivity(intent);
+                break;
+            case R.id.searchInfoClient:
+                checkCreateFragment();
+                Intent intentSearchInfoClient = new Intent(MainActivity.this, ActivitySearchClient.class);
+                startActivity(intentSearchInfoClient);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

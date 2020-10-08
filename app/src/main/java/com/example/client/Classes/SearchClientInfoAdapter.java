@@ -49,6 +49,9 @@ public class SearchClientInfoAdapter extends RecyclerView.Adapter<SearchClientIn
 
         TextView searchPhoneClient;
         TextView searchGovNumCar;
+//        TextView startDayOfMonth;
+//        TextView startTimeMonth;
+//        TextView startTimeYear;
         public SearchClientInfoHolder(@NonNull View itemView) {
             super(itemView);
 

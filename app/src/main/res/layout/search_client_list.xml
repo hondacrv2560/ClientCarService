@@ -10,10 +10,7 @@
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:background="@color/serviceViewBg"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:layout_margin="5dp">
+        android:background="@color/serviceViewBg">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -47,9 +47,6 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
 
         Query query = dbFullOrders;
         query.addListenerForSingleValueEvent(valueEventListener);
-
-
-
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -60,6 +57,27 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot snap : snapshot.getChildren()) {
                         FullOrders fullOrders = snap.getValue(FullOrders.class);
+                        if (Integer.parseInt(fullOrders.idService)==1){
+                            fullOrders.idService = "АВТОМОЙКА 3-Х ФАЗНАЯ";
+                        }else if(Integer.parseInt(fullOrders.idService)==2) {
+                            fullOrders.idService = "АВТОМОЙКА СТАНДАРТ";
+                        }else if(Integer.parseInt(fullOrders.idService)==3) {
+                            fullOrders.idService = "АВТОСТЕКЛА";
+                        }else if(Integer.parseInt(fullOrders.idService)==4) {
+                            fullOrders.idService = "ПОЛИРОВКА";
+                        }else if(Integer.parseInt(fullOrders.idService)==5) {
+                            fullOrders.idService = "НАНОКЕРАМИКА";
+                        }else if(Integer.parseInt(fullOrders.idService)==6) {
+                            fullOrders.idService = "ЗАЩИТНАЯ ПЛЕНКА";
+                        }else if(Integer.parseInt(fullOrders.idService)==7) {
+                            fullOrders.idService = "ХИМЧИСТКА САЛОНА";
+                        }else if(Integer.parseInt(fullOrders.idService)==8) {
+                            fullOrders.idService = "ЗАЩИТА САЛОНА";
+                        }else if(Integer.parseInt(fullOrders.idService)==9) {
+                            fullOrders.idService = "ШИНОМОНТАЖ";
+                        }else if(Integer.parseInt(fullOrders.idService)==10) {
+                            fullOrders.idService = "ТОНИРОВКА";
+                        }
                         fullOrdersList.add(fullOrders);
                     }
                 }
