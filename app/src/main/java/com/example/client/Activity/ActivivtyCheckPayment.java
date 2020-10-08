@@ -20,7 +20,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ActivivtyCheckPayment extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -30,11 +34,20 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
     int totalPrice=0;
 
     DatabaseReference dbFullOrders;
+    Date currentDate;
+    DateFormat dateFormat;
+    public String dateText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.check_payment_view);
+
+        currentDate = new Date();
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        dateText = dateFormat.format(currentDate);
+
+        String txtTotalSum = getIntent().getStringExtra("totalSum");
 
         sumPayment = findViewById(R.id.sumPayment);
         recyclerView = findViewById(R.id.check_payment_list);
@@ -47,6 +60,10 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
 
         Query query = dbFullOrders;
         query.addListenerForSingleValueEvent(valueEventListener);
+//        Query query = dbFullOrders
+//                .orderByChild("priceService")
+//                .equalTo("-MD0N-Bk-v9-F2XC9O4u");
+//        query.addListenerForSingleValueEvent(valueEventListener);
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -78,7 +95,9 @@ public class ActivivtyCheckPayment extends AppCompatActivity {
                         }else if(Integer.parseInt(fullOrders.idService)==10) {
                             fullOrders.idService = "ТОНИРОВКА";
                         }
-                        fullOrdersList.add(fullOrders);
+                        if (fullOrders.idOrder.equals(getIntent().getStringExtra("totalSum"))& fullOrders.currentDate.equals(dateText)){
+                            fullOrdersList.add(fullOrders);
+                        }
                     }
                 }
                 for(int i=0;i<fullOrdersList.size();i++){

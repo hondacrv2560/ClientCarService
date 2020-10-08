@@ -103,6 +103,7 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
 
     public Boolean spinnerTouched = false;
 
+    String totalSum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,6 +151,10 @@ public class ActivityFullOrderCW_3Phases extends AppCompatActivity {
                 key = myDbReferenceOrder.push().getKey();
                 myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                 ordersList.clear();
+                totalSum = idorder.getText().toString();
+                Intent finReport = new Intent(ActivityFullOrderCW_3Phases.this, ActivivtyCheckPayment.class);
+                finReport.putExtra("totalSum", totalSum);
+                startActivity(finReport);
                 finish();
             }
         });
