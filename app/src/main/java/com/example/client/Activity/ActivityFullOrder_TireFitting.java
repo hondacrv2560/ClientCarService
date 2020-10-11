@@ -92,6 +92,7 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
 
     Spinner boxSpinner;
 
+    String totalSum;
     private String textData;
     private String boxData;
 
@@ -144,6 +145,10 @@ public class ActivityFullOrder_TireFitting extends AppCompatActivity {
                 key = myDbReferenceOrder.push().getKey();
                 myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                 ordersList.clear();
+                totalSum = idorder.getText().toString();
+                Intent finReport = new Intent(ActivityFullOrder_TireFitting.this, ActivivtyCheckPayment.class);
+                finReport.putExtra("totalSum", totalSum);
+                startActivity(finReport);
                 finish();
             }
         });

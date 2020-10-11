@@ -89,6 +89,7 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
     Toolbar myToolbar;
     Spinner mySpinner;
 
+    String totalSum;
     Spinner selectOrder;
     Spinner boxSpinner;
 
@@ -143,6 +144,10 @@ public class ActivityFullOrder_ChemicalCleaningSalon extends AppCompatActivity {
                 key = myDbReferenceOrder.push().getKey();
                 myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(ordersList);
                 ordersList.clear();
+                totalSum = idorder.getText().toString();
+                Intent finReport = new Intent(ActivityFullOrder_ChemicalCleaningSalon.this, ActivivtyCheckPayment.class);
+                finReport.putExtra("totalSum", totalSum);
+                startActivity(finReport);
                 finish();
             }
         });
