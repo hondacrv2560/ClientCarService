@@ -58,7 +58,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
     //создание подключения к БД
     private FirebaseAuth firebaseAuth;
     //создание подключения к авторизапции
