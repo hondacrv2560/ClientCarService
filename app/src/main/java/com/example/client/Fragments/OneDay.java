@@ -38,17 +38,22 @@ import com.example.client.Models.Order;
 import com.example.client.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Timer;
@@ -66,8 +71,18 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myDbReferenceOrder;
+
+    // подключение к БД
+    FirebaseDatabase dbEvent = FirebaseDatabase.getInstance();
+    // получение ссылки на БД
+    DatabaseReference myDbReference = dbEvent.getReference();
+    // поключение к child Orders
+    DatabaseReference orderRef = myDbReference.child("Orders");
+    public List<Order> list = new ArrayList<Order>();
+
     private DatabaseReference myDbReferenceEventOrder;
     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+    String currentuser;
     private Order order;
     private String key;
     TextView txtdateOrder;
@@ -96,7 +111,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         View showOneDay = inflater.inflate(R.layout.activity_week_view, container,false);
         mWeekView = showOneDay.findViewById(R.id.weekView);
         speedDialView = showOneDay.findViewById(R.id.speedDial);
-
+        currentuser = user.getUid();
         mTimer = new Timer();
         startAutoRefresh();
         mWeekView.setNumberOfVisibleDays(1);
@@ -175,41 +190,94 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                         txtPhoneClient = view.findViewById(R.id.phone_input);
                         addComment = view.findViewById(R.id.addComment);
 
+//                        orderRef.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                                dataSnapshot.getChildren();
+//                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                                    Order eventOrder = snapshot.getValue(Order.class);
+//
+//                                            if(eventOrder.startTimeMonth==12){
+//                                                list.add(eventOrder);
+//                                            }
+//                                }
+//                            }
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {}
+//                        });
                         alertDialogBuilder.setPositiveButton("Записаться", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 getCurrentDateTime();
-                                try {
-                                    order = new Order(user.getUid(), startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
-                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
-                                    myDbReferenceOrder = database.getReference("Orders");
+                                getDataFireBase();
+                                if(list.size()<3){
+                                    try {
+                                        order = new Order(currentuser, startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                                startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+                                                txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
+                                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                                    //Uid заказа
-                                    key = myDbReferenceOrder.push().getKey();
-                                    // добавление заказа
-                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                        //Uid заказа
+                                        key = myDbReferenceOrder.push().getKey();
+                                        // добавление заказа
+                                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
-                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    getCurrentDateTime();
-                                    order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
-                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
-                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
-                                    myDbReferenceOrder = database.getReference("Orders");
+                                        refreshFragment();
+                                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        getCurrentDateTime();
+                                        order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+                                                startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+                                                txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
+                                        myDbReferenceOrder = database.getReference("Orders");
 //                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
 //                            myDbReferenceEventOrder = database.getReference("Event");
-                                    //Uid заказа
-                                    key = myDbReferenceOrder.push().getKey();
-                                    // добавление заказа
-                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+                                        //Uid заказа
+                                        key = myDbReferenceOrder.push().getKey();
+                                        // добавление заказа
+                                        myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
 //                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
-                                    refreshFragment();
-                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                        refreshFragment();
+                                        Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+                                    }
+                                } else{
+                                    Toast.makeText(getActivity(), "на данное время нет свободного места", Toast.LENGTH_SHORT).show();
                                 }
+//                                try {
+//                                    order = new Order(currentuser, startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+//                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+//                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
+//                                    myDbReferenceOrder = database.getReference("Orders");
+////                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+////                            myDbReferenceEventOrder = database.getReference("Event");
+//                                    //Uid заказа
+//                                    key = myDbReferenceOrder.push().getKey();
+//                                    // добавление заказа
+//                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+////                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+//                                    refreshFragment();
+//                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                    getCurrentDateTime();
+//                                    order = new Order("user unregister", startOrderHour, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear,
+//                                            startOrderHour+2, startOrderMinute, startOrderDay, startOrderMonth, startOrderYear, "#D50000", 1, addComment.getText().toString(),
+//                                            txtGovNumber.getText().toString(), txtPhoneClient.getText().toString(), dateText, timeText);
+//                                    myDbReferenceOrder = database.getReference("Orders");
+////                            EventOrder eventOrder = new EventOrder(user.getUid(), 5, "10:00", "12:00", "#59DBE0");
+////                            myDbReferenceEventOrder = database.getReference("Event");
+//                                    //Uid заказа
+//                                    key = myDbReferenceOrder.push().getKey();
+//                                    // добавление заказа
+//                                    myDbReferenceOrder.child(Objects.requireNonNull(key)).setValue(order);
+////                            myDbReferenceEventOrder.child(Objects.requireNonNull(key)).setValue(eventOrder);
+//                                    refreshFragment();
+//                                    Toast.makeText(getActivity(), key, Toast.LENGTH_SHORT).show();
+//                                }
                             }
                         });
                         alertDialogBuilder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
@@ -916,6 +984,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         return showOneDay;
     }
 
+
     // Создание и отображение Диалогового окна TimePickerDialog
 
     public void timePicker (){
@@ -961,6 +1030,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
         datePickerDialog.show();
     }
 
+
     private void setupDateTimeInterpreter(final boolean shortDate) {
         mWeekView.setDateTimeInterpreter(new DateTimeInterpreter() {
             @Override
@@ -983,6 +1053,7 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
             }
         });
     }
+
 
     protected String getEventTitle(Calendar time) {
 //        return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
@@ -1101,6 +1172,26 @@ public abstract class OneDay extends Fragment implements WeekView.EmptyViewClick
                 }
                 txtGovNumber.setSelection(txtGovNumber.getText().length());
             }
+        });
+    }
+
+
+    public void getDataFireBase() {
+        orderRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                dataSnapshot.getChildren();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Order eventOrder = snapshot.getValue(Order.class);
+
+                    if(eventOrder.startTimeMonth==startOrderMonth){
+                        list.add(eventOrder);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
     }
 }
