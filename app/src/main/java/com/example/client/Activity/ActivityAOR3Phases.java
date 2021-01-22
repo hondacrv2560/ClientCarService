@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +14,11 @@ import com.example.client.Models.Order;
 import com.example.client.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.leinardi.android.speeddial.SpeedDialView;
 
 import java.text.DateFormat;
@@ -67,6 +71,23 @@ public class ActivityAOR3Phases extends AppCompatActivity {
         speedDialView = findViewById(R.id.speedDial);
         addComment = findViewById(R.id.addComment);
         govNumber = findViewById(R.id.govNumberCarClient);
+
+        orderRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                dataSnapshot.getChildren();
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Order eventOrder = snapshot.getValue(Order.class);
+
+                                            if(eventOrder.startTimeMonth==12){
+                                                list.add(eventOrder);
+                                            }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {}
+                        });
     }
 
     public void getCurrentDateTime(){
