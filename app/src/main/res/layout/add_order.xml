@@ -64,16 +64,21 @@
         android:layout_marginRight="3dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Отмена"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:id="@+id/btnCancel"
+            android:layout_marginLeft="50dp"/>
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Записаться"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:id="@+id/btnOk"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 </LinearLayout>
